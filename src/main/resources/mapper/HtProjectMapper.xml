@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanda.dao.HtProjectMapper" >
+  <resultMap id="BaseResultMap" type="com.wanda.bean.HtProject" >
+    <id column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    project_id, project_name, start_time, end_time, create_user_id, remark, update_user, 
+    update_time, delete_user, delete_time, delete_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wd_ht_project
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wd_ht_project
+  </delete>
+  
+  <insert id="insert" parameterType="com.wanda.bean.HtProject" >
+  		<selectKey keyProperty="projectId" resultType="string" order="BEFORE">
+ 			select UUID()	
+ 		</selectKey>
+    insert into wd_ht_project (project_id, project_name, start_time, 
+      end_time, create_user_id, remark, 
+      update_user, update_time, delete_user, 
+      delete_time, delete_state)
+    values (#{projectId,jdbcType=VARCHAR}, #{projectName,jdbcType=VARCHAR}, #{startTime,jdbcType=TIMESTAMP}, 
+      #{endTime,jdbcType=TIMESTAMP}, #{createUserId,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteUser,jdbcType=VARCHAR}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanda.bean.HtProject" >
+    insert into wd_ht_project
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="projectName != null" >
+        project_name,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="createUserId != null" >
+        create_user_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="projectName != null" >
+        #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanda.bean.HtProject" >
+    update wd_ht_project
+    <set >
+      <if test="projectName != null" >
+        project_name = #{projectName,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="createUserId != null" >
+        create_user_id = #{createUserId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanda.bean.HtProject" >
+    update wd_ht_project
+    set project_name = #{projectName,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=TIMESTAMP},
+      end_time = #{endTime,jdbcType=TIMESTAMP},
+      create_user_id = #{createUserId,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR}
+    where project_id = #{projectId,jdbcType=VARCHAR}
+  </update>
+  
+  
+  <delete id="deleteIn" parameterType="map">
+  	delete from wd_ht_project where project_Id in
+	<foreach collection="proMap" item="pro" separator="," open="(" close=")">
+		#{pro}
+	</foreach>
+
+  </delete>
+  <select id="selectProject" parameterType="com.wanda.bean.HtProject" resultMap="BaseResultMap">
+  	select * from wd_ht_project 
+  	<where>
+  		<if test="projectName !=null">
+  			and project_name like "%"#{projectName,jdbcType=VARCHAR}"%"
+  		</if>
+  	</where>
+  </select>
+</mapper>

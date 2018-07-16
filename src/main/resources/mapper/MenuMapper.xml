@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanda.dao.MenuMapper" >
+  <resultMap id="BaseResultMap" type="com.wanda.bean.Menu" >
+    <id column="menu_id" property="menuId" jdbcType="VARCHAR" />
+    <result column="menu_name" property="menuName" jdbcType="VARCHAR" />
+    <result column="pid" property="pid" jdbcType="VARCHAR" />
+    <result column="menu_url" property="menuUrl" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap type="com.wanda.bean.Menu" id="subMenu1" extends="BaseResultMap">
+  	<collection property="subMenu" ofType="com.wanda.bean.Menu">
+  		<id column="mid" property="menuId" jdbcType="INTEGER" />
+	    <result column="mname" property="menuName" jdbcType="VARCHAR" />
+	    <result column="mpid" property="pid" jdbcType="INTEGER" />
+	    <result column="murl" property="menuUrl" jdbcType="VARCHAR" />
+  	</collection>
+  </resultMap>
+  
+  <sql id="Base_Column_List" >
+    menu_id, menu_name, pid, menu_url
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wd_menu
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wd_menu
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wanda.bean.Menu" >
+    insert into wd_menu (menu_id, menu_name, pid, 
+      menu_url, update_user, update_time, 
+      delete_user, delete_time, delete_state
+      )
+    values (#{menuId,jdbcType=VARCHAR}, #{menuName,jdbcType=VARCHAR}, #{pid,jdbcType=VARCHAR}, 
+      #{menuUrl,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleteUser,jdbcType=VARCHAR}, #{deleteTime,jdbcType=TIMESTAMP}, #{deleteState,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanda.bean.Menu" >
+    insert into wd_menu
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="menuId != null" >
+        menu_id,
+      </if>
+      <if test="menuName != null" >
+        menu_name,
+      </if>
+      <if test="pid != null" >
+        pid,
+      </if>
+      <if test="menuUrl != null" >
+        menu_url,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="menuId != null" >
+        #{menuId,jdbcType=VARCHAR},
+      </if>
+      <if test="menuName != null" >
+        #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanda.bean.Menu" >
+    update wd_menu
+    <set >
+      <if test="menuName != null" >
+        menu_name = #{menuName,jdbcType=VARCHAR},
+      </if>
+      <if test="pid != null" >
+        pid = #{pid,jdbcType=VARCHAR},
+      </if>
+      <if test="menuUrl != null" >
+        menu_url = #{menuUrl,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanda.bean.Menu" >
+    update wd_menu
+    set menu_name = #{menuName,jdbcType=VARCHAR},
+      pid = #{pid,jdbcType=VARCHAR},
+      menu_url = #{menuUrl,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR}
+    where menu_id = #{menuId,jdbcType=VARCHAR}
+  </update>
+  
+  <!-- 根据角色id查询菜单-->
+    <select id="selectMenuByRolId" parameterType="java.lang.String"  resultMap="subMenu1">
+    	select m1.*,m2.menu_id mid ,m2.menu_name mname,m2.pid mpid, m2.menu_url murl 
+			from  wd_menu m1 LEFT JOIN wd_menu m2 on 
+  	  		m1.menu_id = m2.pid,role_menu r  
+		where m1.pid = -1 and r.menu_id = m1.menu_id and r.user_id = #{rolId}
+  </select>
+</mapper>

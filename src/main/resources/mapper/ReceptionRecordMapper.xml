@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanda.dao.ReceptionRecordMapper" >
+  <resultMap id="BaseResultMap" type="com.wanda.bean.ReceptionRecord" >
+    <id column="reception_record_id" property="receptionRecordId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+    <result column="reception_time" property="receptionTime" jdbcType="TIMESTAMP" />
+    <result column="reception_mode" property="receptionMode" jdbcType="VARCHAR" />
+    <result column="reception_content" property="receptionContent" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="times" property="times" jdbcType="INTEGER" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    reception_record_id, user_id, user_name, number, reception_time, reception_mode, 
+    reception_content, customer_id, customer_name, times, update_user, update_time, delete_user, 
+    delete_time, delete_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wd_reception_record
+    where reception_record_id = #{receptionRecordId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wd_reception_record
+    where reception_record_id = #{receptionRecordId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wanda.bean.ReceptionRecord" >
+    insert into wd_reception_record (reception_record_id, user_id, user_name, 
+      number, reception_time, reception_mode, 
+      reception_content, customer_id, customer_name, 
+      times, update_user, update_time, 
+      delete_user, delete_time, delete_state
+      )
+    values (#{receptionRecordId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, 
+      #{number,jdbcType=VARCHAR}, #{receptionTime,jdbcType=TIMESTAMP}, #{receptionMode,jdbcType=VARCHAR}, 
+      #{receptionContent,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{times,jdbcType=INTEGER}, #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleteUser,jdbcType=VARCHAR}, #{deleteTime,jdbcType=TIMESTAMP}, #{deleteState,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanda.bean.ReceptionRecord" >
+  	<selectKey resultType="java.lang.String" keyProperty="receptionRecordId" order="BEFORE">
+        SELECT UUID()
+    </selectKey>
+    insert into wd_reception_record
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+        reception_record_id,
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+      <if test="receptionTime != null" >
+        reception_time,
+      </if>
+      <if test="receptionMode != null" >
+        reception_mode,
+      </if>
+      <if test="receptionContent != null" >
+        reception_content,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="times != null" >
+        times,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="receptionRecordId != null" >
+        #{receptionRecordId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="receptionTime != null" >
+        #{receptionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receptionMode != null" >
+        #{receptionMode,jdbcType=VARCHAR},
+      </if>
+      <if test="receptionContent != null" >
+        #{receptionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        #{times,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanda.bean.ReceptionRecord" >
+    update wd_reception_record
+    <set >
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+      <if test="receptionTime != null" >
+        reception_time = #{receptionTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="receptionMode != null" >
+        reception_mode = #{receptionMode,jdbcType=VARCHAR},
+      </if>
+      <if test="receptionContent != null" >
+        reception_content = #{receptionContent,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="times != null" >
+        times = #{times,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where reception_record_id = #{receptionRecordId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanda.bean.ReceptionRecord" >
+    update wd_reception_record
+    set user_id = #{userId,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      number = #{number,jdbcType=VARCHAR},
+      reception_time = #{receptionTime,jdbcType=TIMESTAMP},
+      reception_mode = #{receptionMode,jdbcType=VARCHAR},
+      reception_content = #{receptionContent,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      times = #{times,jdbcType=INTEGER},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR}
+    where reception_record_id = #{receptionRecordId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="getList" resultMap="BaseResultMap">
+  	select * from wd_reception_record
+  </select>
+  
+  <delete id="delbatch" parameterType="map">
+	delete from wd_reception_record where reception_record_id in 
+	<foreach separator="," open="(" close=")" item="sno" collection="snos"> #{sno} </foreach>
+  </delete>
+  
+</mapper>

@@ -1,0 +1,197 @@
+@charset "utf-8";
+/* CSS Document */
+
+
+body{padding:0px;margin:0px;list-style:none;font-family:Arial, Helvetica, sans-serif;line-height:20px; background:url(../images/bg.gif) repeat-x top;
+scrollbar-face-color: #DBEBFE; scrollbar-shadow-color: #B8D6FA; scrollbar-highlight-color: #FFFFFF; scrollbar-3dlight-color: #DBEBFE; scrollbar-darkshadow-color:#458CE4; scrollbar-track-color: #FFFFFF; scrollbar-arrow-color: #458CE4;}
+ul,li,td{list-style:none;font-family: Arial, Helvetica, sans-serif;line-height:20px;}
+td,th,div,li{ font-size:12px; color:#515151; line-height:20px; font-family:"微软雅黑";}
+UL { PADDING-RIGHT: 0px; PADDING-LEFT: 0px; PADDING-BOTTOM: 0px; MARGIN: 0px; PADDING-TOP: 0px; LIST-STYLE-TYPE: none}
+img {border:0px;}
+input ,select,textarea{ font-size:12px;color:#686F78;}
+a:link	{ color:#12719E; text-decoration:none;}
+a:visited {color:#12719E; text-decoration:none; }
+a:hover	{ color:#AAAAAA;text-decoration:none; } 
+a:active{ color:#AAAAAA;text-decoration:none; } 
+P{ text-indent:2em;	}
+.l {	FLOAT: left}
+.r {	FLOAT: right}
+.blank8{ height:8px; line-height:8px;}
+.red{ color:#FF0000;}
+/* Header */
+#header{ padding-left:0px; padding-right:0px; padding-top:0px; padding-bottom:0px; margin:0 auto;width:100%; height:94px; background:url(../images/top.jpg) no-repeat left;}
+.header_1{ background:url(../images/icon1.png) 15px 70px no-repeat; float:left;width:370px; padding-top:67px; padding-left:35px;display:block; overflow:hidden; color:#2165A1; }
+.header_2{ float:right; display:block; overflow:hidden; height:94px;}
+.header_2_exit{ float:right; height:16px; padding-right:5px; padding-top:5px;width:50px;}
+.menu{float:right; width:484px; top:51px; position:absolute; right:0px; z-index:1000;}
+.menu_slts{ padding-bottom:5px; width:110px; float:left;}
+.menu_button{margin:0 auto; float: left; padding-top:0px; }
+.menu_button li{ float:left; width:121px; height:41px;}
+.button{text-align:center; background:url(../images/button_bg.gif) no-repeat;height:22px; color:#1A52A1; width:69px; border:0px;}
+.button a:link{ color:#1A52A1;}
+.button a:hover{ color:#1A52A1;}
+.button a:active{ color:#1A52A1;}
+.button a:visited{ color:#1A52A1;}
+#box{
+	margin-left:8px;
+	margin-right:8px;
+	padding-top:8px;
+	padding-bottom:8px;
+	padding-left:8px;
+	padding-right:10px;
+	border:2px solid #00B4E1;
+	background:#fff;
+	margin-bottom:40px;
+}
+.cxtj{ width:100%; border:1px solid #B3DAEB;}
+.cxtj_1{ width:100%; background:url(../images/banner_bg.gif) repeat-x; height:29px;}
+.cxtj_1_font{background:url(../images/icon.png) no-repeat 10px 10px; color:#2165A1; text-indent:25px; line-height:28px; width:100px; float:left;}
+.cxtj_1_jt{ float:right; width:30px; padding-top:5px;}
+.cxtj_2{ padding:6px;overflow:hidden; }
+.cxlb{ width:100%; border:1px solid #B3DAEB;}
+.cxlb_1{ width:100%; background:url(../images/banner_bg.gif) repeat-x; height:29px;}
+.cxlb_1_font{background:url(../images/icon.png) no-repeat 10px 10px; color:#2165A1; text-indent:25px; line-height:28px; width:100px; float:left;}
+.cxlb_2{ padding-top:6px; padding-bottom:6px; padding-left:6px; padding-right:6px;}
+.page{ margin: 0 auto; height:39px; position:absolute;bottom:0px;width:100%; background:url(../images/lock_bg.png) repeat-x;}
+.page_content{ margin: 0 auto; width:600px;}
+.page_content img{ padding-left:5px; padding-right:5px;}
+.page_content li{ text-align:center;  float:left; line-height:30px; padding-top:8px; padding-left:6px; padding-right:6px;}
+.page_content li a:link{ color:#000;}
+.page_content li a:hover{ color:#000; text-decoration:underline;}
+.page_content li a:active{ color:#000; text-decoration:underline;}
+.page_content li a:visited{ color:#000; }
+
+/* 列表样式2 * START --------------------*/
+table.tablist {
+	width:100%;
+	font-size:12px;
+	margin:0 auto;
+	color:#515151;
+	text-align:center;
+	border-collapse:collapse;/*细线表格代码*/
+}
+table.tablist td {
+	border:1px solid #82AFE8;/*细线表格线条颜色*/
+	height:23px;
+}
+table.tablist tr.t1 td {
+	background-color:#fff;
+}/* 交替行第一行的背景色 */
+table.tablist tr.t2 td {
+	background-color:#EDEDED;
+}/* 交替行第二行的背景色 */
+table.tablist tr.t3 td {
+	background-color:#BDDBFF;
+}/* 鼠标经过时的背景色 */
+table.tablist th {
+	line-height:23px;
+	border:1px solid #82AFE8;
+	background:url(../images/table_dataList.gif) left center repeat-x;
+	color:#005B7C;
+}
+table.tablist tbody tr td {
+	text-align:center;
+	white-space:nowrap;
+}
+
+
+/* 列表样式2 *END ---------------------*/
+
+
+
+/* footer */
+#footer{background:url(../images/footer.gif)  repeat-x;height:29px; width:100%; text-align:center; color:#FFFFFF; line-height:28px;}
+
+/* 2012-6-19 *  --------------------*/
+#login{ background:url(../images/login_bg1.jpg) no-repeat; width:100%; height:600px;margin:0 auto;}
+.login{ background:url(../images/login.png) no-repeat; width:656px; height:379px;  margin:0 auto; }
+.login_button{ padding-left:0px; width:100px; }
+.input{ padding-top:166px; padding-left:130px;}
+.input li{ float:left;}
+.input input{ background:url(../images/input.png) no-repeat; width:162px; height:38px; line-height:35px; border:0px; text-indent:10px; font-family:"微软雅黑"; font-size:14px;}
+#login_footer{ padding-top:10px; padding-bottom:10px; width:100%; text-align:center; color:#171717;}
+
+.error{ padding:30px; text-align:center; font-size:24px; color:#7E7E80; line-height:25px;}
+
+/* 2012-6-29 *  --------------------*/
+#box_ny{
+	margin-left:8px;
+	margin-right:8px;
+	border:2px solid #00B4E1;
+	background:#fff;	
+	margin-bottom:40px;
+	height:auto;
+}
+.box_left{ margin: 0 auto; width:155px; display:block; overflow:hidden; }
+.box_leftTitle{ background:url(../images/banner4_bg.gif) repeat-x; height:30px; color:#595F62; font-size:14px; font-weight:bold; text-align:center; line-height:28px;}
+.box_leftMenu{ width:145px; margin:0 auto; padding-top:5px; }
+.box_leftMenu ul{ float:left; width:145px; display:block; overflow:hidden;}
+.box_leftMenu li{ float:left; width:145px;  text-indent:8px;display:block; overflow:hidden;padding-top:5px;}
+.box_leftMenu  ul li a{ float:left; color:#73634c; text-decoration:none; width:145px; display:block; padding-left:20px; background:url(../images/icon2.gif) no-repeat 13px 8px; height:27px; line-height:27px; }
+.box_leftMenu  ul li a.s1{ float:left;background:url(../images/hover_bg.gif) no-repeat; color:#FFFFFF; font-weight:bold;height:27px; line-height:27px;}
+.box_leftMenu  ul li a:hover{ width:145px; height:27px; background:url(../images/hover_bg.gif) no-repeat; color:#FFFFFF; font-weight:bold;height:27px; line-height:27px;}
+.box_leftMenu ul div{ float:left; width:95px; display:block; padding-left:10px; }
+.box_leftMenu ul div li a{ float:left; width:95px; display:block; overflow:hidden; background:url(../images/icon3.gif) no-repeat 20px 10px; font-size:12px;}
+.box_leftMenu ul div li a.s2{float:left; width:95px; display:block; overflow:hidden;background:url(../images/icon3.gif) no-repeat 20px 10px  #D3EAFF; font-size:12px;}
+.box_leftMenu ul div li a:hover{ float:left; width:95px; display:block; overflow:hidden;background:url(../images/icon3.gif) no-repeat 20px 10px  #D3EAFF; font-size:12px;}
+
+
+.swich{ background:#95C8E3; width:10px; line-height:10px; }
+.box_right{ padding:8px;}
+.report{  height:260px; overflow: auto; width:auto; padding-bottom:8px; padding-left:8px; padding-right:8px; padding-top:8px;}
+.excel{ float:right; width:88px; padding-top:4px;}
+
+/* 列表样式1 * START --------------------*/
+.table_list{
+ width:100%;
+ font-size: 12px;
+ color: #515151;
+ border-collapse:collapse;/*细线表格代码*/
+}
+
+.table_list th {
+ font-size: 13px;
+ height:25px;
+ text-align: center;
+ color:#515151;
+ background:url(../images/op8.gif) repeat-x bottom #f0f7fc;
+ border:1px solid #B0DBF6;/*细线表格线条颜色*/
+ white-space: nowrap;
+}
+
+ 
+.table_list td {
+ font-size: 12px;
+ color: #464444;
+ border:1px solid #B0DBF6;/*细线表格线条颜色*/
+ text-align: center;
+ white-space: nowrap;
+}
+.table_list .tr1{
+ background:url(../images/op9.gif) repeat-x bottom #fff;
+}
+
+
+table.table_list tr.t1 td {
+	background-color:#fff;
+}/* 交替行第一行的背景色 */
+table.table_list tr.t2 td {
+	 background:url(../images/op9.gif) repeat-x bottom #fff;
+}/* 交替行第二行的背景色 */
+
+/* 列表样式1 *END ---------------------*/
+
+
+.welcome{ background: url(../images/welcome.jpg) no-repeat bottom right; width:100%; }
+.welcomeFont{  font-size:36px; color:#606060; line-height:36px; padding-top:100px; padding-left:60px;}
+
+
+.complaint{ margin:0 auto; width:680px; background:url(../images/complaint_bg.gif) no-repeat; padding-bottom:6px;}
+.complaint_button{ margin:0 auto; width:436px; height:34px;}
+.complaint_button li{ float:left; width:109px; text-indent:0px; font-size:14px; color:#BEBFC1; line-height:34px;}
+.complaint_button li a{color:#BEBFC1; }
+.complaint_button li a:link{color:#BEBFC1; }
+.complaint_button li a:hover{color:#3A7CBE; }
+.complaint_button li a:visited{color:#BEBFC1; }
+.complaint_button li a.s2{color:#3A7CBE; font-weight:bold; }
+

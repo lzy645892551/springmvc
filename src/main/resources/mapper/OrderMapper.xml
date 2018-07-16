@@ -1,0 +1,326 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanda.dao.OrderMapper" >
+  <resultMap id="BaseResultMap" type="com.wanda.bean.Order" >
+    <id column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="TIMESTAMP" />
+    <result column="sale_chance_id" property="saleChanceId" jdbcType="VARCHAR" />
+    <result column="room_id" property="roomId" jdbcType="VARCHAR" />
+    <result column="pay_type_name" property="payTypeName" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="order_type" property="orderType" jdbcType="VARCHAR" />
+    <result column="unit_price" property="unitPrice" jdbcType="REAL" />
+    <result column="deposit" property="deposit" jdbcType="REAL" />
+    <result column="total" property="total" jdbcType="REAL" />
+    <result column="pay_area" property="payArea" jdbcType="REAL" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  </resultMap>
+    <resultMap id="BaseResultMapa" type="com.wanda.bean.HtRoom" >
+    <id column="room_id" property="roomId" jdbcType="VARCHAR" />
+    <result column="room_code" property="roomCode" jdbcType="VARCHAR" />
+    <result column="build_up_area" property="buildUpArea" jdbcType="REAL" />
+    <result column="inner_area" property="innerArea" jdbcType="REAL" />
+    <result column="apartment_layout_id" property="apartmentLayoutId" jdbcType="VARCHAR" />
+    <result column="inner_price" property="innerPrice" jdbcType="REAL" />
+    <result column="unit_price" property="unitPrice" jdbcType="REAL" />
+    <result column="floor" property="floor" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="unit_id" property="unitId" jdbcType="VARCHAR" />
+    <result column="purpose_id" property="purposeId" jdbcType="VARCHAR" />
+    <result column="build_id" property="buildId" jdbcType="VARCHAR" />
+    <result column="opening_report_id" property="openingReportId" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    order_id, create_time, sale_chance_id, room_id, pay_type_name, customer_id, customer_name, 
+    user_id, name, order_type, unit_price, deposit, total, pay_area, update_user, update_time, 
+    delete_user, delete_time, delete_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wd_order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wd_order
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wanda.bean.Order" >
+    insert into wd_order (order_id, create_time, sale_chance_id, 
+      room_id, pay_type_name, customer_id, 
+      customer_name, user_id, name, 
+      order_type, unit_price, deposit, 
+      total, pay_area, update_user, 
+      update_time, delete_user, delete_time, 
+      delete_state)
+    values (#{orderId,jdbcType=VARCHAR}, #{createTime,jdbcType=TIMESTAMP}, #{saleChanceId,jdbcType=VARCHAR}, 
+      #{roomId,jdbcType=VARCHAR}, #{payTypeName,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, 
+      #{customerName,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{orderType,jdbcType=VARCHAR}, #{unitPrice,jdbcType=REAL}, #{deposit,jdbcType=REAL}, 
+      #{total,jdbcType=REAL}, #{payArea,jdbcType=REAL}, #{updateUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteUser,jdbcType=VARCHAR}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{deleteState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanda.bean.Order" >
+  <selectKey keyProperty="orderId" resultType="string" order="BEFORE">
+ 			select UUID()	
+ 		</selectKey>
+    insert into wd_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="saleChanceId != null" >
+        sale_chance_id,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="payTypeName != null" >
+        pay_type_name,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="orderType != null" >
+        order_type,
+      </if>
+      <if test="unitPrice != null" >
+        unit_price,
+      </if>
+      <if test="deposit != null" >
+        deposit,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="payArea != null" >
+        pay_area,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="orderId != null" >
+         #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleChanceId != null" >
+        #{saleChanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="payTypeName != null" >
+        #{payTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=REAL},
+      </if>
+      <if test="deposit != null" >
+        #{deposit,jdbcType=REAL},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=REAL},
+      </if>
+      <if test="payArea != null" >
+        #{payArea,jdbcType=REAL},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanda.bean.Order" >
+    update wd_order
+    <set >
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="saleChanceId != null" >
+        sale_chance_id = #{saleChanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="payTypeName != null" >
+        pay_type_name = #{payTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orderType != null" >
+        order_type = #{orderType,jdbcType=VARCHAR},
+      </if>
+      <if test="unitPrice != null" >
+        unit_price = #{unitPrice,jdbcType=REAL},
+      </if>
+      <if test="deposit != null" >
+        deposit = #{deposit,jdbcType=REAL},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=REAL},
+      </if>
+      <if test="payArea != null" >
+        pay_area = #{payArea,jdbcType=REAL},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanda.bean.Order" >
+    update wd_order
+    set create_time = #{createTime,jdbcType=TIMESTAMP},
+      sale_chance_id = #{saleChanceId,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=VARCHAR},
+      pay_type_name = #{payTypeName,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      order_type = #{orderType,jdbcType=VARCHAR},
+      unit_price = #{unitPrice,jdbcType=REAL},
+      deposit = #{deposit,jdbcType=REAL},
+      total = #{total,jdbcType=REAL},
+      pay_area = #{payArea,jdbcType=REAL},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR}
+    where order_id = #{orderId,jdbcType=VARCHAR}
+  </update>
+  <update id="huifu" parameterType="map">
+  	update wd_order set delete_state = 0 where order_id in 
+  	<foreach collection="snos" item="sno" open="(" close=")" separator=",">
+			#{sno}
+	</foreach>
+  </update>
+  
+  <update id="zuofei" parameterType="map">
+  	update wd_order set delete_state = 1 where order_id in 
+  	<foreach collection="snos" item="sno" open="(" close=")" separator=",">
+			#{sno}
+	</foreach>
+  </update>
+  
+  <update id="qianyue" parameterType="map">
+  	update wd_order set order_type = "签约" where order_id in 
+  	<foreach collection="snos" item="sno" open="(" close=")" separator=",">
+			#{sno}
+	</foreach>
+  </update>
+  
+  <delete id="dele" parameterType="map">
+  	delete from wd_order  where order_id in 
+  	<foreach collection="snos" item="sno" open="(" close=")" separator=",">
+			#{sno}
+	</foreach>
+  </delete>
+  
+  <select id="getList" parameterType="com.wanda.bean.Order" resultMap="BaseResultMap">
+  	select * from wd_order where delete_state = 0
+  </select>
+  <select id="getList1" parameterType="com.wanda.bean.Order" resultMap="BaseResultMap">
+  	select * from wd_order where delete_state = 1
+  </select>
+  <select id="getFangjian" parameterType="com.wanda.bean.HtRoom" resultMap="BaseResultMapa">
+  	select * from wd_ht_room 
+  </select>
+   <select id="selArea" parameterType="java.lang.String" resultMap="BaseResultMapa">
+  	select * from wd_ht_room where room_id = #{roomId,jdbcType=VARCHAR}
+  </select>
+   <select id="getOrderId" parameterType="java.lang.String" resultMap="BaseResultMap">
+  	select * from wd_order where customer_name = #{customerName,jdbcType=VARCHAR}
+  </select>
+</mapper>

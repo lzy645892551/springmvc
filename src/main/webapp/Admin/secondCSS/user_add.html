@@ -1,0 +1,464 @@
+
+<!-- saved from url=(0039)http://localhost:8080/EMIS/user_add.jsp -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<link rel="Bookmark" href="http://localhost:8080/favicon.ico">
+<link rel="Shortcut Icon" href="http://localhost:8080/favicon.ico">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="H-ui.min.css">
+<link rel="stylesheet" type="text/css" href="H-ui.admin.css">
+<link rel="stylesheet" type="text/css" href="iconfont.css">
+<link rel="stylesheet" type="text/css" href="icheck.css">
+<link rel="stylesheet" type="text/css" href="skin.css" id="skin">
+<link rel="stylesheet" type="text/css" href="style.css">
+
+
+<title>添加人员 </title>
+
+
+
+
+<script type="text/javascript">
+function test()
+	{
+		var username = document.getElementById('username').value;
+		if(username=="")
+		{
+			document.form.username.focus();
+			return false;
+		}
+		var password = document.getElementById('password').value;
+		if(password=="")
+		{
+			document.form.password.focus();
+			return false;
+		}
+		var name = document.getElementById('name').value;
+		if(name=="")
+		{
+			document.form.name.focus();
+			return false;
+		}
+		var sex = document.getElementById('sex').value;
+		if(sex=="")
+		{
+			document.form.sex.focus();
+			return false;
+		}
+		var job = document.getElementById('job').value;
+		if(job=="")
+		{
+			document.form.job.focus();
+			return false;
+		}
+		var tel = document.getElementById('tel').value;
+		if(tel=="")
+		{
+			document.form.tel.focus();
+			return false;
+		}
+		var email = document.getElementById('email').value;
+		if(email=="")
+		{
+			document.form.email.focus();
+			return false;
+		}
+		var area = document.getElementById('area').value;
+		if(area=="")
+		{
+			document.form.area.focus();
+			return false;
+		}
+		var province = document.getElementById('province').value;
+		if(province=="")
+		{
+			document.form.province.focus();
+			return false;
+		}
+		return true;
+  }
+</script>
+
+<link rel="stylesheet" href="layer.css" id="layui_layer_skinlayercss"><link href="WdatePicker.css" rel="stylesheet" type="text/css"></head>
+
+<body>
+<article class="page-container">
+	<form action="http://localhost:8080/EMIS/adduser" name="form" method="post" class="form form-horizontal" id="form-member-add" onSubmit="return test(this)" novalidate="novalidate">
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" style="width:350px;" placeholder="" id="username" name="username">
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户密码：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" style="width:350px;" placeholder="" id="password" name="password">
+			</div>
+		</div>
+			
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>用户姓名：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" style="width:350px;" value="" placeholder="" id="name" name="name">
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>性别：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<select type="text" class="input-text" style="width:350px;" placeholder="" name="sex" id="sex">
+					<option value="">-------请选择性别-------</option>
+					<option value="男">男</option>
+					<option value="女">女</option>	
+				</select>
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>职位：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+			    <!-- <span class="select-box"> --> 
+				<!--<select class="select" size="1" name="job">-->
+				    <select type="text" class="input-text" style="width:350px;" placeholder="" name="job" id="job">
+					<option value="">-------请选择职位-------</option>
+					<option value="1">部门经理</option>
+					<option value="2">合同管理员</option>
+					<option value="3">主管销售的部门领导</option>
+					<option value="4">大区经理</option>
+					<option value="5">项目经理</option>
+					<option value="6">采购人员</option>
+					<option value="7">管理员</option>
+					<option value="8">技术人员</option>	
+				</select>
+				 
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>电话：</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" style="width:350px;" value="" placeholder="" name="tel" id="tel">
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>E-mail:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+				<input type="text" class="input-text" style="width:350px;" value="" placeholder="" name="email" id="email">
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>区域:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+		    <select type="text" class="input-text" style="width:350px;" placeholder="" name="area" id="area" onChange="changeProvince( )">
+               <option value="">-------请选择区域-------</option> 
+               <option value="华东">华东</option>  
+               <option value="华南">华南</option>  
+               <option value="华中">华中</option>  
+	           <option value="华北">华北</option> 
+	           <option value="西北">西北</option> 
+	           <option value="西南">西南</option> 
+	           <option value="东北">东北</option> 
+	           <option value="港澳台">港澳台</option>
+           </select>
+			</div>
+		</div>
+		
+		<div class="row cl">
+			<label class="form-label col-xs-4 col-sm-3"><span class="c-red">*</span>省份:</label>
+			<div class="formControls col-xs-8 col-sm-9">
+			<select type="text" class="input-text" style="width:350px;" placeholder="" name="province" id="province"> 
+            <option value="">-------请选择省份-------</option> 
+            </select>  
+			</div>
+		</div>
+		<div class="row cl">
+			<div class="col-xs-8 col-sm-9 col-xs-offset-4 col-sm-offset-3">
+				<input class="btn btn-primary radius" type="submit" value="  提交  ">
+			</div>
+		</div>
+	</form>
+</article>
+
+<!--_footer ä½ä¸ºå¬å±æ¨¡çåç¦»åºå»--> 
+<script type="text/javascript" src="jquery.min.js"></script> 
+<script type="text/javascript" src="layer.js"></script>
+<script type="text/javascript" src="laypage.js"></script> 
+<script type="text/javascript" src="jquery.icheck.min.js"></script>
+<script type="text/javascript" src="WdatePicker.js"></script> 
+<script type="text/javascript" src="jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="jquery.validate.min.js"></script> 
+<script type="text/javascript" src="validate-methods.js"></script> 
+<script type="text/javascript" src="messages_zh.min.js"></script>
+<script type="text/javascript" src="H-ui.js"></script><a href="javascript:void(0)" class="Hui-iconfont toTop" title="返回顶部" alt="返回顶部" style="display:none"></a> 
+<script type="text/javascript" src="H-ui.admin.js"></script> 
+
+<!--/_footer /ä½ä¸ºå¬å±æ¨¡çåç¦»åºå»--> 
+<script type="text/javascript">
+	function checkpwd(obj){
+	  if(obj.value == "")return false;
+	  if(obj.value.match(/[^A-Za-z0-9]/ig)){
+	    //alert("密码只能为数字和字母");
+	    return false;
+	  }
+	  return true;
+	}
+ </script>
+
+<script type="text/javascript">
+function changeProvince( ){  
+      //获取用户选择的区域 
+     var area=document.form.area.value;   
+     var newOption0,newOption1,newOption2,newOption3,newOption4,newOption5,newOption6;  
+     switch(area){  
+       //根据用户选择的区域动态创建省份下拉列表  
+       case  "华东" :  
+            newOption0= new Option("-------请选择省份-------","");
+            newOption1= new Option("山东","山东");  
+            newOption2= new Option("江苏","江苏"); 
+            newOption3= new Option("安徽","安徽");
+            newOption4= new Option("浙江","浙江");
+			newOption5= new Option("福建","福建");
+			newOption6= new Option("上海","上海");
+            break;  
+       case "华南" : 
+            newOption0= new Option("-------请选择省份-------","");  
+            newOption1= new Option("广东","广东");  
+            newOption2= new Option("广西","广西"); 
+            newOption3= new Option("海南","海南"); 			
+            break;  
+       case "华中" : 
+            newOption0= new Option("-------请选择省份-------","");  
+            newOption1= new Option("湖北","湖北");  
+            newOption2= new Option("湖南","湖南");
+            newOption3= new Option("河南","河南");
+            newOption4= new Option("江西","江西");		   
+            break;  
+       case "华北" : 
+           newOption0= new Option("-------请选择省份-------","");  
+           newOption1= new Option("北京","北京");  
+           newOption2= new Option("天津","天津");
+           newOption3= new Option("河北","河北");
+           newOption4= new Option("山西","山西");
+           newOption5= new Option("内蒙古","内蒙古");		   
+            break;  	
+       case "西北" : 
+           newOption0= new Option("-------请选择省份-------","");  
+           newOption1= new Option("宁夏","宁夏");  
+           newOption2= new Option("新疆","新疆");
+           newOption3= new Option("青海","青海");
+           newOption4= new Option("陕西","陕西");
+           newOption5= new Option("甘肃","甘肃");		   
+            break;  
+       case "西南" : 
+           newOption0= new Option("-------请选择省份-------","");  
+           newOption1= new Option("四川","四川");  
+           newOption2= new Option("云南","云南");
+           newOption3= new Option("贵州","贵州");
+           newOption4= new Option("西藏","西藏");
+           newOption5= new Option("重庆","重庆");		   
+            break;  
+       case "东北" : 
+           newOption0= new Option("-------请选择省份-------","");
+           newOption1= new Option("辽宁","辽宁");  
+           newOption2= new Option("吉林","吉林");
+           newOption3= new Option("黑龙江","黑龙江");		   
+            break;  
+       case "港澳台" :   
+           newOption0= new Option("--------请选择省份-------","");
+           newOption1= new Option("香港","香港");  
+           newOption2= new Option("澳门","澳门");
+           newOption3= new Option("台湾","台湾");		   
+            break;  			
+      }  
+     //清除原有选项  
+     document.form.province.options.length=0;  
+     //将选项添加到选项数组  
+     document.form.province.options.add(newOption0);
+     document.form.province.options.add(newOption1);  
+     document.form.province.options.add(newOption2);  
+	 document.form.province.options.add(newOption3);
+	 document.form.province.options.add(newOption4);
+	 document.form.province.options.add(newOption5);
+	 document.form.province.options.add(newOption6);
+  }  
+$(function(){ 
+        //文本框失去焦点后 
+       $('form :input').blur(function(){ 
+            var $parent = $(this).parent(); 
+            $parent.find(".formtips").remove(); 
+            //验证用户名 
+            if( $(this).is('#username') ){ 
+               if( this.value==""  ){ 
+                     var errorMsg = '用户名不能为空.'; 
+                     $parent.append('<span class="formtips onError" style="color:red">'+errorMsg+'</span>'); 
+               }else{ 
+                    check(this.value);
+                   function check(username){
+              $.ajax({
+            //提交数据的类型 POST GET
+            type:"POST",
+            //提交的网址
+            url:"usercheck",
+            //提交的数据
+            data:{username:username},
+            //返回数据的格式
+            datatype: "text",//"xml", "html", "script", "json", "jsonp", "text".
+            //在请求之前调用的函数
+            //beforeSend:function(){$("#msg").html("logining");},
+            //成功返回之后调用的函数             
+            success:function(data){
+            if(data=="此用户不存在"){
+            	$parent.append('<span class="formtips onSuccess" style="color:green"></span>');
+            }else{
+           		$parent.append('<span class="formtips onError" style="color:red">'+data+'</span>');
+           		}            
+            }  ,
+            //调用执行后调用的函数
+            complete: function(XMLHttpRequest, textStatus){
+            },
+            //调用出错执行的函数
+            error: function(){
+                //请求出错处理
+            }         
+         });}}} 
+            
+            //用户密码
+            if( $(this).is('#password') ){ 
+               if( this.value==""  ){ 
+                     var errorMsg = '用户密码不能为空.'; 
+                     $parent.append('<span class="formtips onError" style="color:red">'+errorMsg+'</span>'); 
+               }else if(checkpwd(this) == false ){
+            	   var errorMsg = '请输入字母或数字.'; 
+            	   $parent.append('<span class="formtips onError" style="color:red">'+errorMsg+'</span>');
+               }
+               else{ 
+                      
+                     $parent.append('<span class="formtips onSuccess" style="color:green"></span>'); 
+               } 
+            } 
+          	//用户姓名
+            if( $(this).is('#name') ){ 
+               if( this.value==""  ){ 
+                     var errorMsg = '用户姓名不能为空.'; 
+                     $parent.append('<span class="formtips onError" style="color:red">'+errorMsg+'</span>'); 
+               }else{ 
+                     
+                     $parent.append('<span class="formtips onSuccess" style="color:green"></span>'); 
+               } 
+            } 
+          
+          	//性别
+            if( $(this).is('#sex') ){ 
+               if( this.value==""  ){ 
+                     var errorMsg = '性别不能为空.'; 
+                     $parent.append('<span class="formtips onError" style="color:red">'+errorMsg+'</span>'); 
+               }else{ 
+                     
+                     $parent.append('<span class="formtips onSuccess" style="color:green"></span>'); 
+               } 
+            } 
+          
+          	//职位
+            if( $(this).is('#job') ){ 
+               if( this.value==""  ){ 
+                     var errorMsg = '职位不能为空.'; 
+                     $parent.append('<span class="formtips onError" style="color:red">'+errorMsg+'</span>'); 
+               }else{ 
+                     
+                     $parent.append('<span class="formtips onSuccess" style="color:green"></span>'); 
+               } 
+            } 
+            	//电话
+            if( $(this).is('#tel') ){ 
+               if( this.value==""  ){ 
+                     var errorMsg = '电话不能为空.'; 
+                     $parent.append('<span class="formtips onError" style="color:red">'+errorMsg+'</span>'); 
+               }else{ 
+                     
+                     $parent.append('<span class="formtips onSuccess" style="color:green"></span>'); 
+               } 
+            } 
+             	//email
+            if( $(this).is('#email') ){ 
+               if( this.value==""  ){ 
+                     var errorMsg = 'E-mail不能为空.'; 
+                     $parent.append('<span class="formtips onError" style="color:red">'+errorMsg+'</span>'); 
+               }else{ 
+                     
+                     $parent.append('<span class="formtips onSuccess" style="color:green"></span>'); 
+               } 
+            } 
+              	//区域
+            if( $(this).is('#area') ){ 
+               if( this.value==""  ){ 
+                     var errorMsg = '区域不能为空.'; 
+                     $parent.append('<span class="formtips onError" style="color:red">'+errorMsg+'</span>'); 
+               }else{ 
+                     
+                     $parent.append('<span class="formtips onSuccess" style="color:green"></span>'); 
+               } 
+            }
+              	//省份
+            if( $(this).is('#province') ){ 
+               if( this.value==""  ){ 
+                     var errorMsg = '省份不能为空.'; 
+                     $parent.append('<span class="formtips onError" style="color:red">'+errorMsg+'</span>'); 
+               }else{ 
+                     
+                     $parent.append('<span class="formtips onSuccess" style="color:green"></span>'); 
+               } 
+            }
+       }).keyup(function(){ 
+          $(this).triggerHandler("blur"); 
+       }).focus(function(){ 
+            $(this).triggerHandler("blur"); 
+       });//end blur 
+ 
+        
+       //提交，最终验证。 
+       $('#send').click(function(){ 
+               $("form :input.required").trigger('blur'); 
+               var numError = $('form .onError').length; 
+               if(numError!=0){ 
+                   return false;   
+		  }else{
+		  return true;}
+               
+       
+        }); 
+})
+</script>
+<!--è¯·å¨ä¸æ¹åæ­¤é¡µé¢ä¸å¡ç¸å³çèæ¬--> 
+<script type="text/javascript">
+$(function(){
+	
+	$("#form-member-add").validate({
+		onkeyup:false,
+		focusCleanup:true,
+		success:"valid",
+		submitHandler:function(form){
+			$(form).ajaxSubmit();
+			var index = parent.layer.getFrameIndex(window.name);
+			parent.layer.close(index);
+			//parent.$('.btn-refresh').click();
+			
+		}
+	});
+});
+</script> 
+
+
+</body></html>

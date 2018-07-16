@@ -1,0 +1,210 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+        <link href="../Styles/css.css" rel="stylesheet" type="text/css" />
+    <link href="../Styles/ts_css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="main">
+        <div class="tsdj">
+            <div class="tsdj_1">
+                <div class="tsdj_1_font">
+                    受理投诉</div>
+            </div>
+            <div>
+                <table class="table_list1" border="0" cellspacing="2" cellpadding="2">
+                    <tbody>
+                        <tr>
+                            <td class="table_list1_style1" width="16%">
+                                <font class="red">*</font>&nbsp;<span id="businessName">客户类型</span>
+                            </td>
+                            <td class="table_list1_style2" width="16%">
+                                <select style="width: 99%" id="selClientType" class="aspNetDisabled"   onchange="getSelectTypeValue();"
+                                    name="selClientType">
+                                    <option selected value="02852278989C43A1BA019486F242D48E">商户</option>
+                                    <option value="F1CB5B74E53842E5B08864FFE30B01EB">消费者</option>
+                                    <option value="74CD12115BE14904ABCF461428A46703">其他</option>
+                                </select>
+                            </td>
+                            <td class="table_list1_style1" width="16%">
+                                <div id="spanbusinessNameDiv">
+                                    <div id="businessNamePanel">
+                                        <span id="spanBusinessName">商户名称及编号</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table_list1_style2" width="12%">
+                                <div id="txtBusinessNameDiv">
+                                    <div id="txtBusinessNamePanel">
+                                        <input style="width: 96%" id="txtBusinessName" class="aspNetDisabled"   maxlength="100"
+                                            type="text" name="txtBusinessName">
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table_list1_style1" width="16%">
+                                <div id="spanBusinessTypeDiv">
+                                    <div id="businessTypePanel">
+                                        <span id="spanBusinessType">商户类型</span>
+                                    </div>
+                                </div>
+                            </td>
+                            <td class="table_list1_style2" width="16%">
+                                <div id="drpBusinessTypeDiv">
+                                    <div id="drpBusinessTypePanel">
+                                        <select style="width: 99%" id="drpBusinessType" class="aspNetDisabled"   name="drpBusinessType">
+                                            <option selected value="C03DAEBEF8A04E8FA7C5EF4A81541D36">主力店</option>
+                                            <option value="EC3F3A95BE5E4CE682D59904D5A29656">次主力店</option>
+                                            <option value="6CE2EDBD40934D2883213FC06E306D06">餐饮商户</option>
+                                            <option value="A1724F83FF71487684C9827E117A24A6">服装服饰</option>
+                                            <option value="8564900105FF43B7B92DF0AE20B73EB1">生活配套</option>
+                                            <option value="DE062BB9E489448AA8862AC2DC9433B1">多种经营</option>
+                                            <option value="1463039E83F74358872CCC0735F57B91">其他</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list1_style1" width="16%">
+                                <span style="font-style: normal; font-family: Arial; color: #ff0000; font-size: 13px;
+                                    font-weight: normal; text-decoration: none">*</span><span id="complainantName"> 投诉人姓名</span>
+                            </td>
+                            <td class="table_list1_style2" width="12%">
+                                <input style="width: 96%" id="txtComplainantName" class="aspNetDisabled"  
+                                    value="福红娜" type="text" name="txtComplainantName">
+                            </td>
+                            <td class="table_list1_style1" width="16%">
+                                <span style="font-style: normal; font-family: Arial; color: #ff0000; font-size: 13px;
+                                    font-weight: normal; text-decoration: none">*</span><span id="respectivePro"> 所属项目</span>
+                            </td>
+                            <td class="table_list1_style2" width="16%">
+                                <input style="width: 96%" id="txtRespectivePro" class="aspNetDisabled" onfocus="this.blur();"
+                                      onclick="selectProduct();" value="无锡滨湖万达广场" type="text" name="txtRespectivePro">
+                            </td>
+                            <td class="table_list1_style1" width="16%">
+                                <span style="font-style: normal; font-family: Arial; color: #ff0000; font-size: 13px;
+                                    font-weight: normal; text-decoration: none">*</span> <span id="complaintNumber">投诉次数</span>
+                            </td>
+                            <td class="table_list1_style2" width="12%">
+                                <input style="width: 96%" id="txtComplaintNumber" class="aspNetDisabled"  
+                                    value="1" maxlength="8" type="text" name="txtComplaintNumber">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list1_style1" width="16%">
+                                <span id="preferred">首选联系方式</span>
+                            </td>
+                            <td class="table_list1_style2" width="16%">
+                                <input style="width: 96%" id="txtPreferred" class="aspNetDisabled"   maxlength="16"
+                                    type="text" name="txtPreferred">
+                            </td>
+                            <td class="table_list1_style1" width="16%">
+                                <span id="other">其它联系方式</span>
+                            </td>
+                            <td class="table_list1_style2" width="16%">
+                                <input style="width: 96%" id="txtOther" class="aspNetDisabled"   maxlength="16"
+                                    type="text" name="txtOther">
+                            </td>
+                            <td class="table_list1_style1" width="16%">
+                                <span id="emailAddress">邮箱地址</span>
+                            </td>
+                            <td class="table_list1_style2">
+                                <input style="width: 96%" id="txtEmailAddress" class="aspNetDisabled"   type="text"
+                                    name="txtEmailAddress">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list1_style1" width="16%">
+                                <span style="font-style: normal; font-family: Arial; color: #ff0000; font-size: 13px;
+                                    font-weight: normal; text-decoration: none">*</span> <span id="complaintSource">投诉来源</span>
+                            </td>
+                            <td class="table_list1_style2">
+                                <select style="width: 99%" id="drpComplaintSource" class="aspNetDisabled"  
+                                    name="drpComplaintSource">
+                                    <option selected value="F32A50B8501646C5B20A60244E0E2274">400电话</option>
+                                    <option value="023A465DD7BC474CAD2192EAAAC36038">专用投诉邮箱</option>
+                                    <option value="3A1E740475CB47FD8CD117C8B9AE4594">现场投诉</option>
+                                    <option value="F32A50B8501646C5B20A60244E0E2275">地方投诉电话</option>
+                                </select>
+                            </td>
+                            <td class="table_list1_style1">
+                            </td>
+                            <td class="table_list1_style2">
+                            </td>
+                            <td class="table_list1_style1">
+                            </td>
+                            <td class="table_list1_style2">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td id="gujingyu" colspan="6">
+                                </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list1_style1">
+                                <span style="font-style: normal; font-family: Arial; color: #ff0000; font-size: 13px;
+                                    font-weight: normal; text-decoration: none">*</span> <span id="complaintContent">投诉内容</span>
+                            </td>
+                            <td class="table_list1_style2" colspan="5">
+                                <textarea style="width: 99%" id="txtComplaintContent" class="aspNetDisabled"  
+                                    rows="5" cols="20" name="txtComplaintContent">一般一般一般</textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list1_style1">
+                                <span id="complaintRemark">备注 </span>
+                            </td>
+                            <td class="table_list1_style2" colspan="5">
+                                <textarea style="width: 99%" id="txtComplaintRemark" class="aspNetDisabled"  
+                                    rows="5" cols="20" name="txtComplaintRemark"></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="operate">
+            <ul>
+                <li>
+                    <input id="btnIsDraftSecond" class="button"   onclick="AddComplaints('0',this.id);"
+                        value="暂存" type="button" name="btnIsDraftSecond">
+                </li>
+                <li>
+                    <input id="btnSave" class="button"   onclick="AddComplaints('1',this.id)"
+                        value="提交" type="button" name="btnSave"></li>
+                <li>
+                    <input id="btnUpdate" class="button"   onclick="UpdateComplaint(this.id)"
+                        value="修改" type="button" name="btnUpdate">
+                </li>
+                <li>
+                    <input id="btnClose" class="button" onclick="page_Close()" value="关闭" type="button"
+                        name="btnClose">
+                </li>
+                <li>
+                    <img onclick="SendSMS(1)" alt="" src="../Images/sendSMS.gif">
+                </li>
+            </ul>
+        </div>
+        <input id="hidFileplaintId" type="hidden" name="hidFileplaintId">
+        <!-- ID之间用‘,’分隔 -->
+        <input id="hidProductId" value="103872" type="hidden" name="hidProductId">
+        <input id="hidProductName" type="hidden" name="hidProductName">
+        <input id="hidComplaintId" value="14863F9D3E2B46678D3FB89B082B6511" type="hidden"
+            name="hidComplaintId">
+        <input id="hidCenter" value="false" type="hidden" name="hidCenter">
+        <input id="hidIsAdmin" value="True" type="hidden" name="hidIsAdmin">
+        <input id="hidLogo" value="1" type="hidden" name="hidLogo">
+        <input id="hidComplaintState" value="7" type="hidden" name="hidComplaintState">
+        <div class="blank8">
+        </div>
+        <div>
+            <iframe style="border-bottom: 0px; border-left: 0px; border-top: 0px; border-right: 0px"
+                id="fileUpLoadIframe" onload="iFrameHeight()" height="137" marginheight="0" src="FileUpLoadTest.html?complaintId=14863F9D3E2B46678D3FB89B082B6511&amp;processUuid=1&amp;processName=受理投诉&amp;Index=1"
+                frameborder="0" width="100%" name="fileUpLoadIframe" marginwidth="0" scrolling="no">
+            </iframe>
+        </div>
+        <input id="hidIsHandleComplaint" value="0" type="hidden" name="hidIsHandleComplaint">
+    </div>
+</body>
+</html>

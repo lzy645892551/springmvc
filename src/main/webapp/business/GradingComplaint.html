@@ -1,0 +1,420 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="/Styles/css.css" rel="stylesheet" type="text/css" />
+    <link href="/Styles/ts_css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="main">
+        <div>
+            <div class="tsnr">
+                <div class="tsnr_1">
+                    <div class="tsnr_1_font">
+                        投诉内容</div>
+                </div>
+                <div class="tsnr_2">
+                    <table class="table_list2" border="0" cellspacing="2" cellpadding="2">
+                        <tbody>
+                            <tr>
+                                <td style="cursor: pointer" class="table_list2_style1" onclick="showWaringHis()"
+                                    width="13%">
+                                    预警信息
+                                </td>
+                                <td style="cursor: pointer" class="table_list2_style2" onclick="showWaringHis()"
+                                    width="20%">
+                                    <span id="complaintInfo_lblWaringType">首次反馈客户&nbsp;<img alt="" src="../images/yj_red.png"
+                                        width="12" height="12">&nbsp;&nbsp;<img alt="" src="../images/yj_red.png" width="12"
+                                            height="12">&nbsp;&nbsp;<img alt="" src="../images/yj_red.png" width="12" height="12">&nbsp;&nbsp;</span>
+                                </td>
+                                <td class="table_list2_style1" width="13%">
+                                    <span id="complaintInfo_spWarningNames">责任人</span>
+                                </td>
+                                <td class="table_list2_style2" width="20%">
+                                    <span id="complaintInfo_lblWarningNames">朱艳芳</span>
+                                </td>
+                                <td class="table_list2_style1" width="14%">
+                                    <span id="complaintInfo_spTime"></span>
+                                </td>
+                                <td class="table_list2_style2" width="20%">
+                                    <span id="complaintInfo_lblTime"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table_list2_style1" width="13%">
+                                    客户类型
+                                </td>
+                                <td class="table_list2_style2" width="20%">
+                                    <span id="complaintInfo_lblCustomerType">商户</span>
+                                </td>
+                                <td class="table_list2_style1" width="13%">
+                                    所属项目
+                                </td>
+                                <td class="table_list2_style2" width="20%">
+                                    <span id="complaintInfo_lblProjectName">廊坊万达广场</span>
+                                </td>
+                                <td class="table_list2_style1" width="14%">
+                                    投诉次数
+                                </td>
+                                <td class="table_list2_style2" width="20%">
+                                    <span id="complaintInfo_lblComplaintCount">1</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table_list2_style1">
+                                    投诉人姓名
+                                </td>
+                                <td class="table_list2_style2">
+                                    <span id="complaintInfo_lblComplaintName" title="福红娜">福红娜</span>
+                                </td>
+                                <td class="table_list2_style1">
+                                    首选联系方式
+                                </td>
+                                <td class="table_list2_style2">
+                                    <span id="complaintInfo_lblContactFirst"></span>
+                                </td>
+                                <td class="table_list2_style1">
+                                    其他联系方式
+                                </td>
+                                <td class="table_list2_style2">
+                                    <span id="complaintInfo_lblContactOther"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table_list2_style1">
+                                    邮箱地址
+                                </td>
+                                <td class="table_list2_style2">
+                                    <span id="complaintInfo_lblEmail"></span>
+                                </td>
+                                <td class="table_list2_style1">
+                                    投诉来源
+                                </td>
+                                <td class="table_list2_style2">
+                                    <span id="complaintInfo_lblComplaintSource">400电话</span>
+                                </td>
+                                <td class="table_list2_style1">
+                                    受理人姓名
+                                </td>
+                                <td class="table_list2_style2">
+                                    <span id="complaintInfo_lblCreateUserName">杨鉴</span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table_list2_style1">
+                                    投诉受理时间
+                                </td>
+                                <td class="table_list2_style2">
+                                    <span id="complaintInfo_lblCreateTime">2012/8/10 10:42:43</span>
+                                </td>
+                                <td class="table_list2_style1">
+                                    <span id="complaintInfo_textType">首次计划反馈时间</span>
+                                </td>
+                                <td class="table_list2_style2">
+                                    <span id="complaintInfo_lblFeedbackTime">2012/8/10 11:12:43</span>
+                                </td>
+                                <td class="table_list2_style1">
+                                    <span id="complaintInfo_textTypeTime">投诉定级时间</span>
+                                </td>
+                                <td class="table_list2_style2">
+                                    <span id="complaintInfo_lblTypeTime">2012/8/10 10:42:47</span>
+                                </td>
+                            </tr>
+                            <tr id="complaintInfo_tr_BusinessType">
+                                <td class="table_list2_style1">
+                                    商户类型
+                                </td>
+                                <td class="table_list2_style2">
+                                    <span id="complaintInfo_lblBusinessType">主力店</span>
+                                </td>
+                                <td class="table_list2_style1">
+                                    商户名称及编号
+                                </td>
+                                <td class="table_list2_style2" colspan="3">
+                                    <span id="complaintInfo_lblBusinessName"></span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table_list2_style1">
+                                    投诉内容
+                                </td>
+                                <td class="table_list2_style2" colspan="5">
+                                    <span id="complaintInfo_lblComplaintContent">石家庄 一般</span>
+                                </td>
+                            </tr>
+                            <tr id="complaintInfo_state">
+                                <td class="table_list2_style1">
+                                    投诉级别
+                                </td>
+                                <td class="table_list2_style2">
+                                    <span id="complaintInfo_lblComplaintLevelId">一般投诉</span> &nbsp;
+                                </td>
+                                <td class="table_list2_style1">
+                                    定级原因
+                                </td>
+                                <td class="table_list2_style2" colspan="3">
+                                    <span id="complaintInfo_lblGradingReasonsId">重大投诉、较大以外的投诉</span> &nbsp;
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div style="display: none" id="waringHIs">
+                <table id="complaintList" class="tablist" width="100%">
+                    <thead id="tablistHer">
+                        <tr>
+                            <th>
+                                预警信息
+                            </th>
+                            <th>
+                                预警类型
+                            </th>
+                            <th>
+                                投诉级别
+                            </th>
+                            <th>
+                                投诉单状态
+                            </th>
+                            <th>
+                                责任人
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="tab">
+                        <tr>
+                            <td>
+                                <img alt="" src="../images/yj_yellow.png" width="12" height="12">&nbsp;&nbsp;
+                            </td>
+                            <td>
+                                首次反馈客户
+                            </td>
+                            <td>
+                                一般投诉
+                            </td>
+                            <td>
+                                已定级
+                            </td>
+                            <td>
+                                石淼
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img alt="" src="../images/yj_red.png" width="12" height="12">&nbsp;&nbsp;
+                            </td>
+                            <td>
+                                首次反馈客户
+                            </td>
+                            <td>
+                                一般投诉
+                            </td>
+                            <td>
+                                已定级
+                            </td>
+                            <td>
+                                石淼
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img alt="" src="../images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt=""
+                                    src="../images/yj_red.png" width="12" height="12">&nbsp;&nbsp;
+                            </td>
+                            <td>
+                                首次反馈客户
+                            </td>
+                            <td>
+                                一般投诉
+                            </td>
+                            <td>
+                                已定级
+                            </td>
+                            <td>
+                                郑宏原
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <img alt="" src="../images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt=""
+                                    src="../images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt="" src="../images/yj_red.png"
+                                        width="12" height="12">&nbsp;&nbsp;
+                            </td>
+                            <td>
+                                首次反馈客户
+                            </td>
+                            <td>
+                                一般投诉
+                            </td>
+                            <td>
+                                已定级
+                            </td>
+                            <td>
+                                朱艳芳
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <input id="hidComplaintId" value="AB8CF1BC46B9492091D27E3C8935CF05" type="hidden"
+                name="complaintInfo$hidComplaintId">
+            <input id="hidComplaintState" value="2" type="hidden" name="complaintInfo$hidComplaintState">
+            <div class="blank8">
+            </div>
+        </div>
+        <div class="tsdj">
+            <div class="tsdj_1">
+                <div class="tsdj_1_font">
+                    投诉定级</div>
+            </div>
+            <div class="tsdj_2">
+                <table class="table_list1" border="0" cellspacing="2" cellpadding="2">
+                    <tbody>
+                        <tr>
+                            <td class="table_list1_style1">
+                                <span style="font-style: normal; font-family: Arial; color: #ff0000; font-size: 13px;
+                                    font-weight: normal; text-decoration: none">* </span><span id="responsibility">责任判别</span>
+                            </td>
+                            <td class="table_list1_style2" width="20%">
+                                <select style="width: 100%" id="drpResponsibility" onchange="getResponsibility();"
+                                    name="drpResponsibility">
+                                    <option selected value="D375482D8ADD4D8B9D57E4B554FEB9FC">有效投诉</option>
+                                    <option value="405A4DA38B8648E0BBD8A377FD468D2B">无效投诉</option>
+                                </select>
+                            </td>
+                            <td class="table_list1_style1" width="11%">
+                                <div id="complaintSubjectMainDiv">
+                                    <span style="font-style: normal; font-family: Arial; color: #ff0000; font-size: 13px;
+                                        font-weight: normal; text-decoration: none">* </span><span id="complaintContent">投诉科目</span>
+                                </div>
+                                <div style="display: none" id="gradingReasonMainDiv">
+                                    <span style="font-style: normal; font-family: Arial; color: #ff0000; font-size: 13px;
+                                        font-weight: normal; text-decoration: none">*</span><span id="complaintSubjectMainId">
+                                            无效判定原因</span>
+                                </div>
+                            </td>
+                            <td class="table_list1_style2" colspan="3">
+                                <div id="complaintSubjectChildDiv">
+                                    <select style="width: 30%" id="drpComplaintSubjectMainId" onchange="setChild(this.value,'drpComplaintSubjectMainIdChild',data4)"
+                                        name="drpComplaintSubjectMainId">
+                                        <option selected value="E65EE1B936034EE09DD3EE4B6D15D70F">营运管理</option>
+                                        <option value="88C9FA100B684D3EA7A5F1B5C991BD23">物业管理</option>
+                                        <option value="75297EC8685F4D34B00ED069E433854F">工程维护与维修</option>
+                                        <option value="B3ED02F7627A45F9BC694E590E9CBCD9">其他商户投诉</option>
+                                    </select>
+                                    <select style="width: 30%" id="drpComplaintSubjectMainIdChild" name="drpComplaintSubjectMainIdChild">
+                                        <option selected value="D6B1A587583A4B4EA6D56375C2221592">购物环境与氛围</option>
+                                        <option value="CA6AC59CB1364ED8BE2F05F298FEE34D">宣传推广及促销</option>
+                                        <option value="58F1D7F2FE8F4212A73C2EE6CFA2102D">客户服务与协助</option>
+                                        <option value="19466AF0B39A4D46980EB026FE9072A4">营运经营纠纷</option>
+                                        <option value="462F8028F0A3478CBA40BBCE1FCECA98">其他营运问题</option>
+                                    </select>
+                                </div>
+                                <div style="display: none" id="gradingReasonChildDiv">
+                                    <select id="drpGradingReason" name="drpGradingReason">
+                                        <option selected value="3A688C65A4BC4286BCF273B7F5EEC921">履行合同约定，进行正常商铺调整等经营行为而引发的投诉</option>
+                                        <option value="51CAF45AFCC343329CF7FE46DC72ADEB">合理维护广场营运规范和管理秩序而引发的投诉</option>
+                                        <option value="27B6B47D00A546D5A910DB4606FBD175">不符合法律、法规的投诉</option>
+                                    </select>
+                                    <input id="btnApproval" class="button" onclick="AddGradingComplaint('0','1',this.id)"
+                                        value="审批" type="button" name="btnApproval">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr id="sel">
+                            <td class="table_list1_style1">
+                                <span style="font-style: normal; font-family: Arial; color: #ff0000; font-size: 13px;
+                                    font-weight: normal; text-decoration: none">* </span><span id="complaintLevel">投诉级别</span>
+                            </td>
+                            <td class="table_list1_style2">
+                                <select style="width: 100%" id="drpComplaintLevel" onchange="setChild(this.value,'drpComplaintLevelChild',da1);getPersonRole(this.value)"
+                                    name="drpComplaintLevel">
+                                    <option selected value="692B94072F114C2299BACB35B4CB0499">一般投诉</option>
+                                    <option value="18F3DD007B7C4F1B8B35B9943FCC957F">较大投诉</option>
+                                    <option value="A1B1576C4B4744869F5C7E7C957066A7">重大投诉</option>
+                                </select>
+                            </td>
+                            <td class="table_list1_style1">
+                                <span style="font-style: normal; font-family: Arial; color: #ff0000; font-size: 13px;
+                                    font-weight: normal; text-decoration: none">* </span><span id="personRole">督办责任人</span>
+                            </td>
+                            <td class="table_list1_style2" width="16%">
+                                <input id="txtPersonRole" value="广场专职副经理" readonly type="text" name="txtPersonRole">
+                                <input style="display: none" id="txtPersonRoleId" value="F9BE3F379D6447838F113BD9C80D4AE6"
+                                    type="text" name="txtPersonRoleId">
+                            </td>
+                            <td class="table_list1_style1" width="8%">
+                                <span style="font-style: normal; font-family: Arial; color: #ff0000; font-size: 13px;
+                                    font-weight: normal; text-decoration: none">*</span>&nbsp;<span id="complaintLevelChild">定级原因</span>
+                            </td>
+                            <td class="table_list1_style2" width="34%">
+                                <select style="width: 100%" id="drpComplaintLevelChild" name="drpComplaintLevelChild">
+                                    <option selected value="474EBD8D8C18415996C91AF03262C49C">重大投诉、较大以外的投诉</option>
+                                    <option value="1D17C682DCDA4B7AADDB8F3FDCAA2D0F">其他</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr id="selTwo">
+                            <td class="table_list1_style1">
+                                <span id="gradingDescription">定级说明</span>
+                            </td>
+                            <td class="table_list1_style2" colspan="5">
+                                <textarea style="width: 99%" id="txtGradingDescription" rows="5" cols="20" name="txtGradingDescription"></textarea>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list1_style1">
+                                <span id="gradingRemark">备注 </span>
+                            </td>
+                            <td class="table_list1_style2" colspan="5">
+                                <textarea style="width: 99%" id="txtGradingRemark" rows="5" cols="20" name="txtGradingRemark"></textarea>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div id="selbutton" class="operate">
+                <ul>
+                    <li>
+                        <input id="btnIsDraftSecond" class="button"   onclick="AddGradingComplaint('0','0',this.id)"
+                            value="暂存" type="button" name="btnIsDraftSecond">
+                    </li>
+                    <li>
+                        <input id="btnSave" class="button"   onclick="AddGradingComplaint('1','0',this.id)"
+                            value="提交" type="button" name="btnSave"></li>
+                    <li>
+                        <input id="btnUpdate" class="button" onclick="UpdateGradingComplaint(this.id)" value="修改"
+                            type="button" name="btnUpdate">
+                    </li>
+                    <li>
+                        <input id="btnClose" class="button" onclick="page_Close()" value="关闭" type="button"
+                            name="btnClose">
+                    </li>
+                </ul>
+            </div>
+            <input id="hidComplaintId" value="AB8CF1BC46B9492091D27E3C8935CF05" type="hidden"
+                name="hidComplaintId">
+            <input id="hidComplaintSubjectMainIdChild" value="D6B1A587583A4B4EA6D56375C2221592"
+                type="hidden" name="hidComplaintSubjectMainIdChild">
+            <input id="hidComplaintLevel" value="692B94072F114C2299BACB35B4CB0499" type="hidden"
+                name="hidComplaintLevel">
+            <input id="hidComplaintLevelChild" value="474EBD8D8C18415996C91AF03262C49C" type="hidden"
+                name="hidComplaintLevelChild">
+            <input id="hidComplaintRelationId" type="hidden" name="hidComplaintRelationId">
+            <input id="hidLevelId" type="hidden" name="hidLevelId">
+            <input id="hidCustomerType" value="02852278989C43A1BA019486F242D48E" type="hidden"
+                name="hidCustomerType">
+            <input id="hidGradingId" value="0B7310D2DFA04B2690CA1CE96914A659" type="hidden" name="hidGradingId">
+        </div>
+        <input id="hidScript" value="0" type="hidden" name="hidScript">
+        <div class="blank8">
+        </div>
+        <div>
+            <iframe style="border-bottom: 0px; border-left: 0px; border-top: 0px; border-right: 0px"
+                id="fileUpLoadIframe" onload="iFrameHeight()" height="57" marginheight="0" src="FileUpLoadTest.html?complaintId=AB8CF1BC46B9492091D27E3C8935CF05&amp;processUuid=2&amp;processName=投诉定级&amp;Index=2&amp;guidNum=762D3212F1844BCE82835A502E79BC6D"
+                frameborder="0" width="100%" name="frmContainer" marginwidth="0" scrolling="no">
+            </iframe>
+        </div>
+    </div>
+</body>
+</html>

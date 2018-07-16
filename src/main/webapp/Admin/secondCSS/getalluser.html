@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<!-- saved from url=(0037)http://localhost:8080/EMIS/getalluser -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta name="renderer" content="webkit|ie-comp|ie-stand">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+<!--[if lt IE 9]>
+<script type="text/javascript" src="lib/html5.js"></script>
+<script type="text/javascript" src="lib/respond.min.js"></script>
+<script type="text/javascript" src="lib/PIE_IE678.js"></script>
+<![endif]-->
+<link rel="stylesheet" type="text/css" href="H-ui.min.css">
+<link rel="stylesheet" type="text/css" href="H-ui.admin.css">
+<link rel="stylesheet" type="text/css" href="iconfont.css">
+<link rel="stylesheet" type="text/css" href="icheck.css">
+<link rel="stylesheet" type="text/css" href="skin.css" id="skin">
+<link rel="stylesheet" type="text/css" href="style.css">
+<!--[if IE 6]>
+<script type="text/javascript" src="http://lib.h-ui.net/DD_belatedPNG_0.0.8a-min.js" ></script>
+<script>DD_belatedPNG.fix('*');</script>
+<![endif]-->
+<title>人员管理</title>
+<link rel="stylesheet" href="layer.css" id="layui_layer_skinlayercss"><link href="WdatePicker.css" rel="stylesheet" type="text/css"></head>
+
+<body>
+
+
+
+<form name="form2" action="http://localhost:8080/EMIS/deluser" method="post" id="form2">
+<input type="hidden" name="id" id="id">
+</form>
+
+
+
+<nav class="breadcrumb"><i class="Hui-iconfont"></i> 首页 <span class="c-gray en">&gt;</span> 系统管理 <span class="c-gray en">&gt;</span>人员管理
+</nav>
+
+<div class="page-container">
+	
+	<div class="cl pd-5 bg-1 bk-gray mt-20"> 
+	<span class="l"> <a class="btn btn-primary radius" onClick="system_category_add(&#39;添加人员&#39;,&#39;user_add.html&#39;)" href="javascript:;"><i class="Hui-iconfont"></i> 添加人员</a></span>  
+	</div>
+	
+	<div class="mt-20">
+		<div id="DataTables_Table_0_wrapper" class="dataTables_wrapper no-footer">
+		  <table class="table table-border table-bordered table-hover table-bg table-sort dataTable no-footer" id="DataTables_Table_0" role="grid" aria-describedby="DataTables_Table_0_info">
+			<thead>
+				<tr class="text-c" role="row"><th width="80" class="sorting_disabled" rowspan="1" colspan="1" aria-label="用户名" style="width: 80px;">用户名</th><th class="sorting_desc" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-sort="descending" aria-label="密码: 升序排列" style="width: 44px;">密码</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="姓名: 升序排列" style="width: 58px;">姓名</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="性别: 升序排列" style="width: 44px;">性别</th><th class="sorting_disabled" rowspan="1" colspan="1" aria-label="岗位" style="width: 160px;">岗位</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="电话: 升序排列" style="width: 116px;">电话</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="邮箱: 升序排列" style="width: 207px;">邮箱</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="区域: 升序排列" style="width: 44px;">区域</th><th class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="省份: 升序排列" style="width: 45px;">省份</th><th width="100" class="sorting" tabindex="0" aria-controls="DataTables_Table_0" rowspan="1" colspan="1" aria-label="操作: 升序排列" style="width: 100px;">操作</th></tr>
+			</thead>
+          <tbody>
+          
+           
+                    
+          
+                    
+          
+                    
+          
+                    
+          
+                    
+          
+                    
+          
+                    
+          
+                    
+          
+                    
+          
+                    
+          
+                    
+           	
+			<tr class="text-c odd" role="row">
+                 
+					<td>user1</td>
+					<td class="sorting_1">123</td>
+				 
+					<td>张婷</td>
+					<td>女</td>
+					<td>部门经理</td>
+					<td>18712701211</td>
+					<td>1336852477@qq.com</td>
+					<td>华北</td>
+					<td>河北</td>					
+				    
+					<td class="f-14">
+						<a title="编辑" href="javascript:;" onClick="system_category_edit(&#39;修改人员&#39;,&#39;user_update.jsp?id=1&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+						<!--<a title="删除" href="javascript:;" onclick="system_user_del(this,'1')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>-->
+						<a title="删除" href="javascript:;" onClick="system_user_del(&#39;删除人员&#39;,&#39;user_del.jsp?id=1&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+					</td>
+					
+			</tr><tr class="text-c even" role="row">
+                 
+					<td>user2</td>
+					<td class="sorting_1">123</td>
+				 
+					<td>李丽华</td>
+					<td>女</td>
+					<td>合同管理员</td>
+					<td>18712701212</td>
+					<td>214775847@163.com</td>
+					<td>华中</td>
+					<td>河南</td>					
+				    
+					<td class="f-14">
+						<a title="编辑" href="javascript:;" onClick="system_category_edit(&#39;修改人员&#39;,&#39;user_update.jsp?id=2&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+						<!--<a title="删除" href="javascript:;" onclick="system_user_del(this,'2')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>-->
+						<a title="删除" href="javascript:;" onClick="system_user_del(&#39;删除人员&#39;,&#39;user_del.jsp?id=2&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+					</td>
+					
+				</tr><tr class="text-c odd" role="row">
+                 
+					<td>user3</td>
+					<td class="sorting_1">123</td>
+				 
+					<td>王喜</td>
+					<td>男</td>
+					<td>主管销售的部门领导</td>
+					<td>18712701213</td>
+					<td>32643759658@sina.com</td>
+					<td>东北</td>
+					<td>吉林</td>					
+				    
+					<td class="f-14">
+						<a title="编辑" href="javascript:;" onClick="system_category_edit(&#39;修改人员&#39;,&#39;user_update.jsp?id=3&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+						<!--<a title="删除" href="javascript:;" onclick="system_user_del(this,'3')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>-->
+						<a title="删除" href="javascript:;" onClick="system_user_del(&#39;删除人员&#39;,&#39;user_del.jsp?id=3&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+					</td>
+					
+				</tr><tr class="text-c even" role="row">
+                 
+					<td>user4</td>
+					<td class="sorting_1">123</td>
+				 
+					<td>陈阳</td>
+					<td>男</td>
+					<td>大区经理</td>
+					<td>18712701214</td>
+					<td>474365948@qq.com</td>
+					<td>华北</td>
+					<td>山西</td>					
+				    
+					<td class="f-14">
+						<a title="编辑" href="javascript:;" onClick="system_category_edit(&#39;修改人员&#39;,&#39;user_update.jsp?id=4&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+						<!--<a title="删除" href="javascript:;" onclick="system_user_del(this,'4')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>-->
+						<a title="删除" href="javascript:;" onClick="system_user_del(&#39;删除人员&#39;,&#39;user_del.jsp?id=4&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+					</td>
+					
+				</tr><tr class="text-c odd" role="row">
+                 
+					<td>user5</td>
+					<td class="sorting_1">123</td>
+				 
+					<td>钱奢</td>
+					<td>男</td>
+					<td>项目经理</td>
+					<td>18712701215</td>
+					<td>57486759454@163.com</td>
+					<td>华南</td>
+					<td>广东</td>					
+				    
+					<td class="f-14">
+						<a title="编辑" href="javascript:;" onClick="system_category_edit(&#39;修改人员&#39;,&#39;user_update.jsp?id=5&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+						<!--<a title="删除" href="javascript:;" onclick="system_user_del(this,'5')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>-->
+						<a title="删除" href="javascript:;" onClick="system_user_del(&#39;删除人员&#39;,&#39;user_del.jsp?id=5&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+					</td>
+					
+				</tr><tr class="text-c even" role="row">
+                 
+					<td>user6</td>
+					<td class="sorting_1">123</td>
+				 
+					<td>赵蕊</td>
+					<td>女</td>
+					<td>采购人员</td>
+					<td>18712701216</td>
+					<td>6436456844@sina.com</td>
+					<td>华东</td>
+					<td>上海</td>					
+				    
+					<td class="f-14">
+						<a title="编辑" href="javascript:;" onClick="system_category_edit(&#39;修改人员&#39;,&#39;user_update.jsp?id=6&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+						<!--<a title="删除" href="javascript:;" onclick="system_user_del(this,'6')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>-->
+						<a title="删除" href="javascript:;" onClick="system_user_del(&#39;删除人员&#39;,&#39;user_del.jsp?id=6&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+					</td>
+					
+				</tr><tr class="text-c odd" role="row">
+                 
+					<td>user7</td>
+					<td class="sorting_1">123</td>
+				 
+					<td>马小明</td>
+					<td>男</td>
+					<td>管理员</td>
+					<td>18712701217</td>
+					<td>7438758469@163.com</td>
+					<td>西北</td>
+					<td>甘肃</td>					
+				    
+					<td class="f-14">
+						<a title="编辑" href="javascript:;" onClick="system_category_edit(&#39;修改人员&#39;,&#39;user_update.jsp?id=7&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+						<!--<a title="删除" href="javascript:;" onclick="system_user_del(this,'7')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>-->
+						<a title="删除" href="javascript:;" onClick="system_user_del(&#39;删除人员&#39;,&#39;user_del.jsp?id=7&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+					</td>
+					
+				</tr><tr class="text-c even" role="row">
+                 
+					<td>user8</td>
+					<td class="sorting_1">123</td>
+				 
+					<td>李小花</td>
+					<td>女</td>
+					<td>技术人员</td>
+					<td>18712701218</td>
+					<td>81748357654@qq.com</td>
+					<td>西北</td>
+					<td>陕西</td>					
+				    
+					<td class="f-14">
+						<a title="编辑" href="javascript:;" onClick="system_category_edit(&#39;修改人员&#39;,&#39;user_update.jsp?id=8&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+						<!--<a title="删除" href="javascript:;" onclick="system_user_del(this,'8')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>-->
+						<a title="删除" href="javascript:;" onClick="system_user_del(&#39;删除人员&#39;,&#39;user_del.jsp?id=8&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+					</td>
+					
+				</tr><tr class="text-c odd" role="row">
+                 
+					<td>ces1</td>
+					<td class="sorting_1">123</td>
+				 
+					<td>测试</td>
+					<td>男</td>
+					<td>部门经理</td>
+					<td>123</td>
+					<td>123</td>
+					<td>东北</td>
+					<td>吉林</td>					
+				    
+					<td class="f-14">
+						<a title="编辑" href="javascript:;" onClick="system_category_edit(&#39;修改人员&#39;,&#39;user_update.jsp?id=20&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+						<!--<a title="删除" href="javascript:;" onclick="system_user_del(this,'20')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>-->
+						<a title="删除" href="javascript:;" onClick="system_user_del(&#39;删除人员&#39;,&#39;user_del.jsp?id=20&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+					</td>
+					
+				</tr><tr class="text-c even" role="row">
+                 
+					<td>ces2</td>
+					<td class="sorting_1">123</td>
+				 
+					<td>测试2</td>
+					<td>男</td>
+					<td>部门经理</td>
+					<td>123</td>
+					<td>123</td>
+					<td>华东</td>
+					<td>山东</td>					
+				    
+					<td class="f-14">
+						<a title="编辑" href="javascript:;" onClick="system_category_edit(&#39;修改人员&#39;,&#39;user_update.jsp?id=21&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+						<!--<a title="删除" href="javascript:;" onclick="system_user_del(this,'21')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>-->
+						<a title="删除" href="javascript:;" onClick="system_user_del(&#39;删除人员&#39;,&#39;user_del.jsp?id=21&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+					</td>
+					
+				</tr>
+				<tr class="text-c even" role="row">
+                 
+					<td>ces3</td>
+					<td class="sorting_1">123</td>
+				 
+					<td>测试3</td>
+					<td>男</td>
+					<td>部门经理</td>
+					<td>123</td>
+					<td>123</td>
+					<td>华东</td>
+					<td>山东</td>					
+				    
+					<td class="f-14">
+						<a title="编辑" href="javascript:;" onClick="system_category_edit(&#39;修改人员&#39;,&#39;user_update.jsp?id=21&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+						<!--<a title="删除" href="javascript:;" onclick="system_user_del(this,'21')" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont">&#xe6e2;</i></a>-->
+						<a title="删除" href="javascript:;" onClick="system_user_del(&#39;删除人员&#39;,&#39;user_del.jsp?id=21&#39;,&#39;1&#39;,&#39;800&#39;,&#39;480&#39;)" class="ml-5" style="text-decoration:none"><i class="Hui-iconfont"></i></a>
+						
+					</td>
+					
+				</tr>
+				</tbody>
+		</table>
+	  </div>
+	</div>
+</div>
+	<footer class="footer mt-20">
+	<div class="container">
+		Copyright ©       本后台系统由KEG提供技术支持
+	</div>
+    </footer>
+<script type="text/javascript" src="jquery.min.js"></script> 
+<script type="text/javascript" src="layer.js"></script>
+<script type="text/javascript" src="laypage.js"></script> 
+<script type="text/javascript" src="WdatePicker.js"></script> 
+<script type="text/javascript" src="jquery.dataTables.min.js"></script> 
+<script type="text/javascript" src="H-ui.js"></script><a href="javascript:void(0)" class="Hui-iconfont toTop" title="返回顶部" alt="返回顶部" style="display:none"></a> 
+<script type="text/javascript" src="H-ui.admin.js"></script> 
+<script type="text/javascript">
+$('.table-sort').dataTable({
+	"aaSorting": [[ 1, "desc" ]],//默认第几个排序
+	"bStateSave": true,//状态保存
+	"aoColumnDefs": [
+	  //{"bVisible": false, "aTargets": [ 3 ]} //控制列的隐藏显示
+	  {"orderable":false,"aTargets":[0,4]}// 制定列不参与排序
+	]
+});
+/*系统-栏目-添加*/
+function system_category_add(title,url,w,h){
+	layer_show(title,url,w,h);
+}
+/*系统-栏目-编辑*/
+function system_category_edit(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+
+function system_user_del(title,url,id,w,h){
+	layer_show(title,url,w,h);
+}
+/*系统-栏目-删除*/
+/*function system_user_del(obj,id){
+	layer.confirm('确认要删除吗？',function(index){
+		$(obj).parents("tr").remove();
+
+		
+		//document.getElementById("id").value = id;
+		//document.form2.submit();
+
+		document.getElementById("id").value = id;
+		document.form2.submit();
+
+		layer.msg('已删除!',{icon:1,time:1000});
+	});
+}*/
+</script>
+
+</body></html>

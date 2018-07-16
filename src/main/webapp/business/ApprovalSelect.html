@@ -1,0 +1,184 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+        <script type="text/javascript">
+
+            $("#divTj").hide();
+            $("#imgJtd").toggle(function () {
+                $("#divTj").fadeIn(800);
+                this.src = "images/jt_t.png";
+            }, function () {
+                $("#divTj").fadeOut(800);
+                this.src = "images/jt_d.png";
+            });
+    
+    </script>
+</head>
+<body>
+    <div id="main">
+        <!--  查询条件 BEGIN -->
+        <div class="cxtj">
+            <div class="cxtj_1">
+                <div class="cxtj_1_font">
+                    查询条件</div>
+                <div class="cxtj_1_jt">
+                    <img style="cursor: pointer" id="imgJtd" alt="" src="Images/jt_d.png"></div>
+            </div>
+            <div style="display: none" id="divTj" class="cxtj_2">
+                <table class="table_list1" border="0" cellspacing="2" cellpadding="2">
+                    <tbody>
+                        <tr>
+                            <td align="right">
+                                发起时间：
+                            </td>
+                            <td>
+                                <input id="txtComplaintStartTime" onfocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"
+                                    type="text" name="txtComplaintStartTime">
+                                <img onclick="imgClick('txtComplaintStartTime')" alt="" align="absMiddle" src="images/date.gif"
+                                    width="17" height="20">
+                            </td>
+                            <td align="right">
+                                所属项目：
+                            </td>
+                            <td>
+                                <input id="txtRespectivePro" onfocus="this.blur();" onclick="selectIndexProduct();"
+                                    value="无锡滨湖万达广场" type="text" name="txtRespectivePro">
+                            </td>
+                            <td class="table_list1_style2" align="right">
+                                <input style="cursor: pointer" id="imgSubmit" tabindex="1" onclick="subLoad('none',3,2);return false;"
+                                    src="Images/search.gif" type="image" name="imgSubmit">
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--  查询条件 END -->
+        <div class="blank8">
+        </div>
+        <div class="cxtj">
+            <div class="cxlb">
+                <div class="cxlb_1">
+                    <div class="cxlb_1_font">
+                        查询列表</div>
+                </div>
+            </div>
+            <div class="cxtj_2">
+                <table id="complaintList" class="tablist">
+                    <thead id="tablistHer">
+                        <tr>
+                            <th width="10%">
+                                项目
+                            </th>
+                            <th width="10%">
+                                投诉编号
+                            </th>
+                            <th width="10%">
+                                投诉内容
+                            </th>
+                            <th width="10%">
+                                审批类型
+                            </th>
+                            <th width="10%">
+                                发起人
+                            </th>
+                            <th width="10%">
+                                所属部门
+                            </th>
+                            <th width="10%">
+                                发起时间
+                            </th>
+                            <th width="10%">
+                                最后审批人
+                            </th>
+                            <th width="10%">
+                                审批时间
+                            </th>
+                            <th width="10%">
+                                结果
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody id="listHeader">
+                        <tr class="t1" tmpclass="t1">
+                            <td width="10%">
+                                无锡滨湖万达广场
+                            </td>
+                            <td width="10%">
+                                WXBH201208070010
+                            </td>
+                            <td width="10%">
+                                <a title="交款等待时间长" onclick="openWin('9D6FF1EA2F2B4EDB977D20492AC9985E','6');" href="javascript:void(0);">
+                                    交款等待时间长</a>
+                            </td>
+                            <td width="10%">
+                                <a title="广场受理投诉无效定级审批" onclick="openProcessDetail('C1F2405079E843C9AAAA7A5579CEAC8B');"
+                                    href="javascript:void(0);">广场受理投诉无效定级审批</a>
+                            </td>
+                            <td width="10%">
+                                周芳菲
+                            </td>
+                            <td width="10%">
+                                营运部
+                            </td>
+                            <td width="10%">
+                                2012/8/7 15:23:10
+                            </td>
+                            <td width="10%">
+                                王恒刚
+                            </td>
+                            <td width="10%">
+                                2012/8/7 15:51:14
+                            </td>
+                            <td width="10%">
+                                通过
+                            </td>
+                        </tr>
+                        <tr class="t2" tmpclass="t2">
+                            <td width="10%">
+                                无锡滨湖万达广场
+                            </td>
+                            <td width="10%">
+                                WXBH201208070013
+                            </td>
+                            <td width="10%">
+                                <a title="服务态度差" onclick="openWin('027F587649194D80B97BD52520A162E3','6');" href="javascript:void(0);">
+                                    服务态度差</a>
+                            </td>
+                            <td width="10%">
+                                <a title="广场受理投诉无效定级审批" onclick="openProcessDetail('A8B20083D1744CB4A75F737673FC6A9B');"
+                                    href="javascript:void(0);">广场受理投诉无效定级审批</a>
+                            </td>
+                            <td width="10%">
+                                周芳菲
+                            </td>
+                            <td width="10%">
+                                营运部
+                            </td>
+                            <td width="10%">
+                                2012/8/7 15:27:35
+                            </td>
+                            <td width="10%">
+                                王恒刚
+                            </td>
+                            <td width="10%">
+                                2012/8/7 15:29:51
+                            </td>
+                            <td width="10%">
+                                通过
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <input id="hidRowCount" value="2" type="hidden" name="hidRowCount">
+        <input id="hidPageSize" value="10" type="hidden" name="hidPageSize">
+        <input id="hidProductName" value="无锡滨湖万达广场" type="hidden" name="hidProductName">
+        <input id="hidStartTime" type="hidden" name="hidStartTime">
+        <input id="hidIsSelect" value="0" type="hidden" name="hidIsSelect">
+        <input id="hidProduct" type="hidden" name="hidProduct">
+    </div>
+</body>
+</html>

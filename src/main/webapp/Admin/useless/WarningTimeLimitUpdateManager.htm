@@ -1,0 +1,124 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <base target="_self" />
+    <link href="Styles/css.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/ts_css.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/IndexManager.js" type="text/javascript"></script>
+</head>
+<body>
+    <form method="post" action="WarningTimeLimitUpdateManager.htm" id="form1">
+
+
+    <div id="divTwo">
+        <table width="100%" border="0" cellpadding="2" cellspacing="2" class="table_list1">
+            <tr>
+                <td width="13%" class="table_list1_style1">
+                    投诉等级
+                </td>
+                <td width="35%" class="table_list1_style2">
+                    <input name="txtLeved" type="text" value="重大投诉" id="txtLeved" disabled="disabled"
+                        class="aspNetDisabled" />
+                </td>
+            </tr>
+            <tr>
+                <td class="table_list1_style1">
+                    预警类型
+                </td>
+                <td class="table_list1_style2">
+                    <input name="txtType" type="text" value="首次反馈" id="txtType" disabled="disabled" class="aspNetDisabled" />
+                </td>
+            </tr>
+            <tr>
+                <td class="table_list1_style1">
+                    <span style="color: Red">*</span> 时限
+                </td>
+                <td class="table_list1_style2">
+                    <select name="ddlUnit" id="ddlUnit">
+                        <option selected="selected" value="1">分钟</option>
+                        <option value="2">小时</option>
+                        <option value="3">天</option>
+                        <option value="4">百分比</option>
+                    </select>
+                    &nbsp;&nbsp;
+                    <input name="txtTimeLimit" type="text" value="30" maxlength="4" id="txtTimeLimit" />
+                    <span id="RequiredFieldValidator2" style="display: none;">不能为空</span> <span id="RegularExpressionValidator2"
+                        style="display: none;">格式错误</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="table_list1_style1">
+                    <span style="color: Red">*</span> 工作日类型
+                </td>
+                <td class="table_list1_style2">
+                    <table id="rdoDay" style="width: 50%;">
+                        <tr>
+                            <td>
+                                <input id="rdoDay_0" type="radio" name="rdoDay" value="True" /><label for="rdoDay_0">工作日</label>
+                            </td>
+                            <td>
+                                <input id="rdoDay_1" type="radio" name="rdoDay" value="False" checked="checked" /><label
+                                    for="rdoDay_1">自然日</label>
+                            </td>
+                        </tr>
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td class="table_list1_style1">
+                    &nbsp;
+                </td>
+                <td class="table_list1_style2">
+                    <input type="button" name="btnUpdate" value="修改" id="btnUpdate" tabindex="1" class="button" />
+                    &nbsp;&nbsp;
+                    <input id="btnBack" type="button" class="button" value="关闭" onclick="page_Close()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <input type="hidden" name="hidUuid" id="hidUuid" value="23192BE656184038A9ADC7239F957B9F" />
+    <script type="text/javascript"> 
+//<![CDATA[
+        var Page_Validators = new Array(document.getElementById("RequiredFieldValidator2"), document.getElementById("RegularExpressionValidator2"));
+//]]>
+    </script>
+    <script type="text/javascript"> 
+//<![CDATA[
+        var RequiredFieldValidator2 = document.all ? document.all["RequiredFieldValidator2"] : document.getElementById("RequiredFieldValidator2");
+        RequiredFieldValidator2.controltovalidate = "txtTimeLimit";
+        RequiredFieldValidator2.errormessage = "不能为空";
+        RequiredFieldValidator2.display = "Dynamic";
+        RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+        RequiredFieldValidator2.initialvalue = "";
+        var RegularExpressionValidator2 = document.all ? document.all["RegularExpressionValidator2"] : document.getElementById("RegularExpressionValidator2");
+        RegularExpressionValidator2.controltovalidate = "txtTimeLimit";
+        RegularExpressionValidator2.errormessage = "格式错误";
+        RegularExpressionValidator2.display = "Dynamic";
+        RegularExpressionValidator2.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+        RegularExpressionValidator2.validationexpression = "^[0-9]*$";
+//]]>
+    </script>
+    <script type="text/javascript"> 
+//<![CDATA[
+
+        var Page_ValidationActive = false;
+        if (typeof (ValidatorOnLoad) == "function") {
+            ValidatorOnLoad();
+        }
+
+        function ValidatorOnSubmit() {
+            if (Page_ValidationActive) {
+                return ValidatorCommonOnSubmit();
+            }
+            else {
+                return true;
+            }
+        }
+        //]]>
+    </script>
+    </form>
+</body>
+</html>

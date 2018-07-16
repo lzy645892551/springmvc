@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanda.dao.HtBuildMapper" >
+  <resultMap id="BaseResultMap" type="com.wanda.bean.HtBuild" >
+    <id column="build_id" property="buildId" jdbcType="VARCHAR" />
+    <result column="build_name" property="buildName" jdbcType="VARCHAR" />
+    <result column="floor_count" property="floorCount" jdbcType="INTEGER" />
+    <result column="room_count" property="roomCount" jdbcType="INTEGER" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  </resultMap>
+  
+  <resultMap type="com.wanda.bean.HtBuild" extends="BaseResultMap" id="manyToOne">
+  	<association property="project" javaType="com.wanda.bean.HtProject">
+  		<id column="project_id" property="projectId" jdbcType="VARCHAR" />
+	    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+	    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+	    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+	    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+	    <result column="remark" property="remark" jdbcType="VARCHAR" />
+	    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+	    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  	</association>
+  	
+  </resultMap>
+  <sql id="Base_Column_List" >
+    build_id, build_name, floor_count, room_count, project_id, remark, update_user, update_time, 
+    delete_user, delete_time, delete_state
+  </sql>
+  
+  <select id = "getList" parameterType="com.wanda.bean.HtBuild" resultMap="BaseResultMap">
+  	select <include refid = "Base_Column_List" /> from wd_ht_build 
+  	<where>
+  		<if test="buildId !=null and buildId !=''">
+  			and build_id = #{buildId,jdbcType=VARCHAR}
+  		</if>
+  	</where>
+  </select>
+  
+  <select id="selectByPrimaryKey" resultMap="manyToOne" parameterType="java.lang.String" >
+    select 
+    	b.*,p.*
+    from wd_ht_build b,wd_ht_project p
+    where build_id = #{buildId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wd_ht_build
+  </delete>
+   <delete id="deleteIn" parameterType="map">
+  	delete from wd_ht_build where build_id in
+  	<foreach separator="," collection="buildMap" item="build" open="("  close=")">
+  		#{build}
+  	</foreach>
+  </delete>
+  <select id = "selectUUid" resultType="java.lang.String">
+  	select UUID()
+  </select>
+  <insert id = "insertBatch" parameterType="map">
+ 	 insert into wd_ht_build (build_id, build_name, floor_count, 
+      room_count, project_id, remark, 
+      update_user, update_time, delete_user, 
+      delete_time, delete_state)
+      values 
+      <foreach collection="buildList" item="build" separator="," >
+	      (#{build.buildId,jdbcType=VARCHAR},#{build.buildName,jdbcType=VARCHAR}, #{build.floorCount,jdbcType=INTEGER}, 
+	      #{build.roomCount,jdbcType=INTEGER}, #{build.projectId,jdbcType=VARCHAR}, #{build.remark,jdbcType=VARCHAR}, 
+	      #{build.updateUser,jdbcType=VARCHAR}, #{build.updateTime,jdbcType=TIMESTAMP}, #{build.deleteUser,jdbcType=VARCHAR}, 
+	      #{build.deleteTime,jdbcType=TIMESTAMP}, #{build.deleteState,jdbcType=VARCHAR})
+      </foreach>
+  </insert>
+  
+  <insert id="insert" parameterType="com.wanda.bean.HtBuild" >
+  	<selectKey keyProperty="buildId" order="BEFORE" resultType="string">
+  	select  UUID()
+  	</selectKey>
+    insert into wd_ht_build (build_id, build_name, floor_count, 
+      room_count, project_id, remark, 
+      update_user, update_time, delete_user, 
+      delete_time, delete_state)
+    values (#{buildId,jdbcType=VARCHAR}, #{buildName,jdbcType=VARCHAR}, #{floorCount,jdbcType=INTEGER}, 
+      #{roomCount,jdbcType=INTEGER}, #{projectId,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteUser,jdbcType=VARCHAR}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanda.bean.HtBuild" >
+    insert into wd_ht_build
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="buildId != null" >
+        build_id,
+      </if>
+      <if test="buildName != null" >
+        build_name,
+      </if>
+      <if test="floorCount != null" >
+        floor_count,
+      </if>
+      <if test="roomCount != null" >
+        room_count,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="remark != null" >
+        remark,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="buildId != null" >
+        #{buildId,jdbcType=VARCHAR},
+      </if>
+      <if test="buildName != null" >
+        #{buildName,jdbcType=VARCHAR},
+      </if>
+      <if test="floorCount != null" >
+        #{floorCount,jdbcType=INTEGER},
+      </if>
+      <if test="roomCount != null" >
+        #{roomCount,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanda.bean.HtBuild" >
+    update wd_ht_build
+    <set >
+      <if test="buildName != null" >
+        build_name = #{buildName,jdbcType=VARCHAR},
+      </if>
+      <if test="floorCount != null" >
+        floor_count = #{floorCount,jdbcType=INTEGER},
+      </if>
+      <if test="roomCount != null" >
+        room_count = #{roomCount,jdbcType=INTEGER},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null" >
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where build_id = #{buildId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanda.bean.HtBuild" >
+    update wd_ht_build
+    set build_name = #{buildName,jdbcType=VARCHAR},
+      floor_count = #{floorCount,jdbcType=INTEGER},
+      room_count = #{roomCount,jdbcType=INTEGER},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR}
+    where build_id = #{buildId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="selectByProId" parameterType="java.lang.String" resultMap="manyToOne">
+  	select b.*, p.* from wd_ht_build b, wd_ht_project p 
+  	where p.project_id = b.project_id and p.project_id = #{projectId}
+  </select>
+</mapper>

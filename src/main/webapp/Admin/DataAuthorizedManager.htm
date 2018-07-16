@@ -1,0 +1,688 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+    <title>权限管理 </title>
+    <link href="Scripts/jqurey.ui/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet"
+        type="text/css" />
+    <link href="Styles/ts_css.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.hotkeys.js" type="text/javascript"></script>
+    <script src="Scripts/jstree/jquery.jstree.js" type="text/javascript"></script>
+    <script src="Scripts/jqurey.ui/jquery-ui-1.8.21.custom.min.js" type="text/javascript"></script>
+    <link href="Styles/Loading.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/dialog.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery.dialog.js" type="text/javascript"></script>
+    <script src="Scripts/error.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(":checkbox[id^='chk']").click(function () {
+                $(":checkbox[id^='" + $(this).attr("class") + "']").attr("checked", this.checked);
+            });
+
+            $(":checkbox").click(function () {
+                var id = this.id.split('_')[0];
+                var isChecked = true;
+                $(":checkbox[id^='" + id + "']").each(function () {
+                    if (!this.checked) {
+                        isChecked = false;
+                        return false;
+                    }
+                });
+                $(":checkbox[class='" + id + "']").attr("checked", isChecked);
+            });
+
+            $("#accordion").accordion({ header: "h3" });
+
+            $(".ui-accordion-content").css({ height: 180 });
+
+            var winHeight = $(window).height();
+
+
+            $("#tree").css({ height: winHeight * 0.92 });
+
+
+
+            $(":checkbox").attr("disabled", "disabled");
+            $("input").attr("disabled", "disabled");
+            $(":checkbox").removeAttr("checked");
+            $("#tree").jstree({
+                "themes": {
+                    "theme": "classic",
+                    "dots": true,
+                    "icons": true
+                },
+                "plugins": ["themes", "json_data", "ui", "types"],
+                "json_data": {
+                    "data": [
+
+    "总部总经理",
+    "总部营运中心总经理",
+    "总部营运中心综管部总经理",
+    "总部客服助理",
+"业务部门",
+"系统管理员"
+
+
+]
+                },
+                rules: {
+                    type_attr: "rel",     //设置节点类型  
+                    valid_children: "Organization"  // 只有root节点才能作为顶级结点  
+                },
+
+                "types": {
+                    "valid_children": ["Organization"],
+                    "types": {
+                        "Organization": {
+                            "valid_children": ["default", "Employee"],
+                            "icon": {
+                                "image": "../images/close.png"
+                            }
+                        },
+                        "Employee": {
+                            "valid_children": "none",
+                            "icon": {
+                                "image": "../images/page.png"
+                            }
+                        }
+                    }
+                }
+            }).bind("select_node.jstree", function (e, data) {
+                $(":checkbox").removeAttr("checked");
+                if (data.rslt.obj.attr("rel") == "Employee") {
+                    var jobId = $(data.rslt.obj.prevObject.parent().parent().parent()).attr("id");
+                    var operationStep = data.rslt.obj.attr("id");
+                    return closeWin(jobId, operationStep);
+
+                } else {
+                    $(":checkbox").attr("disabled", "disabled");
+                    $("input").attr("disabled", "disabled");
+                }
+            }
+            )
+        });
+
+        function closeWin(jobId, operationStep) {
+            $(":checkbox").removeAttr("disabled");
+            $("input").removeAttr("disabled");
+            $("#hidJobId").val(jobId);
+            $("#hidComplaintState").val(operationStep);
+            var postData = { "type": "JobDataAuthority", "jobId": jobId, "operationStep": operationStep };
+            $.post("DataAuthorizedManager.aspx", postData, function (data) {
+                $(":checkbox").each(function () {
+                    if (data.indexOf(this.value) >= 0) {
+                        this.checked = true;
+                    }
+                });
+            });
+        }
+
+        function submitFrom1() {
+
+            var values = "";
+            var ids = "";
+            $(":checkbox").each(function () {
+                if (ids) {
+                    ids += "," + this.value;
+                } else {
+                    ids = this.value;
+                }
+
+                if (values) {
+                    values += "," + this.checked;
+                }
+                else {
+                    values += this.checked;
+                }
+            });
+            var data = {
+                ids: ids,
+                values: values,
+                type: "submit",
+                jodId: $("#hidJobId").val(),
+                complaintState: $("#hidComplaintState").val()
+            }
+            $.post("DataAuthorizedManager.aspx", data, function (r) {
+                if (r == 1) {
+                    alert("操作成功");
+                }
+                else {
+                    alert("网络异常，请稍后再试！");
+                }
+            });
+
+        }
+       
+    </script>
+    <style type="text/css">
+        #accordion table
+        {
+            width: 100%;
+        }
+        #accordion td
+        {
+            width: 33%;
+        }
+    </style>
+</head>
+<body style="overflow-x: hidden; background: #EFF3FF;">
+    <form method="post" action="DataAuthorizedManager.htm" id="form1">
+    <div id="tree" class="tree" style="background: #EFF3FF; width: 20%; float: left;
+        overflow-y: auto;">
+    </div>
+    <div style="float: left; width: 79%">
+        <div id="accordion" style="width: 100%">
+            <div>
+                <h3>
+                    <a href="#">受理投诉</a></h3>
+                <div>
+                    <input type="checkbox" id="chkHandle" class="cblHandle" />
+                    <label for="chkHandle">
+                        全选</label>
+                    <table id="cblHandle">
+                        <tr>
+                            <td>
+                                <input id="cblHandle_0" type="checkbox" name="cblHandle$0" value="11A3A8B132224C23B863402D92B96CAC" /><label
+                                    for="cblHandle_0">受理投诉页选择所属项目</label>
+                            </td>
+                            <td>
+                                <input id="cblHandle_6" type="checkbox" name="cblHandle$6" value="9921921E4D90434C8791A981993B43CA" /><label
+                                    for="cblHandle_6">受理投诉页其它连接方式</label>
+                            </td>
+                            <td>
+                                <input id="cblHandle_11" type="checkbox" name="cblHandle$11" value="F066AA1905814FDFAC47760B81F54B7B" /><label
+                                    for="cblHandle_11">受理投诉页投诉来源</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblHandle_1" type="checkbox" name="cblHandle$1" value="121CB1A612124F8AB438D477AFD1A0AC" /><label
+                                    for="cblHandle_1">受理投诉页修改</label>
+                            </td>
+                            <td>
+                                <input id="cblHandle_7" type="checkbox" name="cblHandle$7" value="A0FCBAC532764BB997EBDCEDB9368995" /><label
+                                    for="cblHandle_7">受理投诉页邮箱地址</label>
+                            </td>
+                            <td>
+                                <input id="cblHandle_12" type="checkbox" name="cblHandle$12" value="F3875C5DD6E4435E8751660FC63A362F" /><label
+                                    for="cblHandle_12">受理投诉页提交</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblHandle_2" type="checkbox" name="cblHandle$2" value="2894B5922D3D407CA3E6CF684C7DB249" /><label
+                                    for="cblHandle_2">受理投诉页所属项目</label>
+                            </td>
+                            <td>
+                                <input id="cblHandle_8" type="checkbox" name="cblHandle$8" value="AF7F1B1BB5DD476494F29DB0CDB28CBD" /><label
+                                    for="cblHandle_8">受理投诉页投诉内容</label>
+                            </td>
+                            <td>
+                                <input id="cblHandle_13" type="checkbox" name="cblHandle$13" value="F6680A71826244FA94E0AFE32F430CD6" /><label
+                                    for="cblHandle_13">受理投诉页投诉次数</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblHandle_3" type="checkbox" name="cblHandle$3" value="404008CA96104F16B7A3051763EF351D" /><label
+                                    for="cblHandle_3">受理投诉页首选连接方式</label>
+                            </td>
+                            <td>
+                                <input id="cblHandle_9" type="checkbox" name="cblHandle$9" value="D68A7D18564F4991AFDED171E83E87A4" /><label
+                                    for="cblHandle_9">受理投诉页客户类型</label>
+                            </td>
+                            <td>
+                                <input id="cblHandle_14" type="checkbox" name="cblHandle$14" value="07488EF6461B4FDEB38DB6156963E97F" /><label
+                                    for="cblHandle_14">受理投诉页商户名称</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblHandle_4" type="checkbox" name="cblHandle$4" value="53A3DAD78A0745C7B4783C5DFF7C0A01" /><label
+                                    for="cblHandle_4">受理投诉页投诉人姓名</label>
+                            </td>
+                            <td>
+                                <input id="cblHandle_10" type="checkbox" name="cblHandle$10" value="EC32CC449A1D44CCB87024B297A76751" /><label
+                                    for="cblHandle_10">受理投诉页暂存</label>
+                            </td>
+                            <td>
+                                <input id="cblHandle_15" type="checkbox" name="cblHandle$15" value="7A193B52F4474E5EBB2C664ABDE59EB4" /><label
+                                    for="cblHandle_15">受理投诉页商户类型</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblHandle_5" type="checkbox" name="cblHandle$5" value="55EAFEE5EA284AF2B07783D72421B235" /><label
+                                    for="cblHandle_5">受理投诉页备注</label>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <h3>
+                    <a href="#">投诉定级</a></h3>
+                <div>
+                    <input type="checkbox" id="chkGrading" class="cblGrading" />
+                    <label for="chkGrading">
+                        全选</label>
+                    <table id="cblGrading">
+                        <tr>
+                            <td>
+                                <input id="cblGrading_0" type="checkbox" name="cblGrading$0" value="12A69200689E4E978AFE21D9C4A73F91" /><label
+                                    for="cblGrading_0">投诉定级页修改</label>
+                            </td>
+                            <td>
+                                <input id="cblGrading_5" type="checkbox" name="cblGrading$5" value="6C9A0999C1084A8EBE23310FFFFB349B" /><label
+                                    for="cblGrading_5">投诉定级页备注</label>
+                            </td>
+                            <td>
+                                <input id="cblGrading_9" type="checkbox" name="cblGrading$9" value="9973E63506BC4C6C8B694889DA241541" /><label
+                                    for="cblGrading_9">投诉定级页定级说明</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblGrading_1" type="checkbox" name="cblGrading$1" value="1982EDC1C869452CAD646A18FF571417" /><label
+                                    for="cblGrading_1">投诉定级页暂存</label>
+                            </td>
+                            <td>
+                                <input id="cblGrading_6" type="checkbox" name="cblGrading$6" value="6E01A576D6844911A28095DD8683CA0F" /><label
+                                    for="cblGrading_6">投诉定级页无效判定原因</label>
+                            </td>
+                            <td>
+                                <input id="cblGrading_10" type="checkbox" name="cblGrading$10" value="A1CD550DF75D4FACA72B43613CBF36B1" /><label
+                                    for="cblGrading_10">投诉定级页责任判别</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblGrading_2" type="checkbox" name="cblGrading$2" value="3D899029F9E84ED1867C7EA27F28D619" /><label
+                                    for="cblGrading_2">投诉定级页定级原因</label>
+                            </td>
+                            <td>
+                                <input id="cblGrading_7" type="checkbox" name="cblGrading$7" value="772405389EF24645923461B4D8126970" /><label
+                                    for="cblGrading_7">投诉定级页督办责任人</label>
+                            </td>
+                            <td>
+                                <input id="cblGrading_11" type="checkbox" name="cblGrading$11" value="DA9825A97985421599E18FF9C875D9E3" /><label
+                                    for="cblGrading_11">投诉定级页投诉级别</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblGrading_3" type="checkbox" name="cblGrading$3" value="3E65A4B5C47148A3BF8079D9C35BA5E2" /><label
+                                    for="cblGrading_3">投诉定级页提交</label>
+                            </td>
+                            <td>
+                                <input id="cblGrading_8" type="checkbox" name="cblGrading$8" value="98D9121A648F430D965753F57630E6C1" /><label
+                                    for="cblGrading_8">投诉定级页投诉主科目</label>
+                            </td>
+                            <td>
+                                <input id="cblGrading_12" type="checkbox" name="cblGrading$12" value="90BEB5365FEC483BA6D9666BC49B48A8" /><label
+                                    for="cblGrading_12">投诉定级页审批按钮</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblGrading_4" type="checkbox" name="cblGrading$4" value="47C788D416C042B9A60087A0B38778EA" /><label
+                                    for="cblGrading_4">投诉定级页投诉子科目</label>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <h3>
+                    <a href="#">派发投诉</a></h3>
+                <div>
+                    <input type="checkbox" id="chkDistribution" class="cblDistribution" />
+                    <label for="chkDistribution">
+                        全选</label>
+                    <table id="cblDistribution">
+                        <tr>
+                            <td>
+                                <input id="cblDistribution_0" type="checkbox" name="cblDistribution$0" value="0DBF3070B7824E7F8B783024514B0D1C" /><label
+                                    for="cblDistribution_0">投诉派发页业务人员</label>
+                            </td>
+                            <td>
+                                <input id="cblDistribution_3" type="checkbox" name="cblDistribution$3" value="77E9E40DD665461AAEF88A77D4AB3253" /><label
+                                    for="cblDistribution_3">投诉派发页暂存</label>
+                            </td>
+                            <td>
+                                <input id="cblDistribution_6" type="checkbox" name="cblDistribution$6" value="BE59E848C8564E8097C15730DBDEDFF2" /><label
+                                    for="cblDistribution_6">投诉派发页业务部门</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblDistribution_1" type="checkbox" name="cblDistribution$1" value="1C16FA3D22A249B3AC471D567ED5ED88" /><label
+                                    for="cblDistribution_1">投诉派发页解决方式</label>
+                            </td>
+                            <td>
+                                <input id="cblDistribution_4" type="checkbox" name="cblDistribution$4" value="797F9CB3EDA34CCFA510025E435F5BF4" /><label
+                                    for="cblDistribution_4">投诉派发页修改</label>
+                            </td>
+                            <td>
+                                <input id="cblDistribution_7" type="checkbox" name="cblDistribution$7" value="BEFB0A3511B24D23A62591FBFFF67669" /><label
+                                    for="cblDistribution_7">投诉派发页提交</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblDistribution_2" type="checkbox" name="cblDistribution$2" value="34CE61C0AB8D4CD5BC39A0B71E637864" /><label
+                                    for="cblDistribution_2">投诉派发页解决方案</label>
+                            </td>
+                            <td>
+                                <input id="cblDistribution_5" type="checkbox" name="cblDistribution$5" value="99E486992A7547D49EAD411346F57AA0" /><label
+                                    for="cblDistribution_5">投诉派发页备注</label>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <h3>
+                    <a href="#">确定方案</a></h3>
+                <div>
+                    <input type="checkbox" id="chkDetermine" class="cblDetermine" />
+                    <label for="chkDetermine">
+                        全选</label>
+                    <table id="cblDetermine">
+                        <tr>
+                            <td>
+                                <input id="cblDetermine_0" type="checkbox" name="cblDetermine$0" value="081CBC34298F4979AAD8EEB409E7AF05" /><label
+                                    for="cblDetermine_0">确定方案页备注</label>
+                            </td>
+                            <td>
+                                <input id="cblDetermine_3" type="checkbox" name="cblDetermine$3" value="889865C131D74FFC8DBB8B26E121170A" /><label
+                                    for="cblDetermine_3">确定方案页责任人</label>
+                            </td>
+                            <td>
+                                <input id="cblDetermine_6" type="checkbox" name="cblDetermine$6" value="E1689FCCFFBA451CACBD264DE5539685" /><label
+                                    for="cblDetermine_6">确定方案页暂存</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblDetermine_1" type="checkbox" name="cblDetermine$1" value="5FFFD079D6864113BE0FE027FB900640" /><label
+                                    for="cblDetermine_1">确定方案页提交</label>
+                            </td>
+                            <td>
+                                <input id="cblDetermine_4" type="checkbox" name="cblDetermine$4" value="8A60F4BD8E424BEB9B0512F48C6506CC" /><label
+                                    for="cblDetermine_4">确定方案页方案内容</label>
+                            </td>
+                            <td>
+                                <input id="cblDetermine_7" type="checkbox" name="cblDetermine$7" value="F43F8E49AC3A4965A9A6AF8AD86B4941" /><label
+                                    for="cblDetermine_7">确定方案页建议处理时间</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblDetermine_2" type="checkbox" name="cblDetermine$2" value="6AFB6295593C4882937F144D697F7022" /><label
+                                    for="cblDetermine_2">确定方案页责任部门</label>
+                            </td>
+                            <td>
+                                <input id="cblDetermine_5" type="checkbox" name="cblDetermine$5" value="C09F136BFFCA42AB96A1036615F7B42D" /><label
+                                    for="cblDetermine_5">确定方案页修改</label>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <h3>
+                    <a href="#">反馈客户</a></h3>
+                <div style="height: 194px" id="feedback">
+                    <input type="checkbox" id="chkFeedback" class="cblFeedback" />
+                    <label for="chkFeedback">
+                        全选</label>
+                    <table id="cblFeedback">
+                        <tr>
+                            <td>
+                                <input id="cblFeedback_0" type="checkbox" name="cblFeedback$0" value="887220D9B72B4BF1802A550CBE20EF65" /><label
+                                    for="cblFeedback_0">用户二次反馈页审批按钮</label>
+                            </td>
+                            <td>
+                                <input id="cblFeedback_7" type="checkbox" name="cblFeedback$7" value="2B9A62640F14447FB432E2C616CC369A" /><label
+                                    for="cblFeedback_7">用户反馈页二次反馈反馈内容</label>
+                            </td>
+                            <td>
+                                <input id="cblFeedback_14" type="checkbox" name="cblFeedback$14" value="92D7445051994B88A6F554A8EC9F23AC" /><label
+                                    for="cblFeedback_14">用户反馈页二次反馈提交</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblFeedback_1" type="checkbox" name="cblFeedback$1" value="0916B6272BDC4BA88560E0F980DDCCCF" /><label
+                                    for="cblFeedback_1">用户反馈页计划二次反馈时间</label>
+                            </td>
+                            <td>
+                                <input id="cblFeedback_8" type="checkbox" name="cblFeedback$8" value="3971DCF0A0084410B86C3F6E873331DC" /><label
+                                    for="cblFeedback_8">用户反馈页首次反馈暂存</label>
+                            </td>
+                            <td>
+                                <input id="cblFeedback_15" type="checkbox" name="cblFeedback$15" value="AC0DB87D6FEC4E46B96B78DCBB986031" /><label
+                                    for="cblFeedback_15">用户反馈页二次反馈修改</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblFeedback_2" type="checkbox" name="cblFeedback$2" value="0D24D6697E404BCB8051612DF13A8A97" /><label
+                                    for="cblFeedback_2">用户反馈页二次反馈中止</label>
+                            </td>
+                            <td>
+                                <input id="cblFeedback_9" type="checkbox" name="cblFeedback$9" value="41270090D0D24E44A9866C7BEE616A91" /><label
+                                    for="cblFeedback_9">用户反馈页首次反馈是否升级</label>
+                            </td>
+                            <td>
+                                <input id="cblFeedback_16" type="checkbox" name="cblFeedback$16" value="DB7CC511369240D8BFD77727494BF142" /><label
+                                    for="cblFeedback_16">用户反馈页二次反馈暂存</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblFeedback_3" type="checkbox" name="cblFeedback$3" value="14B21C494F0846B4B28874F6615D9586" /><label
+                                    for="cblFeedback_3">用户反馈页二次反馈是否升级</label>
+                            </td>
+                            <td>
+                                <input id="cblFeedback_10" type="checkbox" name="cblFeedback$10" value="4A25D2683E6F4E20A71E42D78EA54A40" /><label
+                                    for="cblFeedback_10">用户反馈页首次反馈提交</label>
+                            </td>
+                            <td>
+                                <input id="cblFeedback_17" type="checkbox" name="cblFeedback$17" value="E9151B9D427B4AF3B9230F49F1897689" /><label
+                                    for="cblFeedback_17">用户反馈页首次反馈备注</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblFeedback_4" type="checkbox" name="cblFeedback$4" value="17E8B6C7D6A745379F6169D64D526398" /><label
+                                    for="cblFeedback_4">用户反馈页二次反馈备注</label>
+                            </td>
+                            <td>
+                                <input id="cblFeedback_11" type="checkbox" name="cblFeedback$11" value="50FD2123287146A29237FC81A1681711" /><label
+                                    for="cblFeedback_11">用户反馈页首次反馈客户接受度</label>
+                            </td>
+                            <td>
+                                <input id="cblFeedback_18" type="checkbox" name="cblFeedback$18" value="EAC3B1D1614F4BEB93EFFA7A4E509CA5" /><label
+                                    for="cblFeedback_18">用户反馈页首次反馈反馈内容</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblFeedback_5" type="checkbox" name="cblFeedback$5" value="1ABEB6E6E7FA43B8B640FB3B9737B993" /><label
+                                    for="cblFeedback_5">用户反馈页二次反馈客户接受度</label>
+                            </td>
+                            <td>
+                                <input id="cblFeedback_12" type="checkbox" name="cblFeedback$12" value="830E57D4EC8B4D59BDC0BF2D045CBAE0" /><label
+                                    for="cblFeedback_12">用户反馈页二次反馈计划处理完成时间</label>
+                            </td>
+                            <td>
+                                <input id="cblFeedback_19" type="checkbox" name="cblFeedback$19" value="FB47F60DB4B0444E93AC765F7EE98076" /><label
+                                    for="cblFeedback_19">用户反馈页首次反馈修改</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblFeedback_6" type="checkbox" name="cblFeedback$6" value="28B464ADDF7646FA8F2A526399396A79" /><label
+                                    for="cblFeedback_6">用户反馈页计划处理完成时间</label>
+                            </td>
+                            <td>
+                                <input id="cblFeedback_13" type="checkbox" name="cblFeedback$13" value="8919A443ECEF4FC49B279187BCCBB54B" /><label
+                                    for="cblFeedback_13">用户反馈页是否二次反馈</label>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <h3>
+                    <a href="#">处理投诉</a>
+                </h3>
+                <div>
+                    <input type="checkbox" id="chkSelectAllSolve" class="cblSolve" />
+                    <label for="chkSelectAllSolve">
+                        全选</label>
+                    <table id="cblSolve">
+                        <tr>
+                            <td>
+                                <input id="cblSolve_0" type="checkbox" name="cblSolve$0" value="15A6945B37604C39BB086DB7AF98B1CC" /><label
+                                    for="cblSolve_0">解决方案页处理时间</label>
+                            </td>
+                            <td>
+                                <input id="cblSolve_3" type="checkbox" name="cblSolve$3" value="A1FC9D4646004B7C8365BB856939FDD5" /><label
+                                    for="cblSolve_3">解决方案页提交</label>
+                            </td>
+                            <td>
+                                <input id="cblSolve_5" type="checkbox" name="cblSolve$5" value="D8330342538542AE9A8921023B5A3443" /><label
+                                    for="cblSolve_5">解决方案页修改</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblSolve_1" type="checkbox" name="cblSolve$1" value="4660F3A8448D4A1A8F79C46EEC298C8F" /><label
+                                    for="cblSolve_1">解决方案页暂存</label>
+                            </td>
+                            <td>
+                                <input id="cblSolve_4" type="checkbox" name="cblSolve$4" value="D317FCE3FD9B451E83B99F29B098B0C3" /><label
+                                    for="cblSolve_4">解决方案页处理情况</label>
+                            </td>
+                            <td>
+                                <input id="cblSolve_6" type="checkbox" name="cblSolve$6" value="EB5E6CEC43A740499B5A8865A2F7216B" /><label
+                                    for="cblSolve_6">解决方案页费用</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblSolve_2" type="checkbox" name="cblSolve$2" value="5407D75AE5C94FC5AA24EE1EECA8B0D2" /><label
+                                    for="cblSolve_2">解决方案页备注</label>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <h3>
+                    <a href="#">回访客户</a></h3>
+                <div>
+                    <input type="checkbox" id="chkVisits" class="cblVisits" />
+                    <label for="chkVisits">
+                        全选</label>
+                    <table id="cblVisits">
+                        <tr>
+                            <td>
+                                <input id="cblVisits_0" type="checkbox" name="cblVisits$0" value="7ECC5E00B3F84B508622852E6E26E183" /><label
+                                    for="cblVisits_0">回访不满意并关闭审批按钮</label>
+                            </td>
+                            <td>
+                                <input id="cblVisits_5" type="checkbox" name="cblVisits$5" value="265900C8E8AF4D15B2B794DBA988B65B" /><label
+                                    for="cblVisits_5">回访页客户满意度下拉框</label>
+                            </td>
+                            <td>
+                                <input id="cblVisits_9" type="checkbox" name="cblVisits$9" value="D9E2DF4492454DF687549ED58AB0D5C0" /><label
+                                    for="cblVisits_9">回访页提交按钮</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblVisits_1" type="checkbox" name="cblVisits$1" value="0CD6539FEE454165BB7E11E332CB8FF0" /><label
+                                    for="cblVisits_1">回访页不需要回访</label>
+                            </td>
+                            <td>
+                                <input id="cblVisits_6" type="checkbox" name="cblVisits$6" value="28636DF83EB54238A45EF11C4F85CB53" /><label
+                                    for="cblVisits_6">回访页选择日期小图标</label>
+                            </td>
+                            <td>
+                                <input id="cblVisits_10" type="checkbox" name="cblVisits$10" value="DE0E1CA1C71F4A2DBB5D4DDEEDB7D99A" /><label
+                                    for="cblVisits_10">回访页备注控件</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblVisits_2" type="checkbox" name="cblVisits$2" value="12F4E1EB62724A79A7D595441756D178" /><label
+                                    for="cblVisits_2">回访页修改按钮</label>
+                            </td>
+                            <td>
+                                <input id="cblVisits_7" type="checkbox" name="cblVisits$7" value="323788626E8F48D4B490CE4D515A8E62" /><label
+                                    for="cblVisits_7">回访页回访时间文本框</label>
+                            </td>
+                            <td>
+                                <input id="cblVisits_11" type="checkbox" name="cblVisits$11" value="F9D8DA2934934968B5DDF93EC02B498D" /><label
+                                    for="cblVisits_11">回访页需要回访</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblVisits_3" type="checkbox" name="cblVisits$3" value="1F00CA6FA32043C7A99F3E264CF4D98F" /><label
+                                    for="cblVisits_3">回访页回访内容控件</label>
+                            </td>
+                            <td>
+                                <input id="cblVisits_8" type="checkbox" name="cblVisits$8" value="C0571B4474744D219E4A9C76F23F1B9E" /><label
+                                    for="cblVisits_8">回访页不便回访原因下拉框</label>
+                            </td>
+                            <td>
+                                <input id="cblVisits_12" type="checkbox" name="cblVisits$12" value="FD88B49651794E18A067FF2836FF6FA7" /><label
+                                    for="cblVisits_12">回访页审批按钮</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblVisits_4" type="checkbox" name="cblVisits$4" value="2000CE846EC54A7FAD9673AF54B9529D" /><label
+                                    for="cblVisits_4">回访页暂存按钮</label>
+                            </td>
+                            <td>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div style="text-align: center; padding-top: 5px">
+            <input type="hidden" name="hidJobId" id="hidJobId" />
+            <input type="hidden" name="hidComplaintState" id="hidComplaintState" />
+            <input type="button" class="button" value="提交" />
+        </div>
+    </div>
+    </form>
+</body>
+</html>

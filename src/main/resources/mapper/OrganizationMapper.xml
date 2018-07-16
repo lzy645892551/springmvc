@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanda.dao.OrganizationMapper" >
+  <resultMap id="BaseResultMap" type="com.wanda.bean.Organization" >
+    <id column="organization_id" property="organizationId" jdbcType="VARCHAR" />
+    <result column="organization_name" property="organizationName" jdbcType="VARCHAR" />
+    <result column="organization_address" property="organizationAddress" jdbcType="VARCHAR" />
+    <result column="organization_tel" property="organizationTel" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    organization_id, organization_name, organization_address, organization_tel, update_user, 
+    update_time, delete_user, delete_time, delete_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wd_organization
+    where organization_id = #{organizationId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wd_organization
+    where organization_id = #{organizationId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wanda.bean.Organization" >
+    insert into wd_organization (organization_id, organization_name, 
+      organization_address, organization_tel, update_user, 
+      update_time, delete_user, delete_time, 
+      delete_state)
+    values (#{organizationId,jdbcType=VARCHAR}, #{organizationName,jdbcType=VARCHAR}, 
+      #{organizationAddress,jdbcType=VARCHAR}, #{organizationTel,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteUser,jdbcType=VARCHAR}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{deleteState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanda.bean.Organization" >
+    insert into wd_organization
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="organizationId != null" >
+        organization_id,
+      </if>
+      <if test="organizationName != null" >
+        organization_name,
+      </if>
+      <if test="organizationAddress != null" >
+        organization_address,
+      </if>
+      <if test="organizationTel != null" >
+        organization_tel,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="organizationId != null" >
+        #{organizationId,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationName != null" >
+        #{organizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationAddress != null" >
+        #{organizationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationTel != null" >
+        #{organizationTel,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanda.bean.Organization" >
+    update wd_organization
+    <set >
+      <if test="organizationName != null" >
+        organization_name = #{organizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationAddress != null" >
+        organization_address = #{organizationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationTel != null" >
+        organization_tel = #{organizationTel,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where organization_id = #{organizationId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanda.bean.Organization" >
+    update wd_organization
+    set organization_name = #{organizationName,jdbcType=VARCHAR},
+      organization_address = #{organizationAddress,jdbcType=VARCHAR},
+      organization_tel = #{organizationTel,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR}
+    where organization_id = #{organizationId,jdbcType=VARCHAR}
+  </update>
+  
+  <!--getAllOrganizationsManager -->
+  <select id="getAllOrganizationsManager" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wd_organization
+    where delete_state = '未删除'
+  </select>
+  
+  <select id="selectByOrganizationId" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wd_organization
+    where organization_id = #{organizationId,jdbcType=VARCHAR}
+  </select>
+  
+  <!-- updateDeleteStateByOrganization  -->
+  
+  <update id="updateDeleteStateByOrganization" parameterType="com.wanda.bean.Organization" >
+    update wd_organization
+    <set >
+      <if test="organizationName != null" >
+        organization_name = #{organizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationAddress != null" >
+        organization_address = #{organizationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationTel != null" >
+        organization_tel = #{organizationTel,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where organization_id = #{organizationId,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="updateOrganizationById" parameterType="com.wanda.bean.Organization" >
+    update wd_organization
+    <set >
+      <if test="organizationName != null" >
+        organization_name = #{organizationName,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationAddress != null" >
+        organization_address = #{organizationAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="organizationTel != null" >
+        organization_tel = #{organizationTel,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where organization_id = #{organizationId,jdbcType=VARCHAR}
+  </update>
+  
+  
+</mapper>

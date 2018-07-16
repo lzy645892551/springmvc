@@ -1,0 +1,192 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+ 
+</title>
+     <link href="Scripts/jqurey.ui/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css" />
+     <link href="Styles/ts_css.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.hotkeys.js" type="text/javascript"></script>
+    <script src="Scripts/jstree/jquery.jstree.js" type="text/javascript"></script>
+    <link href="Styles/Loading.css" rel="stylesheet" type="text/css" /><link href="../Styles/dialog.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery.dialog.js" type="text/javascript"></script>
+    <script src="Scripts/error.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $(":checkbox").attr("disabled", "disabled");
+            $("#btnSubmit").attr("disabled", "disabled");
+            $("#tree").jstree({
+                "themes": {
+                    "theme": "classic",
+                    "dots": true,
+                    "icons": true
+                },
+                "plugins": ["themes", "json_data", "ui", "types", "search"],
+                "json_data": {
+                    "data": [
+	{ "data": "大连万达商业地产股份有限公司", "children": [{ "data": "商管公司", "state": "closed"}], "state": "open" },
+
+]
+                },
+                "core": { "initially_open": ["100002"] }
+                ,
+                "search": {
+                    "ajax": {
+                        "url": "RoleManager.aspx",
+                        "data": function (str) {
+                            return {
+                                "type": "search",
+                                "search_str": str
+                            };
+                        }
+                    }
+                },
+                "types": {
+                    "valid_children": ["Organization"],
+                    "types": {
+                        "Organization": {
+                            "valid_children": ["default", "Employee"],
+                            "icon": {
+                                "image": "../images/close.png"
+                            }
+                        },
+                        "Employee": {
+                            "valid_children": "none",
+                            "icon": {
+                                "image": "../images/role.gif"
+                            }
+                        }
+                    }
+                }
+            }).bind("select_node.jstree", function (e, data) {
+                $(":checkbox").removeAttr("checked");
+                if (data.rslt.obj.attr("rel") == "Employee") {
+                    if (window.parent != null) {
+                        var userId = data.rslt.obj.attr("id");
+                        return closeWin(userId);
+                    }
+                } else {
+                    $(":checkbox").attr("disabled", "disabled");
+                    $("#btnSubmit").attr("disabled", "disabled");
+                }
+            });
+            var winHeight = $(window).height();
+
+            $("#authorityClear").css({ "height": winHeight * 0.45 });
+            $("#tree").css({ height: winHeight * 0.92 });
+            $("#search").click(function () {
+                if ($.trim($("#text").val())) {
+                    $('#tree').jstree('close_all');
+                    $("#tree").jstree("search", $.trim($("#text").val()));
+                }
+            });
+        });
+
+        function closeWin(userId) {
+            $(":checkbox").removeAttr("disabled");
+            $("#btnSubmit").removeAttr("disabled");
+            $("#hidUserId").val(userId);
+            $.post("RoleManager.aspx", { "type": "GetBindEntities", "uid": userId }, function (data) {
+                $(":checkbox").each(function () {
+                    if (data.indexOf(this.value) >= 0) {
+                        this.checked = true;
+                    }
+                });
+            });
+        }
+
+        function submitFrom1() {
+            var values = "";
+            var ids = "";
+            $(":checkbox").each(function () {
+                if (ids) {
+                    ids += "," + this.value;
+                } else {
+                    ids = this.value;
+                }
+
+                if (values) {
+                    values += "," + this.checked;
+                }
+                else {
+                    values += this.checked;
+                }
+            });
+
+            var data = {
+                ids: ids,
+                values: values,
+                type: "submit",
+                userId: $("#hidUserId").val()
+            }
+            $.post("RoleManager.aspx", data, function (r) {
+                if (r == 1) {
+                    alert("操作成功");
+                }
+                else {
+                    alert("网络异常，请稍后再试！");
+                }
+            });
+
+        }
+    </script>
+</head>
+<body style="overflow-x: hidden; background: #EFF3FF; width: 100%">
+    <div style="background: #EFF3FF; width: 22%; float: left; overflow-y: auto;">
+        &nbsp;
+        <input type="text" id="text" value="">
+        <input type="button" value="查询" id="search" class="button">
+        <div id="tree" class="tree" style="background: #EFF3FF;">
+        </div>
+    </div>
+    <div style="width: 75%; float: left;">
+        <div class="ui-accordion ui-widget ui-helper-reset ui-accordion-icons" style="width: 100%"
+            role="tablist">
+            <div>
+                <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-state-active ui-corner-top"
+                    role="tab" aria-expanded="true" aria-selected="true" tabindex="0">
+                    <span class="ui-icon ui-icon-triangle-1-s"></span><a tabindex="-1">选择角色</a>
+                </h3>
+                <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active"
+                    style="height: 100%;" role="tabpanel">
+                    <form method="post" action="RoleManager.aspx" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUKMTA5NTU3Mjk0NA9kFgICAw9kFgICAQ8QDxYCHgtfIURhdGFCb3VuZGdkEBUbD+aAu+mDqOaAu+e7j+eQhhvmgLvpg6jokKXov5DkuK3lv4PmgLvnu4/nkIYk5oC76YOo6JCl6L+Q5Lit5b+D57u8566h6YOo5oC757uP55CGIeaAu+mDqOiQpei/kOS4reW/g+e7vOeuoemDqOWJr+aAux7mgLvpg6jokKXov5DkuK3lv4PliIbnrqHlia/mgLsS5oC76YOo5a6i5pyN5Yqp55CGDOS4muWKoemDqOmXqA/ns7vnu5/nrqHnkIblkZge5ZWG5Lia5Zyw5Lqn56CU56m26YOo5oC757uP55CGIeWVhuS4muWcsOS6p+eglOeptumDqOivhOWuoee7j+eQhhvllYbkuJrlnLDkuqfnoJTnqbbpg6jnu4/nkIYb5ZWG5Lia5Zyw5Lqn56CU56m26YOo5Ymv5oC7D+WVhueuoeS/oeaBr+mDqA/ljLrln5/mgLvnu4/nkIYS5Yy65Z+f6JCl6L+Q5Ymv5oC7FeWMuuWfn+iQpei/kOmDqOe7j+eQhg/lub/lnLrmgLvnu4/nkIYV5bm/5Zy65LiT6IGM5Ymv57uP55CGEuW5v+WcuuiQpei/kOWJr+aAuxjlub/lnLrniankuJrliIbnrqHlia/mgLsS5bm/5Zy65a6i5pyN5Yqp55CGD+W5v+WcuueuoeeQhuWRmBjlub/lnLrlt6XnqIvliIbnrqHlia/mgLsP5YiG566h5Ymv5oC76KOBEuWuieebkemDqOaAu+e7j+eQhg/lronnm5Hpg6jnu4/nkIYP5a6J55uR6YOo5Ymv5oC7FRsgNUM5QTk2QzA3ODBFNDQ3NkJFRDREMjBBMkZBMzNEOTQgRjY4RDg1MzlBMzgzNDhFODkzMzE5QzBFQTI1REMzRjcgMzM5Mzk4RDMyMURFNEIzODlDMTM4NTU0QTNBQ0M5M0IgNjJDMjQyOTY1QTNGNDlGOUI5MjdCQkQ5NzA0RURBQjQgMEI3Q0I1NjIzOTk2NDEyOEFDMzNBMDBEMUJGMTRGMjkgMDhENzM2RTdBQTE3NEExNUE2QURDMDYwRTM2NzUwNEEgNDJCRjVFQTU0QzNFNEY3ODg5NEE1QjQxRDYwRDZFMTAgQTFCQzlBQkEyNjRDNDM1MzlCRjY2MTU1OTgxOEE4QkYgRTUxMjZENkI2MTk1NDE4QzlDNjQyNDMwQTZCN0ZCODQgMUYyOThGRTA1QTgzNDlEMzg4MDQwMUFDMEI3RENEMjggMTc0MUI2OEREQkU0NEJGQzk1QzZGQjVCNTI5QTQ1QTQgOTZGQzI1NDE5Njc2NEVCQjhBMzc1NDQ1OTA1MUU2NjkgREJBMDJDQjlERUE0NEYyREE1QzNFQUQxOTczOEUyQkUgN0Y3RjUyQUMwM0RBNDEwRTg0RTQ5RURFOEUyRkM1NkUgMkM4QkE4RjdBQzExNDA3M0FDMjZGODREMzNDNDU2M0EgOUUyMjIyRjFGMTBFNEJDQkExNTQyOUI2RTMxM0QyRDMgQUU1QzU3RDQyNjM0NDk1OTkzOEIxQjc2MjdBQkNCOEYgRjlCRTNGMzc5RDY0NDc4MzhGMTEzQkQ5QzgwRDRBRTYgQTkwMjg3NzVDNDQwNDZEMUFFM0VERjE5RDc4NDg1MzUgMkZFNkJGQTQ4MkYyNEY5NDk4NzAyMTM3MTkyMkM2NkMgMUMyOEE2QkM4MDJCNDlDQzkyNTREN0JCNEI1RTAyNkUgODUyRTJCNjU1QkRFNEUwQjkzOTkyQjMyNjlDQ0EzMjIgRTA3QzJDQUE2OTQxNEZBNkJDNERDMTMxNkE0QzM5REEgOTg3RjQ1NEVGQTY2NDBFODg5MzNBQUY0NDgwNUQ3ODAgMTY2Q0Y0NzIzMkZENERDREIzQjQ1MjIwNzRFOEE5QzYgN0RGNTZEQTlDMzFENDVFREJDNTNDMkYxNDNGMDcxRjggQ0Q1NUYxMDg2NkI4NDhCRTlGMjZGQ0QyNDFDNzMxQUMUKwMbZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZ2dnZGQYAQUeX19Db250cm9sc1JlcXVpcmVQb3N0QmFja0tleV9fFhwFCWNieFJvbGUkMAUJY2J4Um9sZSQxBQljYnhSb2xlJDIFCWNieFJvbGUkMwUJY2J4Um9sZSQ0BQljYnhSb2xlJDUFCWNieFJvbGUkNgUJY2J4Um9sZSQ3BQljYnhSb2xlJDgFCWNieFJvbGUkOQUKY2J4Um9sZSQxMAUKY2J4Um9sZSQxMQUKY2J4Um9sZSQxMgUKY2J4Um9sZSQxMwUKY2J4Um9sZSQxNAUKY2J4Um9sZSQxNQUKY2J4Um9sZSQxNgUKY2J4Um9sZSQxNwUKY2J4Um9sZSQxOAUKY2J4Um9sZSQxOQUKY2J4Um9sZSQyMAUKY2J4Um9sZSQyMQUKY2J4Um9sZSQyMgUKY2J4Um9sZSQyMwUKY2J4Um9sZSQyNAUKY2J4Um9sZSQyNQUKY2J4Um9sZSQyNgUKY2J4Um9sZSQyNu5fggdvpg6Z9AQswl4sQudl1YUD8P0tjW/vONxrB/yT" />
+</div>
+ 
+<div class="aspNetHidden">
+ 
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWHQKB5LPpCQLCoPz5DgLFoPz5DgLDoKz6DgLAoMD6DgLDoPz5DgLKoPz5DgLDoLD6DgLAoLT6DgLAoPz5DgLLoPz5DgLDoKT6DgLAoLj6DgLBoPz5DgLDoLz6DgLDoKj6DgLAoKz6DgLGoPz5DgLDoMD6DgLDoJz6DgLAoLD6DgLHoPz5DgLDoLT6DgLDoKD6DgLAoKT6DgLEoPz5DgLDoLj6DgLAoLz6DgL+p9jdA7SiC6ByIfhFeXUe5rlu9EsZgx6x7HaKPBuVjqVugb27" />
+</div>
+                    <table id="cbxRole" style="width:100%;">
+	<tr>
+		<td><input id="cbxRole_0" type="checkbox" name="cbxRole$0" value="5C9A96C0780E4476BED4D20A2FA33D94" /><label for="cbxRole_0">总部总经理</label></td><td><input id="cbxRole_7" type="checkbox" name="cbxRole$7" value="A1BC9ABA264C43539BF661559818A8BF" /><label for="cbxRole_7">系统管理员</label></td><td><input id="cbxRole_14" type="checkbox" name="cbxRole$14" value="2C8BA8F7AC114073AC26F84D33C4563A" /><label for="cbxRole_14">区域营运副总</label></td><td><input id="cbxRole_21" type="checkbox" name="cbxRole$21" value="852E2B655BDE4E0B93992B3269CCA322" /><label for="cbxRole_21">广场管理员</label></td>
+	</tr><tr>
+		<td><input id="cbxRole_1" type="checkbox" name="cbxRole$1" value="F68D8539A38348E893319C0EA25DC3F7" /><label for="cbxRole_1">总部营运中心总经理</label></td><td><input id="cbxRole_8" type="checkbox" name="cbxRole$8" value="E5126D6B6195418C9C642430A6B7FB84" /><label for="cbxRole_8">商业地产研究部总经理</label></td><td><input id="cbxRole_15" type="checkbox" name="cbxRole$15" value="9E2222F1F10E4BCBA15429B6E313D2D3" /><label for="cbxRole_15">区域营运部经理</label></td><td><input id="cbxRole_22" type="checkbox" name="cbxRole$22" value="E07C2CAA69414FA6BC4DC1316A4C39DA" /><label for="cbxRole_22">广场工程分管副总</label></td>
+	</tr><tr>
+		<td><input id="cbxRole_2" type="checkbox" name="cbxRole$2" value="339398D321DE4B389C138554A3ACC93B" /><label for="cbxRole_2">总部营运中心综管部总经理</label></td><td><input id="cbxRole_9" type="checkbox" name="cbxRole$9" value="1F298FE05A8349D3880401AC0B7DCD28" /><label for="cbxRole_9">商业地产研究部评审经理</label></td><td><input id="cbxRole_16" type="checkbox" name="cbxRole$16" value="AE5C57D426344959938B1B7627ABCB8F" /><label for="cbxRole_16">广场总经理</label></td><td><input id="cbxRole_23" type="checkbox" name="cbxRole$23" value="987F454EFA6640E88933AAF44805D780" /><label for="cbxRole_23">分管副总裁</label></td>
+	</tr><tr>
+		<td><input id="cbxRole_3" type="checkbox" name="cbxRole$3" value="62C242965A3F49F9B927BBD9704EDAB4" /><label for="cbxRole_3">总部营运中心综管部副总</label></td><td><input id="cbxRole_10" type="checkbox" name="cbxRole$10" value="1741B68DDBE44BFC95C6FB5B529A45A4" /><label for="cbxRole_10">商业地产研究部经理</label></td><td><input id="cbxRole_17" type="checkbox" name="cbxRole$17" value="F9BE3F379D6447838F113BD9C80D4AE6" /><label for="cbxRole_17">广场专职副经理</label></td><td><input id="cbxRole_24" type="checkbox" name="cbxRole$24" value="166CF47232FD4DCDB3B4522074E8A9C6" /><label for="cbxRole_24">安监部总经理</label></td>
+	</tr><tr>
+		<td><input id="cbxRole_4" type="checkbox" name="cbxRole$4" value="0B7CB56239964128AC33A00D1BF14F29" /><label for="cbxRole_4">总部营运中心分管副总</label></td><td><input id="cbxRole_11" type="checkbox" name="cbxRole$11" value="96FC254196764EBB8A3754459051E669" /><label for="cbxRole_11">商业地产研究部副总</label></td><td><input id="cbxRole_18" type="checkbox" name="cbxRole$18" value="A9028775C44046D1AE3EDF19D7848535" /><label for="cbxRole_18">广场营运副总</label></td><td><input id="cbxRole_25" type="checkbox" name="cbxRole$25" value="7DF56DA9C31D45EDBC53C2F143F071F8" /><label for="cbxRole_25">安监部经理</label></td>
+	</tr><tr>
+		<td><input id="cbxRole_5" type="checkbox" name="cbxRole$5" value="08D736E7AA174A15A6ADC060E367504A" /><label for="cbxRole_5">总部客服助理</label></td><td><input id="cbxRole_12" type="checkbox" name="cbxRole$12" value="DBA02CB9DEA44F2DA5C3EAD19738E2BE" /><label for="cbxRole_12">商管信息部</label></td><td><input id="cbxRole_19" type="checkbox" name="cbxRole$19" value="2FE6BFA482F24F94987021371922C66C" /><label for="cbxRole_19">广场物业分管副总</label></td><td><input id="cbxRole_26" type="checkbox" name="cbxRole$26" value="CD55F10866B848BE9F26FCD241C731AC" /><label for="cbxRole_26">安监部副总</label></td>
+	</tr><tr>
+		<td><input id="cbxRole_6" type="checkbox" name="cbxRole$6" value="42BF5EA54C3E4F78894A5B41D60D6E10" /><label for="cbxRole_6">业务部门</label></td><td><input id="cbxRole_13" type="checkbox" name="cbxRole$13" value="7F7F52AC03DA410E84E49EDE8E2FC56E" /><label for="cbxRole_13">区域总经理</label></td><td><input id="cbxRole_20" type="checkbox" name="cbxRole$20" value="1C28A6BC802B49CC9254D7BB4B5E026E" /><label for="cbxRole_20">广场客服助理</label></td><td></td>
+	</tr>
+</table>
+                    <div style="clear: both;" id="authorityClear">
+                    </div>
+                    <input type="hidden" name="hidUserId" id="hidUserId" />
+                    <div style="text-align: center;">
+                        
+                        <input type="button" value="提交" class="button" id="btnSubmit">
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

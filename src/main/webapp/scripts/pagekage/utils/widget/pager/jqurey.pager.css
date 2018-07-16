@@ -1,0 +1,95 @@
+﻿.pagination span {
+    margin-left: 4px;
+    padding: 2px 5px;
+    display: inline-block;
+    color: #1155BB;
+    border: 1px solid #AAAAEE;
+    cursor: pointer;
+}
+
+.pagination .ellipse {
+    color: #000;
+    border: none;
+    cursor: default;
+}
+
+.pagination .current_background {
+    color: #fff;
+    background-color: #2266BB;
+}
+
+.pagination .btn_text {
+    color: #B3B3B3;
+    border-color: #999999;
+    cursor: default;
+}
+
+.views div {
+    font-size: 14px;
+    width: 600px;
+    height: 50px;
+    border: 1px solid #ccc;
+    display: none;
+    padding: 20px;
+    margin: 10px 0;
+}
+
+
+
+div.pagination {
+    clear: left;
+    float: none;
+    text-align: center;
+    margin: 0px auto;
+    padding: 20px 0;
+    border: 0px;
+    font-size: 14px;
+}
+
+.pagination a, .pagination em {
+    border: 1px solid #ccc;
+    margin: 0px 2px;
+    padding: 2px 6px;
+    font-style: normal;
+    font-size: 12px;
+    border-radius: 2px;
+}
+
+    .pagination a:hover {
+        background-color: #B60000;
+        color: #fff;
+    }
+
+.pagination font {
+    line-height: 23px;
+    margin: 0 10px 0 0;
+}
+
+.pagination a.current {
+    background-color: #B60000;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+.pagination a.last {
+    margin-right: 20px;
+}
+
+.pagination input {
+    border: 1px solid #CCCCCC;
+    margin: 0 5px;
+    width: 40px;
+}
+
+.pagination i {
+    font-style: normal;
+}
+
+.pagination b {
+    font-weight: normal;
+    border: solid 1px #ccc;
+    border-radius: 4px;
+    padding: 2px 6px;
+    cursor: pointer;
+    margin: 0px 5px;
+}

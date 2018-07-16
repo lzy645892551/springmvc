@@ -1,0 +1,695 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+    <title>客诉信息日报表 </title>
+    <link href="../Styles/css.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="../Scripts/selectProject.js" type="text/javascript"></script>
+    <script src="../Scripts/complaint.js" type="text/javascript"></script>
+    <script src="../Scripts/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <script type="text/javascript" language="javascript">
+        $(function () {
+            var winHeight = $(window).height();
+            var winHight = $(window).width;
+            $("#reportDiv").css({ "height": winHeight * 0.62 });
+
+        });
+        function Verification() {
+            if ($.trim($("#txtComplaintStartTime").val()) == "") {
+                alert("请选择投诉日期！");
+                return false;
+            }
+        }
+
+        $(function () {
+            $("#imgJtd").toggle(function () {
+                $("#divTj").slideToggle("show(500)");
+                this.src = "../images/jt_t.png";
+
+            }, function () {
+                $("#divTj").slideToggle("hide(500)");
+                this.src = "../images/jt_d.png";
+            });
+
+
+        });
+    </script>
+</head>
+<body>
+    <form method="post" action="ReportDailySummary.aspx" id="form1">
+
+    <div id="Main">
+        <div id="box">
+            <!--  查询条件 BEGIN -->
+            <div class="cxtj">
+                <div class="cxtj_1">
+                    <div class="cxtj_1_font">
+                        查询条件</div>
+                    <div class="cxtj_1_jt">
+                        <img alt="" src="../images/jt_d.png" id="imgJtd" style="cursor: pointer" /></div>
+                </div>
+                <div class="cxtj_2" id="divTj">
+                    <table border="0" cellpadding="2" cellspacing="2" class="table_list1">
+                        <tr>
+                            <td align="right">
+                                日报日期：
+                            </td>
+                            <td>
+                                <input name="txtComplaintStartTime" type="text" value="2012-08-14" id="txtComplaintStartTime"
+                                    onfocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:&#39;yyyy-MM-dd&#39;})"
+                                    style="width: 80%;" />
+                                <img alt="" src="../images/date.gif" width="17" height="20" align="absmiddle" onclick="imgClick('txtComplaintStartTime')" />
+                            </td>
+                            <td align="right">
+                                所属项目：
+                            </td>
+                            <td>
+                                
+                                <input type="text"/>
+                            </td>
+                            <td align="right">
+                               
+                                    <img src="../Images/search.gif"
+                                    style="width: 100; height: 22; cursor: pointer"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <!--  查询条件 END -->
+            <div class="cxtj">
+                <div class="cxlb">
+                    <div class="cxlb_1">
+                        <div class="cxlb_1_font">
+                            查询列表</div>
+                        <div class="excel">
+                      
+                                <img src="../images/excel.gif"
+                                style="width: 100; height: 22; cursor: pointer" />
+                        </div>
+                    </div>
+                </div>
+                <div id="reportDiv" class="report">
+                    <table border="0" cellpadding="2" cellspacing="2" class="table_list">
+                        <tr>
+                            <td>
+                                <div>
+                                    <table cellspacing="0" rules="all" border="1" id="gvResult" style="width: 100%; border-collapse: collapse;">
+                                        <tr class="table_list">
+                                            <th align="center" scope="col" style="width: 10%; white-space: nowrap;">
+                                                序号
+                                            </th>
+                                            <th align="center" scope="col" style="width: 15%; white-space: nowrap;">
+                                                投诉编号
+                                            </th>
+                                            <th align="center" scope="col" style="width: 15%; white-space: nowrap;">
+                                                投诉人姓名
+                                            </th>
+                                            <th align="center" scope="col" style="width: 10%; white-space: nowrap;">
+                                                投诉时间
+                                            </th>
+                                            <th align="center" scope="col" style="width: 15%; white-space: nowrap;">
+                                                联系电话
+                                            </th>
+                                            <th align="center" scope="col" style="width: 10%; white-space: nowrap;">
+                                                受理人姓名
+                                            </th>
+                                            <th align="center" scope="col" style="width: 15%; white-space: nowrap;">
+                                                投诉内容简述
+                                            </th>
+                                            <th align="center" scope="col" style="width: 10%; white-space: nowrap;">
+                                                处理责任人
+                                            </th>
+                                            <th align="center" scope="col" style="width: 10%; white-space: nowrap;">
+                                                投诉处理情况
+                                            </th>
+                                            <th align="center" scope="col" style="width: 10%; white-space: nowrap;">
+                                                客户满意度
+                                            </th>
+                                            <th align="center" scope="col" style="width: 10%; white-space: nowrap;">
+                                                是否关闭
+                                            </th>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                1
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                LFWD201208140001
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_0" title="福红娜">福红娜</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2012/8/14 9:44:11
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                王婧
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_0" title="廊坊一般投诉，回访不满意审批通过。">廊坊一般投诉，回访不满意审批通过。</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                石淼
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                已完成
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                不满意并关闭
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                是
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                LFWD201208140002
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_1" title="福红娜">福红娜</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2012/8/14 9:44:57
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                王婧
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_1" title="廊坊一般投诉，回访不满意，审批拒绝。">廊坊一般投诉，回访不满意，审批拒绝。</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                石淼
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                已处理
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                否
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                3
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                LFWD201208140003
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_2" title="福红娜">福红娜</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2012/8/14 9:45:24
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                王婧
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_2" title="廊坊较大投诉，回访不满意，审批通过。">廊坊较大投诉，回访不满意，审批通过。</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                郑宏原
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                已完成
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                不满意并关闭
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                是
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                4
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                LFWD201208140004
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_3" title="福红娜">福红娜</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2012/8/14 9:46:05
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                王婧
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_3" title="廊坊较大投诉，回访不满意，审批拒绝。">廊坊较大投诉，回访不满意，审批拒绝。</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                郑宏原
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                已完成
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                十分满意
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                是
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                5
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                LFWD201208140005
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_4" title="福红娜">福红娜</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2012/8/14 9:47:04
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                王婧
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_4" title="廊坊重大投诉，回访不满意，审批拒绝。">廊坊重大投诉，回访不满意，审批拒绝。</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                朱艳芳
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                已处理
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                否
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                6
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                LFWD201208140006
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_5" title="福红娜">福红娜</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2012/8/14 9:47:33
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                王婧
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_5" title="廊坊重大呕吐苏，回访不满意，审批通过。">廊坊重大呕吐苏，回访不满意，审批通过。</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                朱艳芳
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                已完成
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                不满意并关闭
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                是
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                7
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                HBYH201208140001
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_6" title="福红娜">福红娜</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2012/8/14 10:16:43
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                杨鉴
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_6" title="总部下发给石家庄，一般投诉，回访通过。">总部下发给石家庄，一般投诉，回访通过。</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                赵金彪
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                已完成
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                不满意并关闭
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                是
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                8
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                HBYH201208140002
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_7" title="福红娜">福红娜</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2012/8/14 10:18:12
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                杨鉴
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_7" title="下发给石家庄，一般投诉，回访不满意，审批拒绝。">下发给石家庄，一般投诉，回访不满意，审批...</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                赵金彪
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                已处理
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                否
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                9
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                HBYH201208140003
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_8" title="福红娜">福红娜</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2012/8/14 10:20:26
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                杨鉴
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_8" title="总部下发给石家庄，较大投诉，回访不满意，审批通过。">总部下发给石家庄，较大投诉，回访不满意，...</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                郝剑
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                已完成
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                不满意并关闭
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                是
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                10
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                HBYH201208140004
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_9" title="福红娜">福红娜</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2012/8/14 10:21:46
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                杨鉴
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_9" title="总部下发给石家庄，较大投诉，审批拒绝。">总部下发给石家庄，较大投诉，审批拒绝。</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                郝剑
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                已完成
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                不满意并关闭
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                是
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                11
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                HBYH201208140005
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_10" title="福红娜">福红娜</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2012/8/14 10:23:16
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                杨鉴
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_10" title="总部下发给石家庄，重大投诉，回访不满意，审批拒绝。">总部下发给石家庄，重大投诉，回访不满意，...</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                王智慧
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                已处理
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                否
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                12
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                HBYH201208140006
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_11" title="福红娜">福红娜</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2012/8/14 10:24:24
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                杨鉴
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_11" title="总部下发给石家庄，重大投诉，回访不满意，审批通过。">总部下发给石家庄，重大投诉，回访不满意，...</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                王智慧
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                已完成
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                不满意并关闭
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                是
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                13
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                LFWD201208140007
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_12" title="福红娜">福红娜</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2012/8/14 11:06:23
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                杨鉴
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_12" title="验证派发环节，增加的字段。">验证派发环节，增加的字段。</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                未处理
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                否
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                14
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                LFWD201208140008
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_13" title="福红娜">福红娜</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2012/8/14 11:10:27
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                杨鉴
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_13" title="二次">二次</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                未处理
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                否
+                                            </td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                15
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                WXBH201208140001
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_14" title="福红娜">福红娜</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                2012/8/14 11:14:31
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                李梦婕
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                <span id="gvResult_lblComplaintContent_14" title="无效投诉。">无效投诉。</span>
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                已完成
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                &nbsp;
+                                            </td>
+                                            <td align="center" style="vnd.ms-excel.numberformat: @">
+                                                是
+                                            </td>
+                                        </tr>
+                                    </table>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <!-- AspNetPager 7.3.2  Copyright:2003-2010 Webdiyer (www.webdiyer.com) -->
+                                <div id="AspNetPager1" class="anpager" style="width: 100%; text-align: left;">
+                                    <div align="left" class="anpager" style="width: 60%; float: left;">
+                                        <a disabled="disabled" style="margin-right: 10px;">首页</a><a disabled="disabled" style="margin-right: 10px;">上一页</a><span
+                                            class="cpb" style="margin-right: 10px;">1</span><a href="javascript:__doPostBack('AspNetPager1','2')"
+                                                style="margin-right: 10px;">2</a><a href="javascript:__doPostBack('AspNetPager1','3')"
+                                                    style="margin-right: 10px;">3</a><a href="javascript:__doPostBack('AspNetPager1','4')"
+                                                        style="margin-right: 10px;">4</a><a href="javascript:__doPostBack('AspNetPager1','2')"
+                                                            style="margin-right: 10px;">下一页</a><a href="javascript:__doPostBack('AspNetPager1','4')"
+                                                                style="margin-right: 10px;">尾页</a>
+                                    </div>
+                                    <div class="anpager" style="width: 40%; float: left;">
+                                        记录总数：<font color="blue"><b>50</b></font> 总页数：<font color="blue"><b>4</b></font>
+                                        当前页：<font color="red"><b>1</b></font>
+                                    </div>
+                                </div>
+                                <!-- AspNetPager 7.3.2  Copyright:2003-2010 Webdiyer (www.webdiyer.com) -->
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div id="ErrorPanel">
+                    <div class="error" style="display: none">
+                        <img src="../Images/error.png" width="88" height="85" align="absmiddle" alt="" />对不起，没有您要查询的数据！</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    </form>
+</body>
+</html>

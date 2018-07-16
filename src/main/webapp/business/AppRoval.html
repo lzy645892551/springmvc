@@ -1,0 +1,78 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <script language="javascript" type="text/javascript">
+        //屏蔽可忽略的js脚本错误
+        window.onerror = function () {
+            return true;
+        };
+    </script>
+    <title></title>
+    <script src="../Scripts/jquery.js" type="text/javascript"></script>
+    <script src="../Scripts/complaint.js" type="text/javascript"></script>
+    <script src="../Scripts/index.js" type="text/javascript"></script>
+    <link href="../Styles/sp_css.css" rel="stylesheet" type="text/css" />
+    <script src="/Scripts/Approval.js" type="text/javascript"></script>
+</head>
+<body style="background: #FFFFFF; border: 3px solid #00A0E9;">
+    <form method="post" action="Approval.aspx?FlowInstanceUuid=92B7F99B94CB45BBBDE301931DEDFB33&amp;FlowTaskUuid=660474D4C7294555884A97D9B3561F0D&amp;complaintid=26392131CC4243E99636AA9863F15B0F"
+    id="form1">
+    <div class="float_head">
+        待办事项</div>
+    <div class="float_detail">
+        <table class="float_list">
+            <tr>
+                <th width="15%">
+                    处理人
+                </th>
+                <th width="55%">
+                    处理意见
+                </th>
+                <th width="15%">
+                    处理时间
+                </th>
+                <th width="15%">
+                    处理状态
+                </th>
+            </tr>
+            <tr>
+                <td align="center">
+                    张莹
+                </td>
+                <td>
+                    <span title='填报流程'>填报流程 </span>
+                </td>
+                <td align="center">
+                    2012/8/7 15:22:48
+                </td>
+                <td align="center">
+                    已处理
+                </td>
+            </tr>
+        </table>
+        <div class="float_advice">
+            <ul>
+                <li><font class="red">*</font>&nbsp;处理意见</li>
+                <li>
+                    <textarea name="txtContent" rows="2" cols="20" id="txtContent" style="height: 80px;
+                        width: 97%;">
+</textarea>
+                </li>
+            </ul>
+        </div>
+        <div class="float_button">
+            <ul>
+                <li>
+                    <input name="btnSubmitOK" type="button" id="btnSubmitOK" class="button" value="通过"
+                        onclick="AddApproval(this,&#39;1&#39;)" /></li>
+                <li>
+                    <input name="btnSubmitReject" type="button" id="btnSubmitReject" class="button" value="拒绝"
+                        onclick="AddApproval(this,&#39;0&#39;)" /></li>
+            </ul>
+        </div>
+    </div>
+    <input type="hidden" name="Uuid" id="Uuid" value="660474D4C7294555884A97D9B3561F0D" />
+    <input type="hidden" name="hidFlowAlias" id="hidFlowAlias" value="GradingInvalide_square" />
+    </form>
+</body>
+</html>

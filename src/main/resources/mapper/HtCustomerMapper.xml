@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanda.dao.HtCustomerMapper" >
+  <resultMap id="BaseResultMap" type="com.wanda.bean.HtCustomer" >
+    <id column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="describel" property="describel" jdbcType="VARCHAR" />
+    <result column="customer_type" property="customerType" jdbcType="VARCHAR" />
+    <result column="marital_status" property="maritalStatus" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    customer_id, customer_name, sex, tel, describel, customer_type, marital_status, address, 
+    update_user, update_time, delete_user, delete_time, delete_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wd_ht_customer
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wd_ht_customer
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wanda.bean.HtCustomer" >
+    insert into wd_ht_customer (customer_id, customer_name, sex, 
+      tel, describel, customer_type, 
+      marital_status, address, update_user, 
+      update_time, delete_user, delete_time, 
+      delete_state)
+    values (#{customerId,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, #{sex,jdbcType=VARCHAR}, 
+      #{tel,jdbcType=VARCHAR}, #{describel,jdbcType=VARCHAR}, #{customerType,jdbcType=VARCHAR}, 
+      #{maritalStatus,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteUser,jdbcType=VARCHAR}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{deleteState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanda.bean.HtCustomer" >
+    insert into wd_ht_customer
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="sex != null" >
+        sex,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="describel != null" >
+        describel,
+      </if>
+      <if test="customerType != null" >
+        customer_type,
+      </if>
+      <if test="maritalStatus != null" >
+        marital_status,
+      </if>
+      <if test="address != null" >
+        address,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="describel != null" >
+        #{describel,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatus != null" >
+        #{maritalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanda.bean.HtCustomer" >
+    update wd_ht_customer
+    <set >
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="sex != null" >
+        sex = #{sex,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="describel != null" >
+        describel = #{describel,jdbcType=VARCHAR},
+      </if>
+      <if test="customerType != null" >
+        customer_type = #{customerType,jdbcType=VARCHAR},
+      </if>
+      <if test="maritalStatus != null" >
+        marital_status = #{maritalStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="address != null" >
+        address = #{address,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanda.bean.HtCustomer" >
+    update wd_ht_customer
+    set customer_name = #{customerName,jdbcType=VARCHAR},
+      sex = #{sex,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      describel = #{describel,jdbcType=VARCHAR},
+      customer_type = #{customerType,jdbcType=VARCHAR},
+      marital_status = #{maritalStatus,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR}
+    where customer_id = #{customerId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="getList" resultMap="BaseResultMap">
+  	select * from wd_ht_customer 
+  </select>
+</mapper>

@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanda.dao.HtRoomChangeMapper" >
+  <resultMap id="BaseResultMap" type="com.wanda.bean.HtRoomChange" >
+    <id column="room_change_id" property="roomChangeId" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="room_id" property="roomId" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="contract_id" property="contractId" jdbcType="VARCHAR" />
+    <result column="change_id" property="changeId" jdbcType="VARCHAR" />
+    <result column="change_room_id" property="changeRoomId" jdbcType="VARCHAR" />
+    <result column="reason" property="reason" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    room_change_id, customer_id, customer_name, room_id, user_id, name, order_id, contract_id, 
+    change_id, change_room_id, reason, update_user, update_time, delete_user, delete_time, 
+    delete_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wd_ht_room_change
+    where room_change_id = #{roomChangeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wd_ht_room_change
+    where room_change_id = #{roomChangeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wanda.bean.HtRoomChange" >
+    insert into wd_ht_room_change (room_change_id, customer_id, customer_name, 
+      room_id, user_id, name, 
+      order_id, contract_id, change_id, 
+      change_room_id, reason, update_user, 
+      update_time, delete_user, delete_time, 
+      delete_state)
+    values (#{roomChangeId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{roomId,jdbcType=VARCHAR}, #{userId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, 
+      #{orderId,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{changeId,jdbcType=VARCHAR}, 
+      #{changeRoomId,jdbcType=VARCHAR}, #{reason,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteUser,jdbcType=VARCHAR}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{deleteState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanda.bean.HtRoomChange" >
+    insert into wd_ht_room_change
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roomChangeId != null" >
+        room_change_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="contractId != null" >
+        contract_id,
+      </if>
+      <if test="changeId != null" >
+        change_id,
+      </if>
+      <if test="changeRoomId != null" >
+        change_room_id,
+      </if>
+      <if test="reason != null" >
+        reason,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roomChangeId != null" >
+        #{roomChangeId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null" >
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="changeId != null" >
+        #{changeId,jdbcType=VARCHAR},
+      </if>
+      <if test="changeRoomId != null" >
+        #{changeRoomId,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanda.bean.HtRoomChange" >
+    update wd_ht_room_change
+    <set >
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null" >
+        contract_id = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="changeId != null" >
+        change_id = #{changeId,jdbcType=VARCHAR},
+      </if>
+      <if test="changeRoomId != null" >
+        change_room_id = #{changeRoomId,jdbcType=VARCHAR},
+      </if>
+      <if test="reason != null" >
+        reason = #{reason,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where room_change_id = #{roomChangeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanda.bean.HtRoomChange" >
+    update wd_ht_room_change
+    set customer_id = #{customerId,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      contract_id = #{contractId,jdbcType=VARCHAR},
+      change_id = #{changeId,jdbcType=VARCHAR},
+      change_room_id = #{changeRoomId,jdbcType=VARCHAR},
+      reason = #{reason,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR}
+    where room_change_id = #{roomChangeId,jdbcType=VARCHAR}
+  </update>
+</mapper>

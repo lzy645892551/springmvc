@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanda.dao.ApartmentLayoutMapper" >
+  <resultMap id="BaseResultMap" type="com.wanda.bean.ApartmentLayout" >
+    <id column="apartment_layout_id" property="apartmentLayoutId" jdbcType="VARCHAR" />
+    <result column="apartment_layout" property="apartmentLayout" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    apartment_layout_id, apartment_layout, update_user, update_time, delete_user, delete_time, 
+    delete_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wd_apartment_layout
+    where apartment_layout_id = #{apartmentLayoutId,jdbcType=VARCHAR}
+  </select>
+  <select id = "getList" parameterType="com.wanda.bean.ApartmentLayout" resultMap="BaseResultMap">
+  	select <include refid = "Base_Column_List" /> from wd_apartment_layout
+  	<where >
+  		<if test = "apartmentLayout != null and apartmentLayout != ''">
+  			and apartment_layout like "%"#{apartmentLayout,jdbcType=VARCHAR}"%"
+  		</if>
+  		<if test = "updateUser != null and updateUser != ''">
+  			and update_user like "%"#{updateUser,jdbcType=VARCHAR}"%"
+  		</if>
+  	</where>
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wd_apartment_layout
+  </delete>
+  <delete id = "deleteIn" parameterType="map" >
+  	delete from wd_apartment_layout
+  	where apartment_layout_id in 
+  	<foreach collection="layoutMap" item="layout" open="(" close=")" separator=",">
+  		#{layout}
+  	</foreach>
+  </delete>
+  
+  <insert id="insert" parameterType="com.wanda.bean.ApartmentLayout" >
+  	<selectKey keyProperty="apartmentLayoutId" resultType="string" order="BEFORE">
+  		Select UUID()
+  	</selectKey>
+    insert into wd_apartment_layout (apartment_layout_id, apartment_layout, 
+      update_user, update_time, delete_user, 
+      delete_time, delete_state)
+    values (#{apartmentLayoutId,jdbcType=VARCHAR}, #{apartmentLayout,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteUser,jdbcType=VARCHAR}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanda.bean.ApartmentLayout" >
+    insert into wd_apartment_layout
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="apartmentLayoutId != null" >
+        apartment_layout_id,
+      </if>
+      <if test="apartmentLayout != null" >
+        apartment_layout,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="apartmentLayoutId != null" >
+        #{apartmentLayoutId,jdbcType=VARCHAR},
+      </if>
+      <if test="apartmentLayout != null" >
+        #{apartmentLayout,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanda.bean.ApartmentLayout" >
+    update wd_apartment_layout
+    <set >
+      <if test="apartmentLayout != null" >
+        apartment_layout = #{apartmentLayout,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where apartment_layout_id = #{apartmentLayoutId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanda.bean.ApartmentLayout" >
+    update wd_apartment_layout
+    set apartment_layout = #{apartmentLayout,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR}
+    where apartment_layout_id = #{apartmentLayoutId,jdbcType=VARCHAR}
+  </update>
+</mapper>

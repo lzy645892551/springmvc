@@ -1,0 +1,582 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <script type="text/javascript">
+
+        $("#divTj").hide();
+        $("#imgJtd").toggle(function () {
+            $("#divTj").fadeIn(800);
+            this.src = "images/jt_t.png";
+        }, function () {
+            $("#divTj").fadeOut(800);
+            this.src = "images/jt_d.png";
+        });
+    
+    </script>
+</head>
+<body>
+    <!--  查询条件 BEGIN -->
+    <div class="cxtj">
+        <div class="cxtj_1">
+            <div class="cxtj_1_font">
+                查询条件</div>
+            <div class="cxtj_1_jt">
+                <img style="cursor: pointer" id="imgJtd" alt="" src="Images/jt_d.png"></div>
+        </div>
+        <div style="display: none" id="divTj" class="cxtj_2">
+            <table border="0" cellspacing="2" cellpadding="0" width="100%">
+                <tbody>
+                    <tr>
+                        <td width="6%" align="right">
+                            项目名称：
+                        </td>
+                        <td width="20%">
+                            <input style="width: 96%" id="txtRespectivePro" onfocus="this.blur();" onclick="selectIndexProduct();"
+                                type="text" name="txtRespectivePro">
+                        </td>
+                        <td width="8%" align="right">
+                            投诉人姓名：
+                        </td>
+                        <td width="20%">
+                            <input style="width: 96%" id="txtComplainantName" type="text" name="txtComplainantName">
+                        </td>
+                        <td width="6%" align="right">
+                            联系方式：
+                        </td>
+                        <td width="17%">
+                            <input style="width: 96%" id="txtPreferred" type="text" name="txtPreferred">
+                        </td>
+                        <td width="6%" align="right">
+                            级别：
+                        </td>
+                        <td width="17%">
+                            <select style="width: 99%" id="drpComplaintLevelId" name="drpComplaintLevelId">
+                                <option selected value="-1">----全部----</option>
+                                <option value="692B94072F114C2299BACB35B4CB0499">一般投诉</option>
+                                <option value="18F3DD007B7C4F1B8B35B9943FCC957F">较大投诉</option>
+                                <option value="A1B1576C4B4744869F5C7E7C957066A7">重大投诉</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            投诉来源：
+                        </td>
+                        <td>
+                            <select style="width: 99%" id="drpComplaintSource" name="drpComplaintSource">
+                                <option selected value="-1">----全部----</option>
+                                <option value="F32A50B8501646C5B20A60244E0E2274">400电话</option>
+                                <option value="023A465DD7BC474CAD2192EAAAC36038">专用投诉邮箱</option>
+                                <option value="3A1E740475CB47FD8CD117C8B9AE4594">现场投诉</option>
+                                <option value="F32A50B8501646C5B20A60244E0E2275">地方投诉电话</option>
+                            </select>
+                        </td>
+                        <td align="right">
+                            状态：
+                        </td>
+                        <td>
+                            <select style="width: 99%" id="drpState" name="drpState">
+                                <option selected value="-1">----全部----</option>
+                                <option value="1">已受理</option>
+                                <option value="2">已定级</option>
+                                <option value="3">已派发</option>
+                                <option value="4">已确认</option>
+                                <option value="5">已反馈</option>
+                                <option value="6">已处理</option>
+                                <option value="7">已完成</option>
+                            </select>
+                        </td>
+                        <td align="right">
+                            客户类型：
+                        </td>
+                        <td>
+                            <select style="width: 99%" id="drpCustomerType" name="drpCustomerType">
+                                <option selected value="-1">----全部----</option>
+                                <option value="02852278989C43A1BA019486F242D48E">商户</option>
+                                <option value="F1CB5B74E53842E5B08864FFE30B01EB">消费者</option>
+                                <option value="74CD12115BE14904ABCF461428A46703">其他</option>
+                            </select>
+                        </td>
+                        <td align="right">
+                            总部下发：
+                        </td>
+                        <td>
+                            <select style="width: 99%" id="drpSolutionId" name="drpSolutionId">
+                                <option selected value="-1">----全部----</option>
+                                <option value="1">是</option>
+                                <option value="0">否</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td align="right">
+                            内容：
+                        </td>
+                        <td>
+                            <input style="width: 96%" id="txtComplaintContent" title="可按投诉编号或投诉内容查询" type="text"
+                                name="txtComplaintContent">
+                        </td>
+                        <td align="right">
+                            投诉日期：
+                        </td>
+                        <td>
+                            <input style="width: 83%" id="txtComplaintStartTime" onfocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"
+                                value="2012-06-13" type="text" name="txtComplaintStartTime">
+                            <img onclick="imgClick('txtComplaintStartTime')" alt="" align="absMiddle" src="images/date.gif"
+                                width="17" height="20">
+                        </td>
+                        <td align="right">
+                            到：
+                        </td>
+                        <td>
+                            <input style="width: 83%" id="txtComplaintOverTime" onfocus="WdatePicker({isShowClear:true,readOnly:true,dateFmt:'yyyy-MM-dd'})"
+                                value="2012-08-13" type="text" name="txtComplaintOverTime">
+                            <img onclick="imgClick('txtComplaintOverTime')" alt="" align="absMiddle" src="images/date.gif"
+                                width="17" height="20">
+                        </td>
+                        <td>
+                            &nbsp;
+                        </td>
+                        <td align="right">
+                            <img style="cursor: pointer" id="imgSubmit" onclick="getPageData(1,1)" src="Images/search.gif">
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--  查询条件 END -->
+    <div class="blank8">
+    </div>
+    <!--  查询列表 BEGIN -->
+    <div class="cxtj">
+        <div class="cxtj_1">
+            <div class="cxtj_1_font">
+                查询列表</div>
+        </div>
+        <div class="cxtj_2">
+            <table id="complaintList" class="tablist">
+                <thead id="tablistHer">
+                    <tr>
+                        <th width="8%">
+                            预警信息
+                        </th>
+                        <th width="7%">
+                            级别
+                        </th>
+                        <th width="7%">
+                            客户类型
+                        </th>
+                        <th width="7%">
+                            状态
+                        </th>
+                        <th width="7%">
+                            投诉编号
+                        </th>
+                        <th width="17%">
+                            投诉内容
+                        </th>
+                        <th width="9%">
+                            投诉时间
+                        </th>
+                        <th width="8%">
+                            投诉人
+                        </th>
+                        <th width="13%">
+                            所属项目
+                        </th>
+                        <th width="10%">
+                            电话
+                        </th>
+                        <th width="7%">
+                            责任人
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="listHeader">
+                    <tr class="t1">
+                        <td>
+                            <img alt="" src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt=""
+                                src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt="" src="images/yj_red.png"
+                                    width="12" height="12">&nbsp;&nbsp;
+                        </td>
+                        <td>
+                            一般投诉
+                        </td>
+                        <td>
+                            消费者
+                        </td>
+                        <td>
+                            已确认
+                        </td>
+                        <td>
+                            HBYH201208070026
+                        </td>
+                        <td style="text-align: left; padding-left: 5px" align="left">
+                            <a title="在B1停车场停车，车场员工服务态度不好" onclick="openWin('2A6425D22FE04C48837C0B0B62B08FB6','4');"
+                                href="javascript:void(0);">在B1停车场停车，车场员工服务态度不好…</a>
+                        </td>
+                        <td>
+                            2012/8/7 19:42:22
+                        </td>
+                        <td style="cursor: pointer" title="杨小姐" onclick="openWin('2A6425D22FE04C48837C0B0B62B08FB6','4');">
+                            杨小姐
+                        </td>
+                        <td style="cursor: pointer" onclick="openWin('2A6425D22FE04C48837C0B0B62B08FB6','4');">
+                            石家庄裕华万达广场
+                        </td>
+                        <td>
+                            15821999189
+                        </td>
+                        <td>
+                            王步宇,王智慧
+                        </td>
+                    </tr>
+                    <tr class="t2">
+                        <td>
+                            <img alt="" src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt=""
+                                src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt="" src="images/yj_red.png"
+                                    width="12" height="12">&nbsp;&nbsp;
+                        </td>
+                        <td>
+                            较大投诉
+                        </td>
+                        <td>
+                            消费者
+                        </td>
+                        <td>
+                            已定级
+                        </td>
+                        <td>
+                            BSJS201208070023
+                        </td>
+                        <td style="text-align: left; padding-left: 5px" align="left">
+                            <a title="在商家买的东西有问题，商家不认账，找到总服务台投诉，总服务台让我自己拨打315电话投诉。" onclick="openWin('5DAA3A8D84274BFAB9BFB8856CF9EB47','2');"
+                                href="javascript:void(0);">在商家买的东西有问题，商家不认账，找…</a>
+                        </td>
+                        <td>
+                            2012/8/7 19:37:45
+                        </td>
+                        <td style="cursor: pointer" title="王先生" onclick="openWin('5DAA3A8D84274BFAB9BFB8856CF9EB47','2');">
+                            王先生
+                        </td>
+                        <td style="cursor: pointer" onclick="openWin('5DAA3A8D84274BFAB9BFB8856CF9EB47','2');">
+                            北京石景山万达广场
+                        </td>
+                        <td>
+                            18955145684
+                        </td>
+                        <td>
+                            吴铮
+                        </td>
+                    </tr>
+                    <tr class="t1">
+                        <td>
+                            <img alt="" src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt=""
+                                src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt="" src="images/yj_red.png"
+                                    width="12" height="12">&nbsp;&nbsp;
+                        </td>
+                        <td>
+                            较大投诉
+                        </td>
+                        <td>
+                            消费者
+                        </td>
+                        <td>
+                            已确认
+                        </td>
+                        <td>
+                            LFWD201208070044
+                        </td>
+                        <td style="text-align: left; padding-left: 5px" align="left">
+                            <a title="商家买东西有问题，商家不认账，找到总台投诉，总台让王先生自己打315电话。" onclick="openWin('3A4E3649EECF4FB899184E074E2EEC7F','4');"
+                                href="javascript:void(0);">商家买东西有问题，商家不认账，找到总…</a>
+                        </td>
+                        <td>
+                            2012/8/7 19:31:52
+                        </td>
+                        <td style="cursor: pointer" title="王先生" onclick="openWin('3A4E3649EECF4FB899184E074E2EEC7F','4');">
+                            王先生
+                        </td>
+                        <td style="cursor: pointer" onclick="openWin('3A4E3649EECF4FB899184E074E2EEC7F','4');">
+                            廊坊万达广场
+                        </td>
+                        <td>
+                            18955145684
+                        </td>
+                        <td>
+                            关静,朱艳芳
+                        </td>
+                    </tr>
+                    <tr class="t2">
+                        <td>
+                            <img alt="" src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt=""
+                                src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt="" src="images/yj_red.png"
+                                    width="12" height="12">&nbsp;&nbsp;
+                        </td>
+                        <td>
+                            较大投诉
+                        </td>
+                        <td>
+                            消费者
+                        </td>
+                        <td>
+                            已确认
+                        </td>
+                        <td>
+                            BCBD201208070030
+                        </td>
+                        <td style="text-align: left; padding-left: 5px" align="left">
+                            <a title="在商品买东西有问题，服务台让自己打315投诉" onclick="openWin('39FCBA9F91CA4D9A8E82B1B35FBE3D04','4');"
+                                href="javascript:void(0);">在商品买东西有问题，服务台让自己打31…</a>
+                        </td>
+                        <td>
+                            2012/8/7 19:31:35
+                        </td>
+                        <td style="cursor: pointer" title="王先生" onclick="openWin('39FCBA9F91CA4D9A8E82B1B35FBE3D04','4');">
+                            王先生
+                        </td>
+                        <td style="cursor: pointer" onclick="openWin('39FCBA9F91CA4D9A8E82B1B35FBE3D04','4');">
+                            北京CBD万达广场
+                        </td>
+                        <td>
+                            18955145684
+                        </td>
+                        <td>
+                            闵锐,闫孝忠
+                        </td>
+                    </tr>
+                    <tr class="t1">
+                        <td>
+                            <img alt="" src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt=""
+                                src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt="" src="images/yj_red.png"
+                                    width="12" height="12">&nbsp;&nbsp;
+                        </td>
+                        <td>
+                            较大投诉
+                        </td>
+                        <td>
+                            消费者
+                        </td>
+                        <td>
+                            已确认
+                        </td>
+                        <td>
+                            XMHL201208070018
+                        </td>
+                        <td style="text-align: left; padding-left: 5px" align="left">
+                            <a title="在商家买的东西有问题，商家不认账，找到总服务台投诉，服务台让我自己打315电话投诉" onclick="openWin('614D442186EC46E59C1A9688F512A6E3','4');"
+                                href="javascript:void(0);">在商家买的东西有问题，商家不认账，找…</a>
+                        </td>
+                        <td>
+                            2012/8/7 19:29:42
+                        </td>
+                        <td style="cursor: pointer" title="王先生" onclick="openWin('614D442186EC46E59C1A9688F512A6E3','4');">
+                            王先生
+                        </td>
+                        <td style="cursor: pointer" onclick="openWin('614D442186EC46E59C1A9688F512A6E3','4');">
+                            厦门湖里万达广场
+                        </td>
+                        <td>
+                            18955145684
+                        </td>
+                        <td>
+                            董云龙,梁飞建
+                        </td>
+                    </tr>
+                    <tr class="t2">
+                        <td>
+                            <img alt="" src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt=""
+                                src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt="" src="images/yj_red.png"
+                                    width="12" height="12">&nbsp;&nbsp;
+                        </td>
+                        <td>
+                            较大投诉
+                        </td>
+                        <td>
+                            消费者
+                        </td>
+                        <td>
+                            已派发
+                        </td>
+                        <td>
+                            WXBH201208070039
+                        </td>
+                        <td style="text-align: left; padding-left: 5px" align="left">
+                            <a title="在广场消费，现在有满赠电影票的活动，但是4点多到兑奖点没有人，到服务台问询，说兑完了，没通知。" onclick="openWin('D828193F91E140C4A7E15C64A72BEB91','3');"
+                                href="javascript:void(0);">在广场消费，现在有满赠电影票的活动，…</a>
+                        </td>
+                        <td>
+                            2012/8/7 19:26:20
+                        </td>
+                        <td style="cursor: pointer" title="欧女士" onclick="openWin('D828193F91E140C4A7E15C64A72BEB91','3');">
+                            欧女士
+                        </td>
+                        <td style="cursor: pointer" onclick="openWin('D828193F91E140C4A7E15C64A72BEB91','3');">
+                            无锡滨湖万达广场
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            王恒刚
+                        </td>
+                    </tr>
+                    <tr class="t1">
+                        <td>
+                            <img alt="" src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt=""
+                                src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt="" src="images/yj_red.png"
+                                    width="12" height="12">&nbsp;&nbsp;
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            消费者
+                        </td>
+                        <td>
+                            已受理
+                        </td>
+                        <td>
+                            BCBD201208070028
+                        </td>
+                        <td style="text-align: left; padding-left: 5px" align="left">
+                            <a title="在广场消费，现在有购物满赠电影票的活动，但是4点多到兑奖点没有人，到服务台问，服务台说票已经兑完了，但是兑完了也兑奖点也没有贴通知，我们怎么知道兑完了？"
+                                onclick="openWin('C41C0B527C7F442989A919456AE57027','1');" href="javascript:void(0);">
+                                在广场消费，现在有购物满赠电影票的活…</a>
+                        </td>
+                        <td>
+                            2012/8/7 19:23:49
+                        </td>
+                        <td style="cursor: pointer" title="欧女士" onclick="openWin('C41C0B527C7F442989A919456AE57027','1');">
+                            欧女士
+                        </td>
+                        <td style="cursor: pointer" onclick="openWin('C41C0B527C7F442989A919456AE57027','1');">
+                            北京CBD万达广场
+                        </td>
+                        <td>
+                            13629516756
+                        </td>
+                        <td>
+                            闵锐,闫孝忠
+                        </td>
+                    </tr>
+                    <tr class="t2">
+                        <td>
+                            <img alt="" src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt=""
+                                src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt="" src="images/yj_red.png"
+                                    width="12" height="12">&nbsp;&nbsp;
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            商户
+                        </td>
+                        <td>
+                            已受理
+                        </td>
+                        <td>
+                            HBYH201208070022
+                        </td>
+                        <td style="text-align: left; padding-left: 5px" align="left">
+                            <a title="在广场小芬，现在又购物满增电影票活动，但是4点多到兑票点没人，到服务台问，服务台说票已经没了，但是兑票点没有通知没我们怎么知道换完了呢？" onclick="openWin('57FB092457AD4081B6EF239AF78769DB','1');"
+                                href="javascript:void(0);">在广场小芬，现在又购物满增电影票活动…</a>
+                        </td>
+                        <td>
+                            2012/8/7 19:15:42
+                        </td>
+                        <td style="cursor: pointer" title="欧女士" onclick="openWin('57FB092457AD4081B6EF239AF78769DB','1');">
+                            欧女士
+                        </td>
+                        <td style="cursor: pointer" onclick="openWin('57FB092457AD4081B6EF239AF78769DB','1');">
+                            石家庄裕华万达广场
+                        </td>
+                        <td>
+                            13629516756
+                        </td>
+                        <td>
+                            王步宇,王智慧
+                        </td>
+                    </tr>
+                    <tr class="t1">
+                        <td>
+                            <img alt="" src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt=""
+                                src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt="" src="images/yj_red.png"
+                                    width="12" height="12">&nbsp;&nbsp;
+                        </td>
+                        <td>
+                            一般投诉
+                        </td>
+                        <td>
+                            商户
+                        </td>
+                        <td>
+                            已确认
+                        </td>
+                        <td>
+                            LFWD201208070041
+                        </td>
+                        <td style="text-align: left; padding-left: 5px" align="left">
+                            <a title="一个人一个人一个人一个人一个人一个人一个人一个人一个人一个人" onclick="openWin('E55A46D89E8742729FE9EBAB049641F0','4');"
+                                href="javascript:void(0);">一个人一个人一个人一个人一个人一个人…</a>
+                        </td>
+                        <td>
+                            2012/8/7 19:14:50
+                        </td>
+                        <td style="cursor: pointer" title="张先生" onclick="openWin('E55A46D89E8742729FE9EBAB049641F0','4');">
+                            张先生
+                        </td>
+                        <td style="cursor: pointer" onclick="openWin('E55A46D89E8742729FE9EBAB049641F0','4');">
+                            廊坊万达广场
+                        </td>
+                        <td>
+                            111111111111
+                        </td>
+                        <td>
+                            关静,朱艳芳
+                        </td>
+                    </tr>
+                    <tr class="t2">
+                        <td>
+                            <img alt="" src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt=""
+                                src="images/yj_red.png" width="12" height="12">&nbsp;&nbsp;<img alt="" src="images/yj_red.png"
+                                    width="12" height="12">&nbsp;&nbsp;
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            商户
+                        </td>
+                        <td>
+                            已受理
+                        </td>
+                        <td>
+                            LFWD201208070040
+                        </td>
+                        <td style="text-align: left; padding-left: 5px" align="left">
+                            <a title=",,,,,,,,,,,,,,,,," onclick="openWin('A309B38DB15145A4A85C8E65CACD7F9B','1');"
+                                href="javascript:void(0);">,,,,,,,,,,,,,,,,,</a>
+                        </td>
+                        <td>
+                            2012/8/7 18:12:27
+                        </td>
+                        <td style="cursor: pointer" title="张三" onclick="openWin('A309B38DB15145A4A85C8E65CACD7F9B','1');">
+                            张三
+                        </td>
+                        <td style="cursor: pointer" onclick="openWin('A309B38DB15145A4A85C8E65CACD7F9B','1');">
+                            廊坊万达广场
+                        </td>
+                        <td>
+                        </td>
+                        <td>
+                            关静,朱艳芳
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div style="display: none" id="error">
+                <img alt="" align="absMiddle" src="images/error.png" width="88" height="85">对不起，没有您要查询的数据！</div>
+        </div>
+    </div>
+    <!--  查询列表 END -->
+</body>
+</html>

@@ -1,0 +1,159 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1" runat="server">
+    <title>投诉处理流程</title>
+    <script language="javascript" type="text/javascript">
+        //屏蔽可忽略的js脚本错误
+        window.onerror = function () {
+            return true;
+        };
+    </script>
+    <link href="../Styles/css.css" rel="stylesheet" type="text/css" />
+    <link href="../Styles/ts_css.css" rel="stylesheet" type="text/css" />
+    <link href="../Styles/Loading.css" rel="stylesheet" type="text/css" />
+    <link href="../Styles/dialog.css" rel="stylesheet" type="text/css" />
+    <script src="../Scripts/jquery.js" type="text/javascript"></script>
+    <script src="../Scripts/json2.js" type="text/javascript"></script>
+    <script src="../Scripts/complaint.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function navigationUrl(state, e) {
+
+            navigation('<%=ComplaintId %>', state, e);
+        }
+
+        $(function () {
+            var winHeight = $(window).height();
+            $("#content").css({ height: winHeight * 0.8 });
+            load(getParam("currentstate"));
+            LoadComplaintHtml(parseInt(getParam("currentstate")));
+            navigation(getParam("complaintid"), getParam("currentstate"));
+        });
+
+        function getParam(paramName) {
+            paramValue = "";
+            isFound = false;
+            if (this.location.search.indexOf("?") == 0 && this.location.search.indexOf("=") > 1) {
+                arrSource = unescape(this.location.search).substring(1, this.location.search.length).split("&");
+                i = 0;
+                while (i < arrSource.length && !isFound) {
+                    if (arrSource[i].indexOf("=") > 0) {
+                        if (arrSource[i].split("=")[0].toLowerCase() == paramName.toLowerCase()) {
+                            paramValue = arrSource[i].split("=")[1];
+                            isFound = true;
+                        }
+                    }
+                    i++;
+                }
+            }
+            return paramValue;
+        }
+
+        function LoadComplaintHtml(state) {
+
+            switch (state) {
+                case 0:
+                    $("#content").load("HandleComplaint.html");
+                    break;
+                case 1:
+                    $("#content").load("GradingComplaint.html");
+                    break;
+                case 2:
+                    $("#content").load("ComplaintDistribution.html");
+                    break;
+                case 3:
+                    $("#content").load("Determine.html");
+                    break;
+                case 4:
+                    $("#content").load("Feedback.html");
+                    break;
+                case 5:
+                    $("#content").load("SolveComplaint.html");
+                    break;
+                case 6:
+                    $("#content").load("Visits.html");
+                    break;
+            }
+
+        }
+    </script>
+</head>
+<body>
+    <div class="main" id="ComplaintBody">
+        <%--Loading start --%>
+        <div id="background" class="background" style="display: none;">
+        </div>
+        <div id="progressBar" class="progressBar" style="display: none;">
+            数据加载中，请稍等...</div>
+        <script type="text/javascript">
+            var ajaxbg = $("#background,#progressBar");
+            ajaxbg.show();
+        </script>
+        <%--Loading end --%>
+        <form id="form1" runat="server">
+        <div id="ts_header">
+            <div class="ts_header_1">
+            </div>
+            <div class="ts_header_2">
+                <div class="ts_header_2_font">
+                    <span id="spState"></span>
+                </div>
+            </div>
+        </div>
+        <!--  流程 BEGIN -->
+        <div class="process">
+            <div class="process_button">
+                <ul>
+                    <li style="width: 20px;">&nbsp;</li>
+                    <li class="process_button_feature"><a href="javascript:void(0);" onclick="LoadComplaintHtml(0);return false;">
+                        受理投诉</a></li>
+                    <li>
+                        <img alt="" src="../images/jt_f.png" /></li>
+                    <li class="process_button_feature"><a href="javascript:void(0);" onclick="LoadComplaintHtml(1);return false;">
+                        投诉定级</a></li>
+                    <li>
+                        <img alt="" src="../images/jt_f.png" /></li>
+                    <li class="process_button_feature"><a href="javascript:void(0);" onclick="LoadComplaintHtml(2);return false;">
+                        派发投诉</a></li>
+                    <li>
+                        <img alt="" src="../images/jt_f.png" /></li>
+                    <li class="process_button_feature"><a href="javascript:void(0);" onclick="LoadComplaintHtml(3);return false;">
+                        确定方案</a></li>
+                    <li>
+                        <img alt="" src="../images/jt_f.png" /></li>
+                    <li class="process_button_feature"><a href="javascript:void(0);" onclick="LoadComplaintHtml(4);return false;">
+                        反馈客户</a></li>
+                    <li>
+                        <img alt="" src="../images/jt_f.png" /></li>
+                    <li class="process_button_feature"><a href="javascript:void(0);" onclick="LoadComplaintHtml(5);return false;">
+                        处理投诉</a></li>
+                    <li>
+                        <img alt="" src="../images/jt_f.png" /></li>
+                    <li class="process_button_feature"><a href="javascript:void(0);" onclick="LoadComplaintHtml(6);return false;">
+                        回访客户</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="blank8">
+        </div>
+        <div id="content">
+        </div>
+        <input type="hidden" id="hidIsBusiness" value="1" />
+        <input type="hidden" id="hidButtouDisable" value="" />
+        <input type="hidden" id="hidComplaintId" />
+        <script src="../Scripts/solveComplaint.js" type="text/javascript"></script>
+        <script src="../Scripts/complaintDistribution.js" type="text/javascript"></script>
+        <script src="../Scripts/determine.js" type="text/javascript"></script>
+        <script src="../Scripts/visits.js" type="text/javascript"></script>
+        <script src="../Scripts/feedback.js" type="text/javascript"></script>
+        <script src="../Scripts/grading.js" type="text/javascript"></script>
+        <script src="../Scripts/selectProject.js" type="text/javascript"></script>
+        <script src="../Scripts/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+        <script src="../Scripts/jquery.dialog.js" type="text/javascript"></script>
+        <script src="../Scripts/error.js" type="text/javascript"></script>
+        </form>
+    </div>
+    <div id="ErrorBody">
+    </div>
+    <span style="display: none" id="ErrorSpan"></span>
+</body>
+</html>

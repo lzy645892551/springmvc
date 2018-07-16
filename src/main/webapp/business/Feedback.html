@@ -1,0 +1,423 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+            <link href="/Styles/css.css" rel="stylesheet" type="text/css" />
+    <link href="/Styles/ts_css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="main">
+        <div class="tsnr">
+            <div class="tsnr_1">
+                <div class="tsnr_1_font">
+                    投诉内容</div>
+            </div>
+            <div class="tsnr_2">
+                <table class="table_list2" border="0" cellspacing="2" cellpadding="2">
+                    <tbody>
+                        <tr>
+                            <td style="cursor: pointer" class="table_list2_style1" onclick="showWaringHis()"
+                                width="13%">
+                                预警信息
+                            </td>
+                            <td style="cursor: pointer" class="table_list2_style2" onclick="showWaringHis()"
+                                width="20%">
+                                <span id="ucComplaintInfo_lblWaringType">&nbsp;<img alt="" src="../images/yj_green.png"
+                                    width="12" height="12">&nbsp;&nbsp;</span>
+                            </td>
+                            <td class="table_list2_style1" width="13%">
+                            </td>
+                            <td class="table_list2_style2" width="20%">
+                                <span id="ucComplaintInfo_lblWarningNames"></span>
+                            </td>
+                            <td class="table_list2_style1" width="14%">
+                                <span id="ucComplaintInfo_spTime"></span>
+                            </td>
+                            <td class="table_list2_style2" width="20%">
+                                <span id="ucComplaintInfo_lblTime"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list2_style1" width="13%">
+                                客户类型
+                            </td>
+                            <td class="table_list2_style2" width="20%">
+                                <span id="ucComplaintInfo_lblCustomerType">商户</span>
+                            </td>
+                            <td class="table_list2_style1" width="13%">
+                                所属项目
+                            </td>
+                            <td class="table_list2_style2" width="20%">
+                                <span id="ucComplaintInfo_lblProjectName">无锡滨湖万达广场</span>
+                            </td>
+                            <td class="table_list2_style1" width="14%">
+                                投诉次数
+                            </td>
+                            <td class="table_list2_style2" width="20%">
+                                <span id="ucComplaintInfo_lblComplaintCount">1</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list2_style1">
+                                投诉人姓名
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ucComplaintInfo_lblComplaintName" title="福红娜">福红娜</span>
+                            </td>
+                            <td class="table_list2_style1">
+                                首选联系方式
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ucComplaintInfo_lblContactFirst"></span>
+                            </td>
+                            <td class="table_list2_style1">
+                                其他联系方式
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ucComplaintInfo_lblContactOther"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list2_style1">
+                                邮箱地址
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ucComplaintInfo_lblEmail"></span>
+                            </td>
+                            <td class="table_list2_style1">
+                                投诉来源
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ucComplaintInfo_lblComplaintSource">400电话</span>
+                            </td>
+                            <td class="table_list2_style1">
+                                受理人姓名
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ucComplaintInfo_lblCreateUserName">李梦婕</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list2_style1">
+                                投诉受理时间
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ucComplaintInfo_lblCreateTime">2012/8/10 18:25:25</span>
+                            </td>
+                            <td class="table_list2_style1">
+                                <span id="ucComplaintInfo_textType">二次计划反馈时间</span>
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ucComplaintInfo_lblFeedbackTime">2012/8/10 19:50:00</span>
+                            </td>
+                            <td class="table_list2_style1">
+                                <span id="ucComplaintInfo_textTypeTime">反馈客户时间</span>
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ucComplaintInfo_lblTypeTime">2012/8/10 18:32:04</span>
+                            </td>
+                        </tr>
+                        <tr id="ucComplaintInfo_tr_BusinessType">
+                            <td class="table_list2_style1">
+                                商户类型
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ucComplaintInfo_lblBusinessType">主力店</span>
+                            </td>
+                            <td class="table_list2_style1">
+                                商户名称及编号
+                            </td>
+                            <td class="table_list2_style2" colspan="3">
+                                <span id="ucComplaintInfo_lblBusinessName"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list2_style1">
+                                投诉内容
+                            </td>
+                            <td class="table_list2_style2" colspan="5">
+                                <span id="ucComplaintInfo_lblComplaintContent">一般一般一般</span>
+                            </td>
+                        </tr>
+                        <tr id="ucComplaintInfo_state">
+                            <td class="table_list2_style1">
+                                投诉级别
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ucComplaintInfo_lblComplaintLevelId">较大投诉</span> &nbsp;
+                            </td>
+                            <td class="table_list2_style1">
+                                定级原因
+                            </td>
+                            <td class="table_list2_style2" colspan="3">
+                                <span id="ucComplaintInfo_lblGradingReasonsId">一般投诉处理不当导致重复投诉或越级</span> &nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="display: none" id="waringHIs">
+            <table id="complaintList" class="tablist" width="100%">
+                <thead id="tablistHer">
+                    <tr>
+                        <th>
+                            预警信息
+                        </th>
+                        <th>
+                            预警类型
+                        </th>
+                        <th>
+                            投诉级别
+                        </th>
+                        <th>
+                            投诉单状态
+                        </th>
+                        <th>
+                            责任人
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="tab">
+                </tbody>
+                <tbody>
+                    <tr id="ucComplaintInfo_content">
+                        <td colspan="5" align="middle">
+                            暂无信息
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <input id="hidComplaintId" value="14863F9D3E2B46678D3FB89B082B6511" type="hidden"
+            name="ucComplaintInfo$hidComplaintId">
+        <input id="hidComplaintState" value="7" type="hidden" name="ucComplaintInfo$hidComplaintState">
+        <div class="blank8">
+        </div>
+        <div class="tsdj">
+            <div class="tsdj_1">
+                <div class="tsdj_1_font">
+                    反馈客户</div>
+            </div>
+            <div id="firstFedback">
+                <input id="hidFeedbackId" value="EB2E9AFE50D5445AA7DC5FBD15882D12" type="hidden"
+                    name="hidFeedbackId">
+                <div class="tsdj_2">
+                    <table class="table_list1" border="0" cellspacing="2" cellpadding="2">
+                        <tbody>
+                            <tr>
+                                <td class="table_list1_style1" width="13%">
+                                    <font class="red">*</font>&nbsp;客户接受度
+                                </td>
+                                <td class="table_list1_style2" width="18%">
+                                    <select style="width: 99%" id="drpAcceptance" class="aspNetDisabled"   onchange="changeUpgrade()"
+                                        name="drpAcceptance">
+                                        <option selected value="1237CD7407014F0287B72746DBEDDC7A">客户接受</option>
+                                        <option value="DB0E117D553C4B7DA10FDE57B8AF772E">分歧较大且不可调和</option>
+                                        <option value="03D7D629789148CEBC6441CE33CE5C90">分歧较小</option>
+                                    </select>
+                                    <input id="hidCreateTime" type="hidden" name="hidCreateTime">
+                                </td>
+                                <td class="table_list1_style1" width="13%">
+                                    <font class="red">*</font>&nbsp; 是否升级
+                                </td>
+                                <td class="table_list1_style2" width="16%">
+                                    <select style="width: 99%" id="drpIsUpgrade" class="aspNetDisabled"   onchange="changeFeedBack()"
+                                        name="drpIsUpgrade">
+                                        <option selected value="0">否</option>
+                                        <option value="1">是</option>
+                                    </select>
+                                </td>
+                                <td class="table_list1_style1" width="16%">
+                                    <font class="red">*</font>&nbsp;计划处理完成时间
+                                </td>
+                                <td class="table_list1_style2" nowrap>
+                                    <input style="width: 82%" id="txtProgramTime" class="aspNetDisabled" onfocus="datePicker()"
+                                          value="2012/8/10 19:30:00" type="text" name="txtProgramTime">
+                                    <img onclick='$("#txtProgramTime").focus()' alt="" align="absMiddle" src="../images/date.gif"
+                                        width="17" height="20">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table_list1_style1">
+                                    <span style="color: red">*</span>是否要二次反馈
+                                </td>
+                                <td class="table_list1_style2">
+                                    <select style="width: 99%" id="drpIsFeedBack" class="aspNetDisabled"   onchange="isFeedBack()"
+                                        name="drpIsFeedBack">
+                                        <option selected value="F5EBD345B2F840039F056887B8B42492">是</option>
+                                        <option value="D425CD63866C4F26BA638E76B78723B6">否</option>
+                                    </select>
+                                </td>
+                                <td class="table_list1_style1" width="14%">
+                                    <div id="pnlFeedbackTimeTitle" class="spFeedbackTime">
+                                        <span style="color: red">*</span>计划二次反馈时间
+                                    </div>
+                                </td>
+                                <td class="table_list1_style2" width="18%" nowrap>
+                                    <div id="pnlFeedbackTime" class="spFeedbackTime">
+                                        <input style="width: 82%" id="txtFeedbackTime" class="aspNetDisabled" onfocus="datePicker()"
+                                              value="2012/8/10 19:50:00" type="text" name="txtFeedbackTime">
+                                        <img onclick='$("#txtFeedbackTime").focus()' alt="" align="absMiddle" src="../images/date.gif"
+                                            width="17" height="20">
+                                    </div>
+                                </td>
+                                <td class="table_list1_style1" width="8%" colspan="2" align="right">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table_list1_style1">
+                                    <span style="color: red">*</span>反馈内容
+                                </td>
+                                <td class="table_list1_style2" colspan="5">
+                                    <textarea style="width: 99%" id="txtContent" class="aspNetDisabled"   rows="5"
+                                        cols="20" name="txtContent">g </textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table_list1_style1">
+                                    备注
+                                </td>
+                                <td class="table_list1_style2" colspan="5">
+                                    <textarea style="width: 99%" id="txtRemarks" class="aspNetDisabled"   rows="5"
+                                        cols="20" name="txtRemarks"></textarea>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div id="fristFeedbackBtnDiv">
+                        <div class="operate">
+                            <ul>
+                                <li>
+                                    <input id="btnFeedbackIsDraft" class="button"   onclick="feedback(this,0)"
+                                        value="暂存" type="button" name="btnFeedbackIsDraft">
+                                </li>
+                                <li>
+                                    <input id="btnFeedbackSave" class="button"   onclick="feedback(this,1)" value="提交"
+                                        type="button" name="btnFeedbackSave"></li>
+                                <li>
+                                    <input id="btnFeedbackUpdate" class="button"   onclick="feedback(this,2)"
+                                        value="修改" type="button" name="btnFeedbackUpdate">
+                                </li>
+                                <li>
+                                    <input id="btnFeedbackClose" class="button" onclick="page_Close();" value="关闭" type="button"
+                                        name="btnFeedbackClose">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="seconFeedback">
+                <div class="tsdj_2">
+                    <table class="table_list1" border="0" cellspacing="2" cellpadding="2">
+                        <tbody>
+                            <tr>
+                                <td class="table_list1_style1" width="13%">
+                                    <font class="red">*</font>&nbsp;客户接受度
+                                </td>
+                                <td class="table_list1_style2" width="18%">
+                                    <select style="width: 99%" id="drpAcceptanceSecond" class="aspNetDisabled"  
+                                        onchange="changeUpgrade(true)" name="drpAcceptanceSecond">
+                                        <option selected value="1237CD7407014F0287B72746DBEDDC7A">客户接受</option>
+                                        <option value="DB0E117D553C4B7DA10FDE57B8AF772E">分歧较大且不可调和</option>
+                                        <option value="03D7D629789148CEBC6441CE33CE5C90">分歧较小</option>
+                                    </select>
+                                    <input id="hidCreateTimeSecond" type="hidden" name="hidCreateTimeSecond">
+                                </td>
+                                <td class="table_list1_style1" width="13%">
+                                    <font class="red">*</font>&nbsp; 是否升级
+                                </td>
+                                <td class="table_list1_style2" width="13%">
+                                    <select style="width: 99%" id="drpIsUpgradeSecond" class="aspNetDisabled"  
+                                        onchange="changeFeedBack(true)" name="drpIsUpgradeSecond">
+                                        <option selected value="0">否</option>
+                                        <option value="1">是</option>
+                                    </select>
+                                </td>
+                                <td class="table_list1_style1" width="16%">
+                                    <font class="red">*</font>&nbsp;计划处理完成时间
+                                </td>
+                                <td class="table_list1_style2" nowrap>
+                                    <input style="width: 82%" id="txtProgramTimeSecond" class="aspNetDisabled" onfocus="WdatePicker({ readOnly: true, dateFmt: 'yyyy-MM-dd HH:mm:ss' });changeTimeApproval();"
+                                          onchange="changeTimeApproval()" value="2012/8/17 18:30:03" type="text"
+                                        name="txtProgramTimeSecond">
+                                    <img onclick='$("#txtProgramTimeSecond").focus()' alt="" align="middle" src="../images/date.gif"
+                                        width="17" height="20">
+                                </td>
+                                <td class="table_list1_style2">
+                                    <input style="display: none" id="btnApprovalSecond" class="button"   onclick="feedbackApproval(this)"
+                                        value="中止" type="button" name="btnApprovalSecond">
+                                    <input id="btnApprovalTwoSecond" class="button" onclick="feedbackTwoApproval(this)"
+                                        value="审批" type="button" name="btnApprovalTwoSecond">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table_list1_style1">
+                                    <span style="color: red">*</span>反馈内容
+                                </td>
+                                <td class="table_list1_style2" colspan="6">
+                                    <textarea style="width: 99%" id="txtContentSecond" class="aspNetDisabled"  
+                                        rows="5" cols="20" name="txtContentSecond">f </textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table_list1_style1">
+                                    备注
+                                </td>
+                                <td class="table_list1_style2" colspan="6">
+                                    <textarea style="width: 99%" id="txtRemarksSecond" class="aspNetDisabled"  
+                                        rows="5" cols="20" name="txtRemarksSecond"></textarea>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="table_list1_style1">
+                                    &nbsp;
+                                </td>
+                                <td class="table_list1_style2" colspan="6">
+                                    <span style="color: red">注意: 提交后，系统将自动发送短信给业务人员</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <input id="hidFeedbackIdSecond" value="46F1C99A433C4594856D24556B7C6DC6" type="hidden"
+                        name="hidFeedbackIdSecond">
+                    <div class="operate">
+                        <ul>
+                            <li>
+                                <input id="btnFeedbackIsDraftSecond" class="button"   onclick="feedback(this,0,true)"
+                                    value="暂存" type="button" name="btnFeedbackIsDraftSecond">
+                            </li>
+                            <li>
+                                <input id="btnFeedbackSaveSecond" class="button"   onclick="feedback(this,1,true)"
+                                    value="提交" type="button" name="btnFeedbackSaveSecond"></li>
+                            <li>
+                                <input id="btnFeedbackUpdateSecond" class="button"   onclick="feedback(this,2,true)"
+                                    value="修改" type="button" name="btnFeedbackUpdateSecond">
+                            </li>
+                            <li>
+                                <input id="btnFeedbackCloseSecond" class="button" onclick="page_Close();" value="关闭"
+                                    type="button" name="btnFeedbackCloseSecond">
+                            </li>
+                            <li>
+                                <img onclick="SendSMS(5);" alt="" src="../Images/sendSMS.gif">
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="blank8">
+        </div>
+        <input id="hidIsFeedBack" value="1" type="hidden" name="hidIsFeedBack">
+        <input id="hidIsAdmins" value="1" type="hidden" name="hidIsAdmins">
+        <input id="hidTimeApproval" value="2012/8/15 10:53:24" type="hidden" name="hidTimeApproval">
+        <div>
+            <iframe style="border-bottom: 0px; border-left: 0px; border-top: 0px; border-right: 0px"
+                id="fileUpLoadIframe" onload="iFrameHeight()" height="57" marginheight="0" src="FileUpLoadTest.html?complaintId=14863F9D3E2B46678D3FB89B082B6511&amp;processUuid=5&amp;processName=反馈客户&amp;Index=5"
+                frameborder="0" width="100%" name="frmContainer" marginwidth="0" scrolling="no">
+            </iframe>
+        </div>
+    </div>
+</body>
+</html>

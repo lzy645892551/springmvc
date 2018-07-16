@@ -1,0 +1,457 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanda.dao.HtRoomMapper" >
+  <resultMap id="BaseResultMap" type="htroom" >
+    <id column="room_id" property="roomId" jdbcType="VARCHAR" />
+    <result column="room_code" property="roomCode" jdbcType="VARCHAR" />
+    <result column="build_up_area" property="buildUpArea" jdbcType="REAL" />
+    <result column="inner_area" property="innerArea" jdbcType="REAL" />
+<!--     <result column="apartment_layout_id" property="apartmentLayoutId" jdbcType="VARCHAR" /> -->
+    <result column="inner_price" property="innerPrice" jdbcType="REAL" />
+    <result column="unit_price" property="unitPrice" jdbcType="REAL" />
+    <result column="floor" property="floor" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+<!--     <result column="purpose_id" property="purposeId" jdbcType="VARCHAR" /> -->
+<!--     <result column="unit_id" property="unitId" jdbcType="VARCHAR" /> -->
+<!--     <result column="build_id" property="buildId" jdbcType="VARCHAR" /> -->
+<!--     <result column="opening_report_id" property="openingReportId" jdbcType="VARCHAR" /> -->
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+<!--     <result column="project_id" property="projectId" jdbcType="VARCHAR" /> -->
+  </resultMap>
+  
+  
+  <resultMap type="htroom" extends="BaseResultMap" id="manyToOne">
+    <association property="unit" javaType="com.wanda.bean.HtUnit">
+    	<id column="unit_id" property="unitId" jdbcType="VARCHAR" />
+	    <result column="unit_code" property="unitCode" jdbcType="VARCHAR" />
+	    <result column="room_count" property="roomCount" jdbcType="VARCHAR" />
+	    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+	    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+	 </association>
+	 <association property="build" javaType="com.wanda.bean.HtBuild">
+  		<id column="build_id" property="buildId" jdbcType="VARCHAR" />
+	    <result column="build_name" property="buildName" jdbcType="VARCHAR" />
+	    <result column="floor_count" property="floorCount" jdbcType="INTEGER" />
+	    <result column="room_count" property="roomCount" jdbcType="INTEGER" />
+	    <result column="remark" property="remark" jdbcType="VARCHAR" />
+	    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+	    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+	   </association> 
+	  <association property="project" javaType="com.wanda.bean.HtProject">
+	  		<id column="project_id" property="projectId" jdbcType="VARCHAR" />
+		    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+		    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+		    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+		    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+		    <result column="remark1" property="remark" jdbcType="VARCHAR" />
+		    <result column="update_user2" property="updateUser" jdbcType="VARCHAR" />
+		    <result column="update_time2" property="updateTime" jdbcType="TIMESTAMP" />
+		    <result column="delete_user2" property="deleteUser" jdbcType="VARCHAR" />
+		    <result column="delete_time2" property="deleteTime" jdbcType="TIMESTAMP" />
+		    <result column="delete_state2" property="deleteState" jdbcType="VARCHAR" />
+	  	</association>
+ 	 <association property="layout" javaType="com.wanda.bean.ApartmentLayout">
+ 		<id column="ai" property="apartmentLayoutId" jdbcType="VARCHAR" />
+	    <result column="apartment_layout" property="apartmentLayout" jdbcType="VARCHAR" />
+	    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+	    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+	 </association>
+	 <association property="purpose" javaType="com.wanda.bean.Purpose">
+	 	<id column="purpose_id" property="purposeId" jdbcType="VARCHAR" />
+	    <result column="purpose" property="purpose" jdbcType="VARCHAR" />
+	    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+	    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+	 </association>
+	 
+  </resultMap>
+
+  
+  
+  
+  <sql id="Base_Column_List" >
+    room_id, room_code, build_up_area, inner_area, apartment_layout_id, inner_price, 
+    unit_price, floor, state, unit_id, purpose_id, build_id, opening_report_id, update_user, 
+    update_time, delete_user, delete_time, delete_state, project_id
+  </sql>
+  
+  
+  <select id = "getList" resultMap="manyToOne" parameterType="htroom">
+  		select r.*,b.*,a.*,u.*,p.*,pr.*
+		from wd_ht_project pr,wd_ht_build b,wd_ht_room r,wd_ht_unit u,wd_purpose p,wd_apartment_layout a 
+		where b.build_id = r.build_id and a.apartment_layout_id = r.apartment_layout_id
+		and u.unit_id = r.unit_id   and pr.project_id = r.project_id
+		<if test="build !=null and build.buildName!=''">
+			and  b.build_name like  "%"#{build.buildName}"%"
+		</if>
+		<if test="project !=null and project.projectName !=''">
+			and  pr.project_name like  "%"#{project.projectName}"%"
+		</if>
+		<if test="purpose !=null and purpose.purpose!=''">
+			and  p.purpose like  "%"#{purpose.purpose}"%"
+		</if>
+		<if test="unit !=null and unit.unitCode!=''">
+			and u.unit_code like "%"#{unit.unitCode}"%"
+		</if>
+		<if test="layout !=null and layout.apartmentLayout !=''">
+			and a.apartment_layout like "%"#{layout.apartmentLayout}"%"
+		</if>
+		<if test="roomCode !=null and roomCode !=''">
+			and r.room_code like "%"#{roomCode,jdbcType=VARCHAR}"%"
+		</if>
+		<if test="roomId !=null and roomId !=''">
+			and r.room_id = #{roomId}
+		</if>
+  </select>
+  
+  
+  <select id="selectByPrimaryKey" resultMap="manyToOne" parameterType="java.lang.String" >
+  		select r.*,b.*,a.*,u.*,p.*,pr.*
+		from wd_ht_project pr,wd_ht_build b,wd_ht_room r,wd_ht_unit u,wd_purpose p,wd_apartment_layout a 
+		where b.build_id = r.build_id and a.apartment_layout_id = r.apartment_layout_id
+		and u.unit_id = r.unit_id  and pr.project_id = r.project_id
+        and room_id = #{roomId,jdbcType=VARCHAR}
+  </select>
+  
+  <delete id="deleteIn" parameterType="map">
+  	delete from wd_ht_room  where room_Id in
+	<foreach collection="roomMap" item="room" separator="," open="(" close=")">
+		#{room}
+	</foreach>
+  </delete>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wd_ht_room
+  </delete>
+  <insert id="insert" parameterType="com.wanda.bean.HtRoom" >
+	  <selectKey resultType="string" keyProperty="roomId"  order="BEFORE">
+	  	SELECT UUID()
+	  </selectKey>
+    insert into wd_ht_room (room_id, room_code, build_up_area, 
+      inner_area, apartment_layout_id, inner_price, 
+      unit_price, floor, state, 
+      unit_id, purpose_id, build_id, 
+      opening_report_id, update_user, update_time, 
+      delete_user, delete_time, delete_state, 
+      project_id)
+    values (#{roomId,jdbcType=VARCHAR}, #{roomCode,jdbcType=VARCHAR}, #{buildUpArea,jdbcType=REAL}, 
+      #{innerArea,jdbcType=REAL}, #{apartmentLayoutId,jdbcType=VARCHAR}, #{innerPrice,jdbcType=REAL}, 
+      #{unitPrice,jdbcType=REAL}, #{floor,jdbcType=INTEGER}, #{state,jdbcType=INTEGER}, 
+      #{unitId,jdbcType=VARCHAR}, #{purposeId,jdbcType=VARCHAR}, #{buildId,jdbcType=VARCHAR}, 
+      #{openingReportId,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, 
+      #{deleteUser,jdbcType=VARCHAR}, #{deleteTime,jdbcType=TIMESTAMP}, #{deleteState,jdbcType=VARCHAR}, 
+      #{projectId,jdbcType=VARCHAR})
+  </insert>
+  
+  <insert id = "insertBatch" parameterType="map">
+ 	insert into wd_ht_room (room_id, room_code, build_up_area, 
+      inner_area, apartment_layout_id, inner_price, 
+      unit_price, floor, state, 
+      unit_id, purpose_id, build_id, 
+      opening_report_id, update_user, update_time, 
+      delete_user, delete_time, delete_state, 
+      project_id)  values
+      <foreach collection="roomList" item="room" separator="," >
+	     (#{room.roomId,jdbcType=VARCHAR}, #{room.roomCode,jdbcType=VARCHAR}, #{room.buildUpArea,jdbcType=REAL}, 
+	      #{room.innerArea,jdbcType=REAL}, #{room.apartmentLayoutId,jdbcType=VARCHAR}, #{room.innerPrice,jdbcType=REAL}, 
+	      #{room.unitPrice,jdbcType=REAL}, #{room.floor,jdbcType=INTEGER}, #{room.state,jdbcType=INTEGER}, 
+	      #{room.unitId,jdbcType=VARCHAR}, #{room.purposeId,jdbcType=VARCHAR}, #{room.buildId,jdbcType=VARCHAR}, 
+	      #{room.openingReportId,jdbcType=VARCHAR}, #{room.updateUser,jdbcType=VARCHAR}, #{room.updateTime,jdbcType=TIMESTAMP}, 
+	      #{room.deleteUser,jdbcType=VARCHAR}, #{room.deleteTime,jdbcType=TIMESTAMP}, #{room.deleteState,jdbcType=VARCHAR}, 
+	      #{room.projectId,jdbcType=VARCHAR})
+      </foreach>
+  </insert>
+  
+  
+  <insert id="insertSelective" parameterType="com.wanda.bean.HtRoom" >
+    insert into wd_ht_room
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="roomCode != null" >
+        room_code,
+      </if>
+      <if test="buildUpArea != null" >
+        build_up_area,
+      </if>
+      <if test="innerArea != null" >
+        inner_area,
+      </if>
+      <if test="apartmentLayoutId != null" >
+        apartment_layout_id,
+      </if>
+      <if test="innerPrice != null" >
+        inner_price,
+      </if>
+      <if test="unitPrice != null" >
+        unit_price,
+      </if>
+      <if test="floor != null" >
+        floor,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="unitId != null" >
+        unit_id,
+      </if>
+      <if test="purposeId != null" >
+        purpose_id,
+      </if>
+      <if test="buildId != null" >
+        build_id,
+      </if>
+      <if test="openingReportId != null" >
+        opening_report_id,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roomId != null" >
+        #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="roomCode != null" >
+        #{roomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="buildUpArea != null" >
+        #{buildUpArea,jdbcType=REAL},
+      </if>
+      <if test="innerArea != null" >
+        #{innerArea,jdbcType=REAL},
+      </if>
+      <if test="apartmentLayoutId != null" >
+        #{apartmentLayoutId,jdbcType=VARCHAR},
+      </if>
+      <if test="innerPrice != null" >
+        #{innerPrice,jdbcType=REAL},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=REAL},
+      </if>
+      <if test="floor != null" >
+        #{floor,jdbcType=INTEGER},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=INTEGER},
+      </if>
+      <if test="unitId != null" >
+        #{unitId,jdbcType=VARCHAR},
+      </if>
+      <if test="purposeId != null" >
+        #{purposeId,jdbcType=VARCHAR},
+      </if>
+      <if test="buildId != null" >
+        #{buildId,jdbcType=VARCHAR},
+      </if>
+      <if test="openingReportId != null" >
+        #{openingReportId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanda.bean.HtRoom" >
+    update wd_ht_room
+    <set >
+      <if test="roomCode != null and roomCode !=''" >
+        room_code = #{roomCode,jdbcType=VARCHAR},
+      </if>
+      <if test="buildUpArea != null and buildUpArea !=''" >
+        build_up_area = #{buildUpArea,jdbcType=REAL},
+      </if>
+      <if test="innerArea != null and innerArea !=''" >
+        inner_area = #{innerArea,jdbcType=REAL},
+      </if>
+      <if test="apartmentLayoutId != null and apartmentLayoutId !=''" >
+        apartment_layout_id = #{apartmentLayoutId,jdbcType=VARCHAR},
+      </if>
+      <if test="innerPrice != null and innerPrice !=''" >
+        inner_price = #{innerPrice,jdbcType=REAL},
+      </if>
+      <if test="unitPrice != null and unitPrice !=''" >
+        unit_price = #{unitPrice,jdbcType=REAL},
+      </if>
+      <if test="floor != null and floor !=''" >
+        floor = #{floor,jdbcType=INTEGER},
+      </if>
+      <if test="state != null and state !=''" >
+        state = #{state,jdbcType=INTEGER},
+      </if>
+      <if test="unitId != null and unitId !=''" >
+        unit_id = #{unitId,jdbcType=VARCHAR},
+      </if>
+      <if test="purposeId != null and purposeId !=''" >
+        purpose_id = #{purposeId,jdbcType=VARCHAR},
+      </if>
+      <if test="buildId != null and buildId !=''" >
+        build_id = #{buildId,jdbcType=VARCHAR},
+      </if>
+      <if test="openingReportId != null and openingReportId !=''" >
+        opening_report_id = #{openingReportId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null and updateUser !=''" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null and updateTime !=''" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null and deleteUser !=''" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null and deleteTime !=''" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null and deleteState !=''" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null and projectId !=''" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where room_id = #{roomId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanda.bean.HtRoom" >
+    update wd_ht_room
+    set room_code = #{roomCode,jdbcType=VARCHAR},
+      build_up_area = #{buildUpArea,jdbcType=REAL},
+      inner_area = #{innerArea,jdbcType=REAL},
+      apartment_layout_id = #{apartmentLayoutId,jdbcType=VARCHAR},
+      inner_price = #{innerPrice,jdbcType=REAL},
+      unit_price = #{unitPrice,jdbcType=REAL},
+      floor = #{floor,jdbcType=INTEGER},
+      state = #{state,jdbcType=INTEGER},
+      unit_id = #{unitId,jdbcType=VARCHAR},
+      purpose_id = #{purposeId,jdbcType=VARCHAR},
+      build_id = #{buildId,jdbcType=VARCHAR},
+      opening_report_id = #{openingReportId,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=VARCHAR}
+    where room_id = #{roomId,jdbcType=VARCHAR}
+  </update>
+  
+  <update id="rollBackSix" >
+  	update wd_ht_room
+  	set state = 3
+  	where state = 6
+  </update>
+  
+  <select id="getListt" parameterType="string" resultMap="BaseResultMap" >
+  	select * 
+	from wd_ht_room r, wd_ht_unit u, wd_ht_build b, wd_ht_project p
+	where r.unit_id = u.unit_id and u.build_id = b.build_id
+	and b.project_id = p.project_id 
+	AND p.project_id = #{projectId}
+	AND r.state = 6
+  </select>
+  
+  <!-- 房间批量添加到开盘 -->
+  <update id="openbatch" parameterType="map" >
+  	update wd_ht_room r set r.state = 0 
+  	where r.room_id in 
+	<foreach separator="," open="(" close=")" item="sno" collection="snos">
+		#{sno} 
+	</foreach>
+  </update>
+  
+  <!-- 房间批量移除从开盘 -->
+  <update id="delbatch" parameterType="map">
+	update wd_ht_room r set r.state = 
+	where r.room_id in 
+	<foreach separator="," open="(" close=")" item="sno" collection="snos"> #{sno} </foreach>
+	
+  </update>
+  
+  <update id="addbatch" parameterType="string" >
+  	update wd_ht_room set state = 6 
+	where room_id in 
+	(SELECT a.room_id from
+	(select r.room_id from wd_ht_room r, wd_ht_unit u,
+	 wd_ht_build b, wd_ht_project p
+	where r.unit_id = u.unit_id and u.build_id = b.build_id
+		and b.project_id = p.project_id 
+		AND p.project_id = #{projectId}
+		AND r.state = 3)
+	a
+	)
+  </update>
+  
+  <update id="removeBatch" parameterType="map">
+	update wd_ht_room set state = 3
+	 where room_id in 
+	<foreach separator="," open="(" close=")" item="sno" collection="snos"> #{sno} </foreach>
+  	
+  </update>
+  
+  <update id="removeAll" parameterType="string" >
+  	update wd_ht_room set state = 3 
+	where room_id in 
+	(SELECT a.room_id from
+	(select r.room_id from wd_ht_room r, wd_ht_unit u,
+	 wd_ht_build b, wd_ht_project p
+	where r.unit_id = u.unit_id and u.build_id = b.build_id
+		and b.project_id = p.project_id 
+		AND p.project_id = #{projectId}
+		AND r.state = 6)
+	a
+	)
+  </update>
+  
+  <update id="roomOpen" parameterType="string">
+  	update wd_ht_room 
+  	set opening_report_id = #{openingReportId},
+  	state = 0
+  	where state = 6
+  </update>
+</mapper>

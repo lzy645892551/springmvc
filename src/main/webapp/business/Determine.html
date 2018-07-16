@@ -1,0 +1,291 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+        <link href="/Styles/css.css" rel="stylesheet" type="text/css" />
+    <link href="/Styles/ts_css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="main">
+        <div class="tsnr">
+            <div class="tsnr_1">
+                <div class="tsnr_1_font">
+                    投诉内容</div>
+            </div>
+            <div class="tsnr_2">
+                <table class="table_list2" border="0" cellspacing="2" cellpadding="2">
+                    <tbody>
+                        <tr>
+                            <td style="cursor: pointer" class="table_list2_style1" onclick="showWaringHis()"
+                                width="13%">
+                                预警信息
+                            </td>
+                            <td style="cursor: pointer" class="table_list2_style2" onclick="showWaringHis()"
+                                width="20%">
+                                <span id="ComplaintInfo1_lblWaringType">&nbsp;<img alt="" src="../images/yj_green.png"
+                                    width="12" height="12">&nbsp;&nbsp;</span>
+                            </td>
+                            <td class="table_list2_style1" width="13%">
+                            </td>
+                            <td class="table_list2_style2" width="20%">
+                                <span id="ComplaintInfo1_lblWarningNames"></span>
+                            </td>
+                            <td class="table_list2_style1" width="14%">
+                                <span id="ComplaintInfo1_spTime"></span>
+                            </td>
+                            <td class="table_list2_style2" width="20%">
+                                <span id="ComplaintInfo1_lblTime"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list2_style1" width="13%">
+                                客户类型
+                            </td>
+                            <td class="table_list2_style2" width="20%">
+                                <span id="ComplaintInfo1_lblCustomerType">商户</span>
+                            </td>
+                            <td class="table_list2_style1" width="13%">
+                                所属项目
+                            </td>
+                            <td class="table_list2_style2" width="20%">
+                                <span id="ComplaintInfo1_lblProjectName">无锡滨湖万达广场</span>
+                            </td>
+                            <td class="table_list2_style1" width="14%">
+                                投诉次数
+                            </td>
+                            <td class="table_list2_style2" width="20%">
+                                <span id="ComplaintInfo1_lblComplaintCount">1</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list2_style1">
+                                投诉人姓名
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ComplaintInfo1_lblComplaintName" title="福红娜">福红娜</span>
+                            </td>
+                            <td class="table_list2_style1">
+                                首选联系方式
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ComplaintInfo1_lblContactFirst"></span>
+                            </td>
+                            <td class="table_list2_style1">
+                                其他联系方式
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ComplaintInfo1_lblContactOther"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list2_style1">
+                                邮箱地址
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ComplaintInfo1_lblEmail"></span>
+                            </td>
+                            <td class="table_list2_style1">
+                                投诉来源
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ComplaintInfo1_lblComplaintSource">400电话</span>
+                            </td>
+                            <td class="table_list2_style1">
+                                受理人姓名
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ComplaintInfo1_lblCreateUserName">李梦婕</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list2_style1">
+                                投诉受理时间
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ComplaintInfo1_lblCreateTime">2012/8/10 18:25:25</span>
+                            </td>
+                            <td class="table_list2_style1">
+                                <span id="ComplaintInfo1_textType">二次计划反馈时间</span>
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ComplaintInfo1_lblFeedbackTime">2012/8/10 19:50:00</span>
+                            </td>
+                            <td class="table_list2_style1">
+                                <span id="ComplaintInfo1_textTypeTime">确定方案时间</span>
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ComplaintInfo1_lblTypeTime">2012/8/10 18:28:34</span>
+                            </td>
+                        </tr>
+                        <tr id="ComplaintInfo1_tr_BusinessType">
+                            <td class="table_list2_style1">
+                                商户类型
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ComplaintInfo1_lblBusinessType">主力店</span>
+                            </td>
+                            <td class="table_list2_style1">
+                                商户名称及编号
+                            </td>
+                            <td class="table_list2_style2" colspan="3">
+                                <span id="ComplaintInfo1_lblBusinessName"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list2_style1">
+                                投诉内容
+                            </td>
+                            <td class="table_list2_style2" colspan="5">
+                                <span id="ComplaintInfo1_lblComplaintContent">一般一般一般</span>
+                            </td>
+                        </tr>
+                        <tr id="ComplaintInfo1_state">
+                            <td class="table_list2_style1">
+                                投诉级别
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="ComplaintInfo1_lblComplaintLevelId">较大投诉</span> &nbsp;
+                            </td>
+                            <td class="table_list2_style1">
+                                定级原因
+                            </td>
+                            <td class="table_list2_style2" colspan="3">
+                                <span id="ComplaintInfo1_lblGradingReasonsId">一般投诉处理不当导致重复投诉或越级</span> &nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="display: none" id="waringHIs">
+            <table id="complaintList" class="tablist" width="100%">
+                <thead id="tablistHer">
+                    <tr>
+                        <th>
+                            预警信息
+                        </th>
+                        <th>
+                            预警类型
+                        </th>
+                        <th>
+                            投诉级别
+                        </th>
+                        <th>
+                            投诉单状态
+                        </th>
+                        <th>
+                            责任人
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="tab">
+                </tbody>
+                <tbody>
+                    <tr id="ComplaintInfo1_content">
+                        <td colspan="5" align="middle">
+                            暂无信息
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <input id="hidComplaintId" value="14863F9D3E2B46678D3FB89B082B6511" type="hidden"
+            name="ComplaintInfo1$hidComplaintId">
+        <input id="hidComplaintState" value="7" type="hidden" name="ComplaintInfo1$hidComplaintState">
+        <div class="blank8">
+        </div>
+        <div class="tsdj">
+            <div class="tsdj_1">
+                <div class="tsdj_1_font">
+                    确定方案</div>
+            </div>
+            <table class="table_list1" border="0" cellspacing="2" cellpadding="2">
+                <tbody>
+                    <tr>
+                        <td class="table_list1_style1">
+                            <span style="color: red">*</span>方案内容
+                        </td>
+                        <td class="table_list1_style2" colspan="5">
+                            <textarea style="width: 99%; height: 82px" id="txtProgrammeContent" class="aspNetDisabled"
+                                  rows="2" cols="20" name="txtProgrammeContent">f </textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table_list1_style1" width="13%">
+                            <font class="red">*</font>&nbsp;建议处理时间
+                        </td>
+                        <td class="table_list1_style2" width="16%">
+                            <input style="width: 82%" id="txtProcessingTime" class="aspNetDisabled" onfocus="datePicker()"
+                                  value="2012/8/10 18:28:00" type="text" name="txtProcessingTime">
+                            <img id="imgProcessingTime" onclick="imgClick('txtProcessingTime')" align="absMiddle"
+                                src="../images/date.gif" width="17" height="20">
+                        </td>
+                        <td class="table_list1_style1" width="13%">
+                            <font class="red">*</font>&nbsp;责任人
+                        </td>
+                        <td class="table_list1_style2" width="16%">
+                            <input style="width: 99%" id="txtResponsiblePerson" class="aspNetDisabled"  
+                                value="张学武"  type="text" name="txtResponsiblePerson">
+                        </td>
+                        <td class="table_list1_style1" width="13%">
+                            <font class="red">*</font>&nbsp;责任部门
+                        </td>
+                        <td class="table_list1_style2" width="16%">
+                            <input style="width: 95%" id="txtResponsibleDepartment" class="aspNetDisabled"  
+                                value="总经办"  type="text" name="txtResponsibleDepartment">
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table_list1_style1">
+                            备注
+                        </td>
+                        <td class="table_list1_style2" colspan="5">
+                            <textarea style="width: 99%; height: 43px" id="txtRemarks" class="aspNetDisabled"
+                                  rows="2" cols="20" name="txtRemarks"></textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="table_list1_style1">
+                        </td>
+                        <td class="table_list1_style2" colspan="5">
+                            <span style="color: red">注意：提交后，自动发送短信给客服人员</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <input id="userid" value="133473" type="hidden" name="userid">
+            <input id="organizationId" value="106127" type="hidden" name="organizationId">
+            <input id="hidProjectId" value="103872" type="hidden" name="hidProjectId">
+            <input id="hidJobsId" value="'42BF5EA54C3E4F78894A5B41D60D6E10'" type="hidden" name="hidJobsId">
+        </div>
+        <div class="operate">
+            <ul>
+                <li>
+                    <input id="btnTemp" class="button"   onclick="AddDetermine(this,'1','0');"
+                        value="暂存" type="button" name="btnTemp">
+                </li>
+                <li>
+                    <input id="btnSubmit" class="button"   onclick="AddDetermine(this,'0','0');"
+                        value="提交" type="button" name="btnSubmit"></li></LI>
+                <li>
+                    <input id="btnUpdate" class="button"   onclick="AddDetermine(this,'0','1');"
+                        value="修改" type="button" name="btnUpdate">
+                </li>
+                <li>
+                    <input id="btnClose" class="button" onclick="page_Close()" value="关闭" type="button"
+                        name="btnClose">
+                </li>
+                <li>
+                    <img onclick="SendSMS(4);" alt="" src="../Images/sendSMS.gif">
+                </li>
+            </ul>
+        </div>
+        <div>
+            <iframe style="border-bottom: 0px; border-left: 0px; border-top: 0px; border-right: 0px"
+                id="fileUpLoadIframe" onload="iFrameHeight()" height="57" marginheight="0" src="FileUpLoadTest.html?complaintId=14863F9D3E2B46678D3FB89B082B6511&amp;processUuid=4&amp;processName=确定方案&amp;Index=4"
+                frameborder="0" width="100%" name="frmContainer" marginwidth="0" scrolling="no">
+            </iframe>
+        </div>
+    </div>
+</body>
+</html>

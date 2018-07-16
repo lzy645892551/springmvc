@@ -1,0 +1,243 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1">
+    <title></title>
+    <link href="Scripts/jqurey.ui/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet"
+        type="text/css" />
+    <link href="Styles/ts_css.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.hotkeys.js" type="text/javascript"></script>
+    <script src="Scripts/jstree/jquery.jstree.js" type="text/javascript"></script>
+    <link href="Styles/Loading.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/dialog.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery.dialog.js" type="text/javascript"></script>
+    <script src="Scripts/error.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tree").jstree({
+                "themes": {
+                    "theme": "classic",
+                    "dots": true,
+                    "icons": true
+                },
+                "plugins": ["themes", "json_data", "ui", "types"],
+                "json_data": {
+                    "data": [
+
+    "总部总经理",
+    "总部营运中心总经理",
+    "总部营运中心综管部总经理",
+    "总部客服助理",
+"业务部门",
+"系统管理员"
+
+
+]
+                },
+                "types": {
+                    "valid_children": ["Organization"],
+                    "types": {
+                        "Organization": {
+                            "valid_children": ["default", "Employee"],
+                            "icon": {
+                                "image": "../images/close.png"
+                            }
+                        },
+                        "Employee": {
+                            "valid_children": "none",
+                            "icon": {
+                                "image": "../images/page.png"
+                            }
+                        }
+                    }
+                }
+            }).bind("select_node.jstree", function (e, data) {
+                $(":radio").removeAttr("checked");
+                if (data.rslt.obj.attr("rel") == "Employee") {
+                    if (window.parent != null) {
+                        $(":radio").removeAttr("disabled");
+                        $("input").removeAttr("disabled");
+                        var userId = data.rslt.obj.attr("id");
+                        return selectData(userId);
+                    }
+                } else {
+                    $(":radio").attr("disabled", "disabled");
+                    $("input").attr("disabled", "disabled");
+                }
+            })
+        });
+
+        $(function () {
+
+            if ($("#isAdmin").val() == 1) {
+                $("#RadioButtonList1_3").hide();
+            }
+            $("input").attr("disabled", "disabled");
+            $(":radio").attr("checked", false);
+            $(":radio").attr("disabled", "disabled");
+            selectData($("#lbxRoles").val());
+
+            $("#lbxRoles").change(function () {
+                $(":radio").attr("checked", false);
+                selectData(this.value);
+            });
+            var winHeight = $(window).height();
+            $("#authorityClear").css({ "height": winHeight * 0.45 });
+            $("#tree").css({ height: winHeight * 0.92 });
+        });
+
+        function selectData(jobid) {
+
+            if (jobid) {
+                $(":checkbox").removeAttr("checked");
+                $("#hidSelectRoles").val(jobid);
+                $.post("AuthorizationManager.aspx", { jobId: jobid }, function (data) {
+                    if (data) {
+                        $(":radio").each(function () {
+                            if (this.value == data) {
+                                this.checked = true;
+                            }
+                        });
+                    }
+                });
+
+                $.post("AuthorizationManager.aspx", { "type": "GetBindEntities", "jobuuid": jobid },
+                function (data) {
+
+                    $(":checkbox").each(function () {
+                        if (data.indexOf(this.value) >= 0) {
+                            this.checked = true;
+                        }
+                    });
+                });
+            }
+        }
+        
+    </script>
+</head>
+<body style="overflow-x: hidden; background: #EFF3FF;">
+    <form method="post" action="AuthorizationManager.htm" id="form1">
+    <div id="tree" class="tree" style="background: #EFF3FF; width: 17%; float: left;
+        overflow-y: auto;">
+    </div>
+    <div style="float: left; line-height: 30px; width: 82%">
+        <div class="ui-accordion ui-widget ui-helper-reset ui-accordion-icons" style="width: 100%"
+            role="tablist">
+            <div>
+                <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-state-active ui-corner-top">
+                    <span class="ui-icon ui-icon-triangle-1-s"></span><a tabindex="-1">数据权限</a>
+                </h3>
+                <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active"
+                    style="height: 100%;">
+                    <table id="RadioButtonList1" style="width: 100%;">
+                        <tr>
+                            <td>
+                                <input id="RadioButtonList1_0" type="radio" name="RadioButtonList1" value="1" /><label
+                                    for="RadioButtonList1_0">本人</label>
+                            </td>
+                            <td>
+                                <input id="RadioButtonList1_1" type="radio" name="RadioButtonList1" value="8" /><label
+                                    for="RadioButtonList1_1">本广场</label>
+                            </td>
+                            <td>
+                                <input id="RadioButtonList1_2" type="radio" name="RadioButtonList1" value="9" /><label
+                                    for="RadioButtonList1_2">本区域</label>
+                            </td>
+                            <td>
+                                <input id="RadioButtonList1_3" type="radio" name="RadioButtonList1" value="999" /><label
+                                    for="RadioButtonList1_3">全部</label>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-state-active ui-corner-top">
+                    <span class="ui-icon ui-icon-triangle-1-s"></span><a tabindex="-1">报表权限</a>
+                </h3>
+                <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active"
+                    style="height: 100%;">
+                    <table id="cblResource" style="width: 100%;">
+                        <tr>
+                            <td>
+                                <input id="cblResource_0" type="checkbox" name="cblResource$0" value="069146B3366446E5B3D6640AE85CCCCA" /><label
+                                    for="cblResource_0">趋势分析报表</label>
+                            </td>
+                            <td>
+                                <input id="cblResource_1" type="checkbox" name="cblResource$1" value="069146B3366446E5B3D6640AE85CCCCB" /><label
+                                    for="cblResource_1">投诉等级分析报表</label>
+                            </td>
+                            <td>
+                                <input id="cblResource_2" type="checkbox" name="cblResource$2" value="069146B3366446E5B3D6640AE85CCCCC" /><label
+                                    for="cblResource_2">投诉类别分析报表</label>
+                            </td>
+                            <td>
+                                <input id="cblResource_3" type="checkbox" name="cblResource$3" value="069146B3366446E5B3D6640AE85CCCCD" /><label
+                                    for="cblResource_3">投诉集中点分析报表</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblResource_4" type="checkbox" name="cblResource$4" value="069146B3366446E5B3D6640AE85CCCCE" /><label
+                                    for="cblResource_4">广场投诉案例报表</label>
+                            </td>
+                            <td>
+                                <input id="cblResource_5" type="checkbox" name="cblResource$5" value="069146B3366446E5B3D6640AE85CCCCG" /><label
+                                    for="cblResource_5">预警汇总表</label>
+                            </td>
+                            <td>
+                                <input id="cblResource_6" type="checkbox" name="cblResource$6" value="069146B3366446E5B3D6640AE85CCCCF" /><label
+                                    for="cblResource_6">无效投诉明细报表</label>
+                            </td>
+                            <td>
+                                <input id="cblResource_7" type="checkbox" name="cblResource$7" value="093549D347124A0CBAA07BDC3047CF49" /><label
+                                    for="cblResource_7">预警处理报表</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblResource_8" type="checkbox" name="cblResource$8" value="F97304093E274D19988624EF057034CD" /><label
+                                    for="cblResource_8">超时预警监控报表</label>
+                            </td>
+                            <td>
+                                <input id="cblResource_9" type="checkbox" name="cblResource$9" value="99595942850748179C34F67895E55AB5" /><label
+                                    for="cblResource_9">万达客诉月报表</label>
+                            </td>
+                            <td>
+                                <input id="cblResource_10" type="checkbox" name="cblResource$10" value="9F155337D2AF456E9EB5E138B33A90EE" /><label
+                                    for="cblResource_10">商户/消费者报表</label>
+                            </td>
+                            <td>
+                                <input id="cblResource_11" type="checkbox" name="cblResource$11" value="2B3D56B353E147C29544B41E51984A1A" /><label
+                                    for="cblResource_11">无效投诉监控报表</label>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <input id="cblResource_12" type="checkbox" name="cblResource$12" value="89A7F9CC4179440BB2557F65DCFD968A" /><label
+                                    for="cblResource_12">重大投诉监控报表</label>
+                            </td>
+                            <td>
+                                <input id="cblResource_13" type="checkbox" name="cblResource$13" value="8363FBB4F3D143D987D7F64B69D4EE40" /><label
+                                    for="cblResource_13">万达客诉日报表</label>
+                            </td>
+                            <td>
+                                <input id="cblResource_14" type="checkbox" name="cblResource$14" value="964BD0942CF0420AAD6B9C11D903A105" /><label
+                                    for="cblResource_14">重复投诉监控报表</label>
+                            </td>
+                            <td>
+                            </td>
+                        </tr>
+                    </table>
+                    <div style="clear: both;" id="authorityClear">
+                    </div>
+                    <div style="text-align: center;">
+                        <input type="hidden" name="isAdmin" id="isAdmin" />
+                        <input type="hidden" name="hidSelectRoles" id="hidSelectRoles" />
+                        <input type="button" name="btnSubmit" value="提交" id="btnSubmit" class="button" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </form>
+</body>
+</html>

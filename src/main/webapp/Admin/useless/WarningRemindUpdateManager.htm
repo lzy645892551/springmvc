@@ -1,0 +1,145 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <base target="_self" />
+    <link href="Styles/css.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/ts_css.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/IndexManager.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function page_Close() {
+            if (window.parent != null) {
+                window.parent.close();
+            }
+            else {
+                window.close();
+            }
+        }
+    </script>
+</head>
+<body>
+    <form method="post" action="WarningRemindUpdateManager.htm" id="form1">
+
+
+    <div id="divTwo">
+        <table width="100%" border="0" cellpadding="2" cellspacing="2" class="table_list1">
+            <tr>
+                <td width="13%" class="table_list1_style1">
+                    投诉等级
+                </td>
+                <td width="35%" class="table_list1_style2">
+                    <input name="txtLeved" type="text" value="一般投诉" id="txtLeved" disabled="disabled"
+                        class="aspNetDisabled" />
+                </td>
+            </tr>
+            <tr>
+                <td class="table_list1_style1">
+                    预警类型
+                </td>
+                <td class="table_list1_style2">
+                    <input name="txtType" type="text" value="首次反馈" id="txtType" disabled="disabled" class="aspNetDisabled" />
+                </td>
+            </tr>
+            <tr>
+                <td class="table_list1_style1">
+                    <span style="color: Red">*</span> 时限
+                </td>
+                <td class="table_list1_style2">
+                    <input name="txtPercentage" type="text" value="80" maxlength="4" id="txtPercentage" />%
+                    <span id="RequiredFieldValidator2" style="display: none;">不能为空</span> <span id="RegularExpressionValidator2"
+                        style="display: none;">格式错误</span>
+                </td>
+            </tr>
+            <tr>
+                <td class="table_list1_style1">
+                    <span style="color: Red">*</span> 责任人角色
+                </td>
+                <td class="table_list1_style2">
+                    <select name="ddlResponsibleRole" id="ddlResponsibleRole">
+                        <option value="5C9A96C0780E4476BED4D20A2FA33D94">总部总经理</option>
+                        <option value="F68D8539A38348E893319C0EA25DC3F7">总部营运中心总经理</option>
+                        <option value="339398D321DE4B389C138554A3ACC93B">总部营运中心综管部总经理</option>
+                        <option value="62C242965A3F49F9B927BBD9704EDAB4">总部营运中心综管部副总</option>
+                        <option value="0B7CB56239964128AC33A00D1BF14F29">总部营运中心分管副总</option>
+                        <option value="08D736E7AA174A15A6ADC060E367504A">总部客服助理</option>
+                        <option value="42BF5EA54C3E4F78894A5B41D60D6E10">业务部门</option>
+                        <option value="A1BC9ABA264C43539BF661559818A8BF">系统管理员</option>
+                        <option value="E5126D6B6195418C9C642430A6B7FB84">商业地产研究部总经理</option>
+                        <option value="1F298FE05A8349D3880401AC0B7DCD28">商业地产研究部评审经理</option>
+                        <option value="1741B68DDBE44BFC95C6FB5B529A45A4">商业地产研究部经理</option>
+                        <option value="96FC254196764EBB8A3754459051E669">商业地产研究部副总</option>
+                        <option value="DBA02CB9DEA44F2DA5C3EAD19738E2BE">商管信息部</option>
+                        <option value="7F7F52AC03DA410E84E49EDE8E2FC56E">区域总经理</option>
+                        <option value="2C8BA8F7AC114073AC26F84D33C4563A">区域营运副总</option>
+                        <option value="9E2222F1F10E4BCBA15429B6E313D2D3">区域营运部经理</option>
+                        <option value="AE5C57D426344959938B1B7627ABCB8F">广场总经理</option>
+                        <option selected="selected" value="F9BE3F379D6447838F113BD9C80D4AE6">广场专职副经理</option>
+                        <option value="A9028775C44046D1AE3EDF19D7848535">广场营运副总</option>
+                        <option value="2FE6BFA482F24F94987021371922C66C">广场物业分管副总</option>
+                        <option value="1C28A6BC802B49CC9254D7BB4B5E026E">广场客服助理</option>
+                        <option value="852E2B655BDE4E0B93992B3269CCA322">广场管理员</option>
+                        <option value="E07C2CAA69414FA6BC4DC1316A4C39DA">广场工程分管副总</option>
+                        <option value="987F454EFA6640E88933AAF44805D780">分管副总裁</option>
+                        <option value="166CF47232FD4DCDB3B4522074E8A9C6">安监部总经理</option>
+                        <option value="7DF56DA9C31D45EDBC53C2F143F071F8">安监部经理</option>
+                        <option value="CD55F10866B848BE9F26FCD241C731AC">安监部副总</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td class="table_list1_style1">
+                    &nbsp;
+                </td>
+                <td class="table_list1_style2">
+                    <input type="button" name="btnUpdate" value="修改" id="btnUpdate" tabindex="1" class="button" />
+                    &nbsp;&nbsp;
+                    <input id="btnBack" type="button" class="button" value="关闭" onclick="page_Close()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <input type="hidden" name="hidUuid" id="hidUuid" value="1C28A6BC802B49CC9254D7BB4B5E026E" />
+    <script type="text/javascript"> 
+//<![CDATA[
+        var Page_Validators = new Array(document.getElementById("RequiredFieldValidator2"), document.getElementById("RegularExpressionValidator2"));
+//]]>
+    </script>
+    <script type="text/javascript"> 
+//<![CDATA[
+        var RequiredFieldValidator2 = document.all ? document.all["RequiredFieldValidator2"] : document.getElementById("RequiredFieldValidator2");
+        RequiredFieldValidator2.controltovalidate = "txtPercentage";
+        RequiredFieldValidator2.errormessage = "不能为空";
+        RequiredFieldValidator2.display = "Dynamic";
+        RequiredFieldValidator2.evaluationfunction = "RequiredFieldValidatorEvaluateIsValid";
+        RequiredFieldValidator2.initialvalue = "";
+        var RegularExpressionValidator2 = document.all ? document.all["RegularExpressionValidator2"] : document.getElementById("RegularExpressionValidator2");
+        RegularExpressionValidator2.controltovalidate = "txtPercentage";
+        RegularExpressionValidator2.errormessage = "格式错误";
+        RegularExpressionValidator2.display = "Dynamic";
+        RegularExpressionValidator2.evaluationfunction = "RegularExpressionValidatorEvaluateIsValid";
+        RegularExpressionValidator2.validationexpression = "^[0-9]*$";
+//]]>
+    </script>
+    <script type="text/javascript"> 
+//<![CDATA[
+
+        var Page_ValidationActive = false;
+        if (typeof (ValidatorOnLoad) == "function") {
+            ValidatorOnLoad();
+        }
+
+        function ValidatorOnSubmit() {
+            if (Page_ValidationActive) {
+                return ValidatorCommonOnSubmit();
+            }
+            else {
+                return true;
+            }
+        }
+        //]]>
+    </script>
+    </form>
+</body>
+</html>

@@ -1,0 +1,328 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanda.dao.ContractMapper" >
+  <resultMap id="BaseResultMap" type="com.wanda.bean.Contract" >
+    <id column="contract_id" property="contractId" jdbcType="VARCHAR" />
+    <result column="contract_content" property="contractContent" jdbcType="VARCHAR" />
+    <result column="sign_time" property="signTime" jdbcType="TIMESTAMP" />
+    <result column="first_party" property="firstParty" jdbcType="VARCHAR" />
+    <result column="contract_total" property="contractTotal" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="second_party" property="secondParty" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="room_id" property="roomId" jdbcType="VARCHAR" />
+    <result column="room_area" property="roomArea" jdbcType="REAL" />
+    <result column="unit_price" property="unitPrice" jdbcType="REAL" />
+    <result column="total" property="total" jdbcType="REAL" />
+    <result column="pay_type_name" property="payTypeName" jdbcType="VARCHAR" />
+    <result column="contract_state" property="contractState" jdbcType="INTEGER" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    contract_id, contract_content, sign_time, first_party, contract_total, customer_id, 
+    customer_name, order_id, second_party, user_id, name, room_id, room_area, unit_price, 
+    total, pay_type_name, contract_state, update_user, update_time, delete_user, delete_time, 
+    delete_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wd_contract
+    where contract_id = #{contractId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wd_contract
+    where contract_id = #{contractId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wanda.bean.Contract" >
+    insert into wd_contract (contract_id, contract_content, sign_time, 
+      first_party, contract_total, customer_id, 
+      customer_name, order_id, second_party, 
+      user_id, name, room_id, 
+      room_area, unit_price, total, 
+      pay_type_name, contract_state, update_user, 
+      update_time, delete_user, delete_time, 
+      delete_state)
+    values (#{contractId,jdbcType=VARCHAR}, #{contractContent,jdbcType=VARCHAR}, #{signTime,jdbcType=TIMESTAMP}, 
+      #{firstParty,jdbcType=VARCHAR}, #{contractTotal,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, 
+      #{customerName,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, #{secondParty,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{roomId,jdbcType=VARCHAR}, 
+      #{roomArea,jdbcType=REAL}, #{unitPrice,jdbcType=REAL}, #{total,jdbcType=REAL}, 
+      #{payTypeName,jdbcType=VARCHAR}, #{contractState,jdbcType=INTEGER}, #{updateUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteUser,jdbcType=VARCHAR}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{deleteState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanda.bean.Contract" >
+   <selectKey keyProperty="contractId" resultType="string" order="BEFORE">
+ 			select UUID()	
+ 		</selectKey>
+    insert into wd_contract
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="contractId != null" >
+        contract_id,
+      </if>
+      <if test="contractContent != null" >
+        contract_content,
+      </if>
+      <if test="signTime != null" >
+        sign_time,
+      </if>
+      <if test="firstParty != null" >
+        first_party,
+      </if>
+      <if test="contractTotal != null" >
+        contract_total,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="secondParty != null" >
+        second_party,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="roomArea != null" >
+        room_area,
+      </if>
+      <if test="unitPrice != null" >
+        unit_price,
+      </if>
+      <if test="total != null" >
+        total,
+      </if>
+      <if test="payTypeName != null" >
+        pay_type_name,
+      </if>
+      <if test="contractState != null" >
+        contract_state,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="contractId != null" >
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractContent != null" >
+        #{contractContent,jdbcType=VARCHAR},
+      </if>
+      <if test="signTime != null" >
+        #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstParty != null" >
+        #{firstParty,jdbcType=VARCHAR},
+      </if>
+      <if test="contractTotal != null" >
+        #{contractTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="secondParty != null" >
+        #{secondParty,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="roomArea != null" >
+        #{roomArea,jdbcType=REAL},
+      </if>
+      <if test="unitPrice != null" >
+        #{unitPrice,jdbcType=REAL},
+      </if>
+      <if test="total != null" >
+        #{total,jdbcType=REAL},
+      </if>
+      <if test="payTypeName != null" >
+        #{payTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractState != null" >
+        #{contractState,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanda.bean.Contract" >
+    update wd_contract
+    <set >
+      <if test="contractContent != null" >
+        contract_content = #{contractContent,jdbcType=VARCHAR},
+      </if>
+      <if test="signTime != null" >
+        sign_time = #{signTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="firstParty != null" >
+        first_party = #{firstParty,jdbcType=VARCHAR},
+      </if>
+      <if test="contractTotal != null" >
+        contract_total = #{contractTotal,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="secondParty != null" >
+        second_party = #{secondParty,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="roomArea != null" >
+        room_area = #{roomArea,jdbcType=REAL},
+      </if>
+      <if test="unitPrice != null" >
+        unit_price = #{unitPrice,jdbcType=REAL},
+      </if>
+      <if test="total != null" >
+        total = #{total,jdbcType=REAL},
+      </if>
+      <if test="payTypeName != null" >
+        pay_type_name = #{payTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="contractState != null" >
+        contract_state = #{contractState,jdbcType=INTEGER},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where contract_id = #{contractId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanda.bean.Contract" >
+    update wd_contract
+    set contract_content = #{contractContent,jdbcType=VARCHAR},
+      sign_time = #{signTime,jdbcType=TIMESTAMP},
+      first_party = #{firstParty,jdbcType=VARCHAR},
+      contract_total = #{contractTotal,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      second_party = #{secondParty,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=VARCHAR},
+      room_area = #{roomArea,jdbcType=REAL},
+      unit_price = #{unitPrice,jdbcType=REAL},
+      total = #{total,jdbcType=REAL},
+      pay_type_name = #{payTypeName,jdbcType=VARCHAR},
+      contract_state = #{contractState,jdbcType=INTEGER},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR}
+    where contract_id = #{contractId,jdbcType=VARCHAR}
+  </update>
+  <select id="getList" resultMap="BaseResultMap">
+  		select * from wd_contract where delete_state = 0
+  </select>
+  <select id="getLista" resultMap="BaseResultMap">
+  		select * from wd_contract where delete_state = 1
+  </select>
+  <select id="getId" resultMap="BaseResultMap" parameterType="java.lang.String">
+  		select * from wd_contract where order_id = #{orderId,jdbcType=VARCHAR}
+  </select>
+  <select id="getcId" resultMap="BaseResultMap" parameterType="java.util.Date">
+  		select * from wd_contract where sign_time = #{signTime,jdbcType=TIMESTAMP}
+  </select>
+  <delete id="del" parameterType="map">
+  	delete from wd_contract  where contract_id in 
+  	<foreach collection="snos" item="sno" open="(" close=")" separator=",">
+			#{sno}
+	</foreach>
+  </delete>
+  <update id="zuofei" parameterType="map">
+  	update wd_contract set delete_state = 1 where contract_id in 
+  	<foreach collection="snos" item="sno" open="(" close=")" separator=",">
+			#{sno}
+	</foreach>
+  </update>
+  <update id="huifu" parameterType="map">
+  	update wd_contract set delete_state = 0 where contract_id in 
+  	<foreach collection="snos" item="sno" open="(" close=")" separator=",">
+			#{sno}
+	</foreach>
+  </update>
+</mapper>

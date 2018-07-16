@@ -1,0 +1,165 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title></title>
+    <link href="/Skin/css.css" rel="stylesheet" />
+    <script src="/SCRIPTS/pagekage/core/jquery/jquery-1.8.3.js"></script>
+    <script src="/SCRIPTS/pagekage/utils/widget/jsTemplate/jsTemplate.js"></script>
+    <script src="/SCRIPTS/pagekage/utils/widget/pager/jqurey.pager.js"></script>
+
+    <script>
+        function getTestData(count) {
+            var data = [];
+            for (var i = 0; i < count; i++) {
+                var obj = {};
+                for (var j = 0; j < 10; j++) {
+                    obj["p" + j] = Math.ceil(Math.random() * 1000);
+                }
+                data.push(obj);
+            }
+            return data;
+        }
+
+        function getData() {
+            var data;
+
+            function _data() {
+                if (!data)
+                    data = getTestData(15);
+                return data;
+            }
+            return _data();
+        }
+
+        var grid;
+        $(function () {
+            var list = getData();
+            grid = $("#gridBody").tGrid({
+                templateID: "tmpl-tbody",
+                dataSource: list,
+                pager: {
+                    pageable: true,
+                    container: "pager",
+                    opts: {
+                        pageIndex: 1,
+                        pageSize: 5,
+                        rowCount: list.length,
+                        displayNum: 10,
+                        callback: pager
+                    }
+                },
+                sort: {
+                    sortable: true,
+                    selector: "#thSort",
+                    sortEven: function (sortOrder, sortName, obj) {
+                        console.log(sortName + " " + sortOrder);
+                    }
+                }
+            });
+        });
+
+
+        function pager(index, pagesize) {
+            grid.setData(getTestData(3));
+        }
+
+    </script>
+
+    <script>
+        //{{ }} JS原生态代码
+        //{{= }}	变量运算，赋值 {{=it.f1 + it.f2}}
+        //{{! }}	赋值并且编码
+        //{{# }}
+        //{{## #}}
+        //{{? }}	条件语句
+        //{{~ }}	循环
+
+    </script>
+    <script id="tmpl-tbody" type="text/x-dot-template">
+        {{~it:item:index}}
+        <tr class="obox12td02TR">
+            <td class="obox12td02wleft">{{= item.p0 }} </td>
+            <td class="obox12td02wcenter">{{= item.p1 }}</td>
+            <td class="obox12td02wcenter">{{= item.p2 }}</td>
+            <td class="obox12td02wcenter">{{= item.p3 }}</td>
+            <td class="obox12td02wcenter">{{= item.p4 }}</td>
+            <td class="obox12td02wcenter">{{= item.p5 }}</td>
+            <td class="obox12td02wcenter">{{= item.p6 }}</td>
+            <td class="obox12td02wcenter">{{= item.p7 }}</td>
+            <td class="obox12td02wcenter">{{= item.p8 }}</td>
+            <td class="obox12td02wcenter">{{= item.p9 }}</td>
+            <td class="obox12td02wcenter">-</td>
+        </tr>
+        {{~}}
+
+    </script>
+
+
+
+</head>
+<body>
+    <div id="ddemo"></div>
+    <dl class="horizontal_items mt_20">
+
+        <dt>
+            <strong><i class="icon_arow margr6"></i>会员情况</strong>
+            <span style="height: 10px; float: right; padding-top: 20px; margin-right: 10px;">单位：人
+            </span>
+        </dt>
+
+    </dl>
+
+
+    <table width="100%" border="0" cellspacing="0" cellpadding="0">
+        <tr align="left" valign="top">
+            <td class="ibox02t2" style="width: 49%;">
+                <div>
+                    <div style="height: 10px;">
+
+                        <p>&nbsp;</p>
+                    </div>
+                    <table width="100%" border="0" cellpadding="0" cellspacing="1" class="obox12table">
+                        <thead id="thSort">
+                            <tr>
+
+                                <!--selector: "field",
+                                sortorder: "asc",
+                                sortname: "id",-->
+                                <td rowspan="3" class="obox12td01" sortname="p0" sortable="true"><span style="display: inline-block;">项目名称 </span></td>
+                                <td rowspan="3" class="obox12td01" sortable="true"><span style="display: inline-block;">会员总数
+                                    <img src="users/images/list_01.png" style="float: right;" /></span></td>
+                                <td colspan="4" class="obox12td01"><span style="display: inline-block;">普通会员 </span></td>
+                                <td class="obox12td01" colspan="4">至尊会员</td>
+
+                                <td colspan="2" rowspan="3" class="obox12td01">趋势</td>
+                            </tr>
+                            <tr>
+                                <td rowspan="2" class="obox12td01"><span style="display: inline-block;">总数<img src="users/images/list_01.png" style="float: right;" /></span></td>
+                                <td colspan="3" class="obox12td01">会员新增数</td>
+                                <td rowspan="2" class="obox12td01"><span style="display: inline-block;">总数<img src="users/images/list_01.png" alt="" style="float: right;" /></span></td>
+                                <td class="obox12td01" colspan="3">会员新增数</td>
+                            </tr>
+                            <tr>
+                                <td class="obox12td01"><span style="display: inline-block;">本周<img src="users/images/list_01.png" alt="" style="float: right;" /></span></td>
+                                <td class="obox12td01"><span style="display: inline-block;">本月<img src="users/images/list_01.png" alt="" style="float: right;" /></span></td>
+                                <td class="obox12td01"><span style="display: inline-block;">本年<img src="users/images/list_01.png" alt="" style="float: right;" /></span></td>
+                                <td class="obox12td01"><span style="display: inline-block;">本周<img src="users/images/list_01.png" alt="" style="float: right;" /></span></td>
+                                <td class="obox12td01"><span style="display: inline-block;">本月<img src="users/images/list_01.png" alt="" style="float: right;" /></span></td>
+                                <td class="obox12td01"><span style="display: inline-block;">本年<img src="users/images/list_01.png" alt="" style="float: right;" /></span></td>
+                            </tr>
+
+                        </thead>
+
+                        <tbody id="gridBody"></tbody>
+                    </table>
+
+                    <div id="pager"></div>
+                </div>
+            </td>
+        </tr>
+    </table>
+    <div style="height: 10px;"></div>
+
+</body>
+</html>

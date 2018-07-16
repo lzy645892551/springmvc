@@ -1,0 +1,319 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanda.dao.OpeningReportMapper" >
+  <resultMap id="BaseResultMap" type="com.wanda.bean.OpeningReport" >
+    <id column="opening_report_id" property="openingReportId" jdbcType="VARCHAR" />
+    <result column="opening_report_time" property="openingReportTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="price_type" property="priceType" jdbcType="VARCHAR" />
+    <result column="opening_report_name" property="openingReportName" jdbcType="VARCHAR" />
+    <result column="report_type" property="reportType" jdbcType="VARCHAR" />
+    <result column="discount" property="discount" jdbcType="DOUBLE" />
+  </resultMap>
+  
+  <resultMap extends="BaseResultMap" type="com.wanda.bean.OpeningReport" id="oneToMany">
+  	<collection javaType="com.wanda.bean.OpeningPay" property="payType">
+  		<id column="opening_pay_id" property="openingPayId" jdbcType="VARCHAR" />
+	    <result column="pay_type_id" property="payTypeId" jdbcType="VARCHAR" />
+	    <result column="opening_report_id" property="openingReportId" jdbcType="VARCHAR" />
+	    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+	    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  	</collection>
+  	<collection javaType="com.wanda.bean.HtRoom" property="room">
+  		<id column="room_id" property="roomId" jdbcType="VARCHAR" />
+	    <result column="room_code" property="roomCode" jdbcType="VARCHAR" />
+	    <result column="build_up_area" property="buildUpArea" jdbcType="REAL" />
+	    <result column="inner_area" property="innerArea" jdbcType="REAL" />
+	    <result column="apartment_layout_id" property="apartmentLayoutId" jdbcType="VARCHAR" />
+	    <result column="inner_price" property="innerPrice" jdbcType="REAL" />
+	    <result column="unit_price" property="unitPrice" jdbcType="REAL" />
+	    <result column="floor" property="floor" jdbcType="INTEGER" />
+	    <result column="state" property="state" jdbcType="INTEGER" />
+	    <result column="unit_id" property="unitId" jdbcType="VARCHAR" />
+	    <result column="purpose_id" property="purposeId" jdbcType="VARCHAR" />
+	    <result column="build_id" property="buildId" jdbcType="VARCHAR" />
+	    <result column="opening_report_id" property="openingReportId" jdbcType="VARCHAR" />
+	    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+	    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+	    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+  	</collection>
+  </resultMap>
+  
+  <resultMap extends="BaseResultMap" type="com.wanda.bean.OpeningReport" id="manyToOne">
+  	<association javaType="com.wanda.bean.HtProject" property="project">
+  		<id column="project_id" property="projectId" jdbcType="VARCHAR" />
+	    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+	    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+	    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+	    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+	    <result column="remark" property="remark" jdbcType="VARCHAR" />
+	    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+	    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+	    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+	    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  	</association>
+  </resultMap>
+  
+  <resultMap id="ResultMapWithBLOBs" type="com.wanda.bean.OpeningReport" extends="BaseResultMap" >
+    <result column="opening_report_description" property="openingReportDescription" jdbcType="LONGVARBINARY" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    opening_report_id, opening_report_time, project_id, pay_type_id, update_user, update_time, 
+    delete_user, delete_time, delete_state, room_id, state, price_type, opening_report_name, 
+    report_type, discount
+  </sql>
+  <sql id="Blob_Column_List" >
+    opening_report_description
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="ResultMapWithBLOBs" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    ,
+    <include refid="Blob_Column_List" />
+    from wd_opening_report
+    where opening_report_id = #{openingReportId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wd_opening_report
+    where opening_report_id = #{openingReportId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wanda.bean.OpeningReport" >
+    insert into wd_opening_report (opening_report_id, opening_report_time, 
+      project_id, pay_type_id, update_user, 
+      update_time, delete_user, delete_time, 
+      delete_state, room_id, state, 
+      price_type, opening_report_name, report_type, 
+      discount, opening_report_description
+      )
+    values (#{openingReportId,jdbcType=VARCHAR}, #{openingReportTime,jdbcType=TIMESTAMP}, 
+      #{projectId,jdbcType=VARCHAR}, #{payTypeId,jdbcType=VARCHAR}, #{updateUser,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=TIMESTAMP}, #{deleteUser,jdbcType=VARCHAR}, #{deleteTime,jdbcType=TIMESTAMP}, 
+      #{deleteState,jdbcType=VARCHAR}, #{roomId,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{priceType,jdbcType=VARCHAR}, #{openingReportName,jdbcType=VARCHAR}, #{reportType,jdbcType=VARCHAR}, 
+      #{discount,jdbcType=DOUBLE}, #{openingReportDescription,jdbcType=LONGVARBINARY}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanda.bean.OpeningReport" >
+  	<selectKey resultType="java.lang.String" keyProperty="openingReportId" order="BEFORE">
+        SELECT UUID()
+    </selectKey>
+    insert into wd_opening_report
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+        opening_report_id,
+      <if test="openingReportTime != null" >
+        opening_report_time,
+      </if>
+      <if test="project.projectId != null" >
+        project_id,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="priceType != null" >
+        price_type,
+      </if>
+      <if test="openingReportName != null" >
+        opening_report_name,
+      </if>
+      <if test="reportType != null" >
+        report_type,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="openingReportDescription != null" >
+        opening_report_description,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="openingReportId != null" >
+        #{openingReportId,jdbcType=VARCHAR},
+      </if>
+      <if test="openingReportTime != null" >
+        #{openingReportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="project.projectId != null" >
+        #{project.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="priceType != null" >
+        #{priceType,jdbcType=VARCHAR},
+      </if>
+      <if test="openingReportName != null" >
+        #{openingReportName,jdbcType=VARCHAR},
+      </if>
+      <if test="reportType != null" >
+        #{reportType,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="openingReportDescription != null" >
+        #{openingReportDescription,jdbcType=LONGVARBINARY},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanda.bean.OpeningReport" >
+    update wd_opening_report
+    <set >
+      <if test="openingReportTime != null" >
+        opening_report_time = #{openingReportTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="project.projectId != null" >
+        project_id = #{project.projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="payTypeId != null" >
+        pay_type_id = #{payTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="priceType != null" >
+        price_type = #{priceType,jdbcType=VARCHAR},
+      </if>
+      <if test="openingReportName != null" >
+        opening_report_name = #{openingReportName,jdbcType=VARCHAR},
+      </if>
+      <if test="reportType != null" >
+        report_type = #{reportType,jdbcType=VARCHAR},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=DOUBLE},
+      </if>
+      <if test="openingReportDescription != null" >
+        opening_report_description = #{openingReportDescription,jdbcType=LONGVARBINARY},
+      </if>
+    </set>
+    where opening_report_id = #{openingReportId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKeyWithBLOBs" parameterType="com.wanda.bean.OpeningReport" >
+    update wd_opening_report
+    set opening_report_time = #{openingReportTime,jdbcType=TIMESTAMP},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      pay_type_id = #{payTypeId,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      price_type = #{priceType,jdbcType=VARCHAR},
+      opening_report_name = #{openingReportName,jdbcType=VARCHAR},
+      report_type = #{reportType,jdbcType=VARCHAR},
+      discount = #{discount,jdbcType=DOUBLE},
+      opening_report_description = #{openingReportDescription,jdbcType=LONGVARBINARY}
+    where opening_report_id = #{openingReportId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanda.bean.OpeningReport" >
+    update wd_opening_report
+    set opening_report_time = #{openingReportTime,jdbcType=TIMESTAMP},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      pay_type_id = #{payTypeId,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      price_type = #{priceType,jdbcType=VARCHAR},
+      opening_report_name = #{openingReportName,jdbcType=VARCHAR},
+      report_type = #{reportType,jdbcType=VARCHAR},
+      discount = #{discount,jdbcType=DOUBLE}
+    where opening_report_id = #{openingReportId,jdbcType=VARCHAR}
+  </update>
+  
+  <select id="getList" resultMap="oneToMany">
+  	select * from wd_opening_report
+  </select>
+  
+  <select id="selectOneToMany" resultMap="oneToMany">
+  	select re.*, p.*, r.*, pr.* 
+  	from wd_opening_report re, opening_pay p, wd_ht_room r, wd_ht_project pr
+  	where re.project_id = pr.project_id
+  </select>
+  
+  <select id="selectManyToOne" resultMap="manyToOne">
+  	select re.*, pr.*
+  	from wd_opening_report re,wd_ht_project pr
+  	where re.project_id = pr.project_id
+  </select>
+  
+  
+  
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+

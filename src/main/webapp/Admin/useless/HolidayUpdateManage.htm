@@ -1,0 +1,56 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+ 
+</title>
+    <base target="_self" />
+    <link href="Styles/css.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/ts_css.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <script src="Scripts/IndexManager.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        function getQueryString(name) {
+            var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
+            var r = window.location.search.substr(1).match(reg);
+            if (r != null) {
+                return unescape(r[2]);
+            }
+            return null;
+        }
+        function WdatePickers() {
+
+
+            WdatePicker({ readOnly: true, startDate: getQueryString("date") + '-1-1', dateFmt: 'yyyy-MM-dd ' });
+        }
+    </script>
+</head>
+<body">
+    <form method="post" action="HolidayUpdateManage.htm" id="form1">
+
+    <div id="divTwo">
+        <table width="100%" border="0" cellpadding="2" cellspacing="2" class="table_list1">
+            <tr id="selTwo">
+	<td width="20%" class="table_list1_style1">
+                    <span style="color: Red">*</span> 节假日日期
+                </td>
+	<td width="35%" class="table_list1_style2">
+                    <input name="txtDate" type="text" value="2013-01-12" id="txtDate" tabindex="99" onfocus="WdatePickers()" />
+                </td>
+</tr>
+ 
+            <tr id="isNone">
+                <td class="table_list1_style1">
+                    &nbsp;
+                </td>
+                <td class="table_list1_style2">
+                    <input type="button" name="btnUpdate" value="修改" id="btnUpdate" tabindex="1" class="button" />
+                    &nbsp;&nbsp;
+                    <input id="btnBack" type="button" class="button" value="关闭" onclick="page_Close()" />
+                </td>
+            </tr>
+        </table>
+    </div>
+    <input type="hidden" name="hidUuid" id="hidUuid" value="ECF9FBAF2C90487190A279241A03E5B9" />
+    </form>
+</body>
+</html>

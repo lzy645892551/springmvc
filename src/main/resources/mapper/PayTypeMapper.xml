@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanda.dao.PayTypeMapper" >
+  <resultMap id="BaseResultMap" type="com.wanda.bean.PayType" >
+    <id column="pay_type_id" property="payTypeId" jdbcType="VARCHAR" />
+    <result column="pay_type_name" property="payTypeName" jdbcType="VARCHAR" />
+    <result column="apply_scope" property="applyScope" jdbcType="VARCHAR" />
+    <result column="pay_type_kind" property="payTypeKind" jdbcType="VARCHAR" />
+    <result column="explains" property="explains" jdbcType="REAL" />
+    <result column="discount" property="discount" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    pay_type_id, pay_type_name, apply_scope, pay_type_kind, explains, discount, update_user, 
+    update_time, delete_user, delete_time, delete_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wd_pay_type
+    where pay_type_id = #{payTypeId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wd_pay_type
+    where pay_type_id = #{payTypeId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wanda.bean.PayType" >
+    insert into wd_pay_type (pay_type_id, pay_type_name, apply_scope, 
+      pay_type_kind, explains, discount, 
+      update_user, update_time, delete_user, 
+      delete_time, delete_state)
+    values (#{payTypeId,jdbcType=VARCHAR}, #{payTypeName,jdbcType=VARCHAR}, #{applyScope,jdbcType=VARCHAR}, 
+      #{payTypeKind,jdbcType=VARCHAR}, #{explains,jdbcType=REAL}, #{discount,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteUser,jdbcType=VARCHAR}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanda.bean.PayType" >
+   <selectKey keyProperty="payTypeId" resultType="string" order="BEFORE">
+ 			select UUID()	
+ 		</selectKey>
+    insert into wd_pay_type
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="payTypeId != null" >
+        pay_type_id,
+      </if>
+      <if test="payTypeName != null" >
+        pay_type_name,
+      </if>
+      <if test="applyScope != null" >
+        apply_scope,
+      </if>
+      <if test="payTypeKind != null" >
+        pay_type_kind,
+      </if>
+      <if test="explains != null" >
+        explains,
+      </if>
+      <if test="discount != null" >
+        discount,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="payTypeId != null" >
+        #{payTypeId,jdbcType=VARCHAR},
+      </if>
+      <if test="payTypeName != null" >
+        #{payTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyScope != null" >
+        #{applyScope,jdbcType=VARCHAR},
+      </if>
+      <if test="payTypeKind != null" >
+        #{payTypeKind,jdbcType=VARCHAR},
+      </if>
+      <if test="explains != null" >
+        #{explains,jdbcType=REAL},
+      </if>
+      <if test="discount != null" >
+        #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanda.bean.PayType" >
+    update wd_pay_type
+    <set >
+      <if test="payTypeName != null" >
+        pay_type_name = #{payTypeName,jdbcType=VARCHAR},
+      </if>
+      <if test="applyScope != null" >
+        apply_scope = #{applyScope,jdbcType=VARCHAR},
+      </if>
+      <if test="payTypeKind != null" >
+        pay_type_kind = #{payTypeKind,jdbcType=VARCHAR},
+      </if>
+      <if test="explains != null" >
+        explains = #{explains,jdbcType=REAL},
+      </if>
+      <if test="discount != null" >
+        discount = #{discount,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where pay_type_id = #{payTypeId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanda.bean.PayType" >
+    update wd_pay_type
+    set pay_type_name = #{payTypeName,jdbcType=VARCHAR},
+      apply_scope = #{applyScope,jdbcType=VARCHAR},
+      pay_type_kind = #{payTypeKind,jdbcType=VARCHAR},
+      explains = #{explains,jdbcType=REAL},
+      discount = #{discount,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR}
+    where pay_type_id = #{payTypeId,jdbcType=VARCHAR}
+  </update>
+   <select id="getList" resultMap="BaseResultMap">
+  	select * from wd_pay_type
+  </select>
+   <select id="selbyname" resultMap="BaseResultMap" parameterType="java.lang.String">
+  	select * from wd_pay_type where pay_type_name = #{payTypeName,jdbcType=VARCHAR}
+  </select>
+  <delete id="del" parameterType="map">
+  	delete from wd_pay_type  where pay_type_id in 
+  	<foreach collection="snos" item="sno" open="(" close=")" separator=",">
+			#{sno}
+	</foreach>
+  </delete>
+  
+   <select id="selectByList" parameterType="map" resultMap="BaseResultMap" >
+  	select * from wd_pay_type pay_type_id
+  	where pay_type_id in
+  	<foreach separator="," open="(" close=")" item="sno" collection="snos"> #{sno} </foreach>
+  </select>
+</mapper>

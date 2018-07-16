@@ -1,0 +1,151 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+ 角色转换
+</title><link href="Scripts/jqurey.ui/ui-lightness/jquery-ui-1.8.21.custom.css" rel="stylesheet" type="text/css" /><link href="../Styles/ts_css.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.hotkeys.js" type="text/javascript"></script>
+    <script src="Scripts/jstree/jquery.jstree.js" type="text/javascript"></script>
+    <link href="Styles/Loading.css" rel="stylesheet" type="text/css" /><link href="../Styles/dialog.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery.dialog.js" type="text/javascript"></script>
+    <script src="Scripts/error.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        $(function () {
+            $("#tree").jstree({
+                "themes": {
+                    "theme": "classic",
+                    "dots": true,
+                    "icons": true
+                },
+                "plugins": ["themes", "json_data", "ui", "types"],
+                "json_data": {
+                    "data": [
+	{ "data": "大连万达商业地产股份有限公司", "children": [{ "data": "商管公司", "state": "closed"}], "state": "open" },
+
+]
+                },
+                "types": {
+                    "valid_children": ["Organization"],
+                    "types": {
+                        "Organization": {
+                            "valid_children": ["default", "Employee"],
+                            "icon": {
+                                "image": "../images/close.png"
+                            }
+                        },
+                        "Employee": {
+                            "valid_children": "none",
+                            "icon": {
+                                "image": "../images/page.png"
+                            }
+                        }
+                    }
+                }
+            }).bind("select_node.jstree", function (e, data) {
+                $(":radio").removeAttr("checked");
+                if (data.rslt.obj.attr("rel") == "Employee") {
+                    if (window.parent != null) {
+                        $(":radio").removeAttr("disabled");
+                        $("input").removeAttr("disabled");
+                        var userId = data.rslt.obj.attr("id");
+                        return selectData(userId);
+                    }
+                } else {
+                    $(":radio").attr("disabled", "disabled");
+                    $("input").attr("disabled", "disabled");
+                }
+            })
+        });
+
+        $(function () {
+
+            if ($("#isAdmin").val() == 1) {
+                $("#RadioButtonList1_3").hide();
+            }
+            $("input").attr("disabled", "disabled");
+            $(":radio").attr("checked", false);
+            $(":radio").attr("disabled", "disabled");
+            selectData($("#lbxRoles").val());
+
+            $("#lbxRoles").change(function () {
+                $(":radio").attr("checked", false);
+                selectData(this.value);
+            });
+            var winHeight = $(window).height();
+            $("#authorityClear").css({ "height": winHeight * 0.45 });
+            $("#tree").css({ height: winHeight * 0.92 });
+        });
+
+        function selectData(jobid) {
+
+            if (jobid) {
+                $(":checkbox").removeAttr("checked");
+                $("#hidSelectRoles").val(jobid);
+                $.post("AuthorizationManager.aspx", { jobId: jobid }, function (data) {
+                    if (data) {
+                        $(":radio").each(function () {
+                            if (this.value == data) {
+                                this.checked = true;
+                            }
+                        });
+                    }
+                });
+
+                $.post("AuthorizationManager.aspx", { "type": "GetBindEntities", "jobuuid": jobid },
+                function (data) {
+
+                    $(":checkbox").each(function () {
+                        if (data.indexOf(this.value) >= 0) {
+                            this.checked = true;
+                        }
+                    });
+                });
+            }
+        }
+        
+    </script>
+</head>
+<body style="overflow-x: hidden; background: #EFF3FF; width: 100%">
+    <div style="background: #EFF3FF; width: 22%; float: left; overflow-y: auto;">
+        &nbsp;
+        <input type="text" id="text" value="">
+        <input type="button" value="查询" id="search" class="button">
+        <div id="tree" class="tree" style="background: #EFF3FF;">
+        </div>
+    </div>
+    <div style="width: 75%; float: left;">
+        <div class="ui-accordion ui-widget ui-helper-reset ui-accordion-icons" style="width: 100%"
+            role="tablist">
+            <div>
+                <h3 class="ui-accordion-header ui-helper-reset ui-state-default ui-state-active ui-corner-top"
+                    role="tab" aria-expanded="true" aria-selected="true" tabindex="0">
+                    <span class="ui-icon ui-icon-triangle-1-s"></span><a tabindex="-1">选择角色</a>
+                </h3>
+                <div class="ui-accordion-content ui-helper-reset ui-widget-content ui-corner-bottom ui-accordion-content-active"
+                    style="height: 100%;" role="tabpanel">
+                    <form method="post" action="ChangeRoleManager.aspx" id="form1">
+<div class="aspNetHidden">
+<input type="hidden" name="__VIEWSTATE" id="__VIEWSTATE" value="/wEPDwUJMjUzMjcyMTAwZGQ7/+mwWMw4hwQkfRawQQharcLLgn+XVHRsmpsklJZXJQ==" />
+</div>
+ 
+<div class="aspNetHidden">
+ 
+	<input type="hidden" name="__EVENTVALIDATION" id="__EVENTVALIDATION" value="/wEWBQKBudKmCQKpwK/OBgL+p9jdAwLY26miCQLCi9reA8IvTUaEYMHJYmHYL6eFo4lZkRNLEr+Ho2zF07W4vT09" />
+</div>
+                    <div style="clear: both;" id="authorityClear">
+                      转换角色登录名：<input name="txtLoginName" type="text" id="txtLoginName" disabled="disabled" class="aspNetDisabled" />
+                    </div>
+                    <input type="hidden" name="hidUserId" id="hidUserId" />
+                    <input type="hidden" name="hidLoginName" id="hidLoginName" />
+                    <div style="text-align: center;">
+                        
+                      
+                        <input type="button" name="btnSubmit" value="提交" id="btnSubmit" class="button" />
+                    </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

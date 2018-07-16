@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanda.dao.SaleChanceMapper" >
+  <resultMap id="BaseResultMap" type="com.wanda.bean.SaleChance" >
+    <id column="sale_chance_id" property="saleChanceId" jdbcType="VARCHAR" />
+    <result column="sale_chance_name" property="saleChanceName" jdbcType="VARCHAR" />
+    <result column="room_id" property="roomId" jdbcType="VARCHAR" />
+    <result column="intention_description" property="intentionDescription" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="user_name" property="userName" jdbcType="VARCHAR" />
+    <result column="state" property="state" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="build_id" property="buildId" jdbcType="VARCHAR" />
+    <result column="unit_id" property="unitId" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="addtime" property="addtime" jdbcType="TIMESTAMP" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMapa" type="com.wanda.bean.HtProject" >
+    <id column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="project_name" property="projectName" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="TIMESTAMP" />
+    <result column="end_time" property="endTime" jdbcType="TIMESTAMP" />
+    <result column="create_user_id" property="createUserId" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMapb" type="com.wanda.bean.HtBuild" >
+    <id column="build_id" property="buildId" jdbcType="VARCHAR" />
+    <result column="build_name" property="buildName" jdbcType="VARCHAR" />
+    <result column="floor_count" property="floorCount" jdbcType="INTEGER" />
+    <result column="room_count" property="roomCount" jdbcType="INTEGER" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="remark" property="remark" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMapc" type="com.wanda.bean.HtUnit" >
+    <id column="unit_id" property="unitId" jdbcType="VARCHAR" />
+    <result column="build_id" property="buildId" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+    <result column="unit_code" property="unitCode" jdbcType="VARCHAR" />
+    <result column="room_count" property="roomCount" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMapd" type="com.wanda.bean.HtRoom" >
+    <id column="room_id" property="roomId" jdbcType="VARCHAR" />
+    <result column="room_code" property="roomCode" jdbcType="VARCHAR" />
+    <result column="build_up_area" property="buildUpArea" jdbcType="REAL" />
+    <result column="inner_area" property="innerArea" jdbcType="REAL" />
+    <result column="apartment_layout_id" property="apartmentLayoutId" jdbcType="VARCHAR" />
+    <result column="inner_price" property="innerPrice" jdbcType="REAL" />
+    <result column="unit_price" property="unitPrice" jdbcType="REAL" />
+    <result column="floor" property="floor" jdbcType="INTEGER" />
+    <result column="state" property="state" jdbcType="INTEGER" />
+    <result column="unit_id" property="unitId" jdbcType="VARCHAR" />
+    <result column="purpose_id" property="purposeId" jdbcType="VARCHAR" />
+    <result column="build_id" property="buildId" jdbcType="VARCHAR" />
+    <result column="opening_report_id" property="openingReportId" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+    <result column="project_id" property="projectId" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMape" type="com.wanda.bean.HtCustomer" >
+    <id column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="sex" property="sex" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="describel" property="describel" jdbcType="VARCHAR" />
+    <result column="customer_type" property="customerType" jdbcType="VARCHAR" />
+    <result column="marital_status" property="maritalStatus" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  </resultMap>
+  <resultMap id="BaseResultMapf" type="com.wanda.bean.User" >
+    <id column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="rol_id" property="rolId" jdbcType="INTEGER" />
+    <result column="organization_id" property="organizationId" jdbcType="VARCHAR" />
+    <result column="password" property="password" jdbcType="VARCHAR" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="tel" property="tel" jdbcType="VARCHAR" />
+    <result column="user_time" property="userTime" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+    <result column="number" property="number" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    sale_chance_id, sale_chance_name, room_id, intention_description, customer_id, customer_name, 
+    user_id, user_name, state, update_user, update_time, delete_user, delete_time, delete_state, 
+    project_id, build_id, unit_id, tel, addtime, number
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wd_sale_chance
+    where sale_chance_id = #{saleChanceId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wd_sale_chance
+    where sale_chance_id = #{saleChanceId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wanda.bean.SaleChance" >
+    insert into wd_sale_chance (sale_chance_id, sale_chance_name, room_id, 
+      intention_description, customer_id, customer_name, 
+      user_id, user_name, state, 
+      update_user, update_time, delete_user, 
+      delete_time, delete_state, project_id, 
+      build_id, unit_id, tel, 
+      addtime, number)
+    values (#{saleChanceId,jdbcType=VARCHAR}, #{saleChanceName,jdbcType=VARCHAR}, #{roomId,jdbcType=VARCHAR}, 
+      #{intentionDescription,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{userName,jdbcType=VARCHAR}, #{state,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteUser,jdbcType=VARCHAR}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteState,jdbcType=VARCHAR}, #{projectId,jdbcType=VARCHAR}, 
+      #{buildId,jdbcType=VARCHAR}, #{unitId,jdbcType=VARCHAR}, #{tel,jdbcType=VARCHAR}, 
+      #{addtime,jdbcType=TIMESTAMP}, #{number,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanda.bean.SaleChance" >
+  <selectKey keyProperty="saleChanceId" resultType="string" order="BEFORE">
+ 			select UUID()	
+ 		</selectKey>
+    insert into wd_sale_chance
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="saleChanceId != null" >
+        sale_chance_id,
+      </if>
+      <if test="saleChanceName != null" >
+        sale_chance_name,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="intentionDescription != null" >
+        intention_description,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="userName != null" >
+        user_name,
+      </if>
+      <if test="state != null" >
+        state,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+      <if test="projectId != null" >
+        project_id,
+      </if>
+      <if test="buildId != null" >
+        build_id,
+      </if>
+      <if test="unitId != null" >
+        unit_id,
+      </if>
+      <if test="tel != null" >
+        tel,
+      </if>
+      <if test="addtime != null" >
+        addtime,
+      </if>
+      <if test="number != null" >
+        number,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="saleChanceId != null" >
+        #{saleChanceId,jdbcType=VARCHAR},
+      </if>
+      <if test="saleChanceName != null" >
+        #{saleChanceName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="intentionDescription != null" >
+        #{intentionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="buildId != null" >
+        #{buildId,jdbcType=VARCHAR},
+      </if>
+      <if test="unitId != null" >
+        #{unitId,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="number != null" >
+        #{number,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanda.bean.SaleChance" >
+    update wd_sale_chance
+    <set >
+      <if test="saleChanceName != null" >
+        sale_chance_name = #{saleChanceName,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="intentionDescription != null" >
+        intention_description = #{intentionDescription,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="userName != null" >
+        user_name = #{userName,jdbcType=VARCHAR},
+      </if>
+      <if test="state != null" >
+        state = #{state,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+      <if test="projectId != null" >
+        project_id = #{projectId,jdbcType=VARCHAR},
+      </if>
+      <if test="buildId != null" >
+        build_id = #{buildId,jdbcType=VARCHAR},
+      </if>
+      <if test="unitId != null" >
+        unit_id = #{unitId,jdbcType=VARCHAR},
+      </if>
+      <if test="tel != null" >
+        tel = #{tel,jdbcType=VARCHAR},
+      </if>
+      <if test="addtime != null" >
+        addtime = #{addtime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="number != null" >
+        number = #{number,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where sale_chance_id = #{saleChanceId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanda.bean.SaleChance" >
+    update wd_sale_chance
+    set sale_chance_name = #{saleChanceName,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=VARCHAR},
+      intention_description = #{intentionDescription,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      user_name = #{userName,jdbcType=VARCHAR},
+      state = #{state,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR},
+      project_id = #{projectId,jdbcType=VARCHAR},
+      build_id = #{buildId,jdbcType=VARCHAR},
+      unit_id = #{unitId,jdbcType=VARCHAR},
+      tel = #{tel,jdbcType=VARCHAR},
+      addtime = #{addtime,jdbcType=TIMESTAMP},
+      number = #{number,jdbcType=VARCHAR}
+    where sale_chance_id = #{saleChanceId,jdbcType=VARCHAR}
+  </update>
+  <select id="getList" resultMap="BaseResultMap" >
+  	select * from wd_sale_chance
+  </select>
+  <select id="getxiangmu" resultMap="BaseResultMapa">
+  	select * from wd_ht_project
+  </select>
+  <select id="getxiangmuname" resultMap="BaseResultMapa" parameterType="java.lang.String">
+  	select * from wd_ht_project where project_id = #{projectId,jdbcType=VARCHAR}
+  </select>
+  <select id="getloudongbyid" resultMap="BaseResultMapb" parameterType="java.lang.String">
+  	select * from wd_ht_build where build_id = #{buildId,jdbcType=VARCHAR}
+  </select>
+  <select id="getdanyuanbyid" resultMap="BaseResultMapc" parameterType="java.lang.String">
+  	select * from wd_ht_unit where unit_id = #{unitId,jdbcType=VARCHAR}
+  </select>
+  <select id="getroombyid" resultMap="BaseResultMapd" parameterType="java.lang.String">
+  	select * from wd_ht_room where room_id = #{roomId,jdbcType=VARCHAR}
+  </select>
+  <select id="getkehu" resultMap="BaseResultMape">
+  	select * from wd_ht_customer
+  </select>
+<select id="getrooma" resultMap="BaseResultMapd">
+  	select * from wd_ht_room
+  </select> 
+  <select id="gettel" resultMap="BaseResultMape" parameterType="java.lang.String">
+  	select * from wd_ht_customer where customer_name = #{customerName,jdbcType=VARCHAR}
+  </select>
+  <select id="getloudong" resultMap="BaseResultMapb" parameterType="java.lang.String" >
+  	select * from wd_ht_build where project_id = #{projectId,jdbcType=VARCHAR}
+  </select>
+  <select id="getunit" resultMap="BaseResultMapc" parameterType="java.lang.String" >
+  	select * from wd_ht_unit where build_id = #{buildId,jdbcType=VARCHAR}
+  </select>
+  <select id="getroom" resultMap="BaseResultMapd" parameterType="java.lang.String" >
+  	select * from wd_ht_room where unit_id = #{unitId,jdbcType=VARCHAR}
+  </select>
+  <select id="getroomb" resultMap="BaseResultMapd" parameterType="java.lang.String" >
+  	select * from wd_ht_room where room_code = #{roomCode,jdbcType=VARCHAR}
+  </select>
+  <select id="getname" resultMap="BaseResultMapf" parameterType="java.lang.String" >
+  	select * from wd_user where number = #{number,jdbcType=VARCHAR}
+  </select>
+  <select id="getuserId" resultMap="BaseResultMapf" parameterType="java.lang.String" >
+  	select * from wd_user where name = #{name,jdbcType=VARCHAR}
+  </select>
+  <select id="getuser" resultMap="BaseResultMapf" >
+  	select * from wd_user 
+  </select>
+  <delete id="del" parameterType="map">
+  	delete from wd_sale_chance  where sale_chance_id in 
+  	<foreach collection="snos" item="sno" open="(" close=")" separator=",">
+			#{sno}
+	</foreach>
+  </delete>
+</mapper>

@@ -1,0 +1,5 @@
+@charset "utf-8";
+/* 对勾和叉号的格式*/
+
+.onError{ background:url("../images/error_v2.png") no-repeat; padding-bottom:5px; padding-left:20px;}
+.onSuccess{ background:url("../images/icon_accept_v2.gif") no-repeat; padding-bottom:5px; padding-left:20px; }

@@ -1,0 +1,94 @@
+﻿/*.progress_box {
+    width: 400px;
+    height: 300px;
+    border: 1px outset red;
+    overflow-x: hidden;
+    overflow-y: scroll;
+}*/
+
+.upload_progress_bar {    
+    height: 4px;
+    width: 100%;
+    overflow: hidden;
+    top: 50%;
+    left: 0px;
+    margin-top: -6px;
+    border: 1px solid #ccc;
+    border-left: 0px;
+    border-right: 0px;
+}
+
+.upload_progress {
+    float: left;
+    height: 4px;
+    background-color: Blue;
+    width: 0px;
+}
+
+.progress_tip {
+    display: block;
+    position: absolute;
+    width: 400px;
+    text-align: center;
+    line-height: 20px;
+    top: 50%;
+    left: 0px;
+    color: black;
+    margin-top: -3px;
+}
+
+.progress_list {
+    padding: 0px;
+    margin: 0px;
+}
+
+.progress_list li {
+    position: relative;
+    border-bottom: 1px dashed #ccc;
+    height: 30px;
+    line-height: 30px;
+    padding-bottom: 10px;
+}
+
+.progress_list li a {
+    margin-right:10px;
+    display:inline-block;
+    height:20px;
+    line-height:20px;
+    vertical-align:middle;
+    cursor:pointer;
+}
+.progress_list li a.del_file{ 
+    background:url(del.png) no-repeat 0 3px;
+    width:16px;
+}
+
+.file_upload_list {
+    border-collapse:collapse;    
+    color: #242424;
+    font-family: "微软雅黑";
+    font-size: 13px;    
+    width:60%;
+}
+.file_upload_list td,.file_upload_list th {    
+    padding:0px 8px;
+    line-height:20px;
+    vertical-align:middle;    
+    text-align:left;
+}
+.file_upload_list td {
+    text-align:center;
+}
+.file_upload_list td span {
+    display:inline-block;
+    vertical-align:middle;
+    cursor:pointer;
+    text-align:center;
+}
+    .file_upload_list th a {
+        display:inline-block;
+        height:14px;
+        line-height:14px;
+        background:url(/images/service/msg_fujian_icon.png) no-repeat 0 2px;
+        padding-left:16px;
+    }

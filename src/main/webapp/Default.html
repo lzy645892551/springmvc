@@ -1,0 +1,218 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title>万达集团客户投诉管理系统</title>
+    <link href="Styles/sp_css.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/css.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/Loading.css" rel="stylesheet" type="text/css" />
+    <link href="Styles/dialog.css" rel="stylesheet" type="text/css" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Cache-Control" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/index.js" type="text/javascript"></script>
+    <script type="text/javascript">
+        if (top != this) {
+            top.location.href = location.href;
+        }
+        function indexHtml(button,state) {
+            if (state == 1) {
+                $("#subContext").load("Business/EmployeeList.html");
+            }
+            if (state == 2) {
+                $("#subContext").load("Business/index.html");
+                //prompt("", $("#subContext").html());
+            }
+            if (state == 3) {
+                $("#subContext").load("Business/ApprovalSelect.html");
+            }
+            if (state == 4) {
+                $("#subContext").load("Business/EmployeeApproalList.html");
+
+            }
+
+            $(".complaint_button a").removeClass("s2");
+            if (!button)
+                $(".complaint_button a:eq(0)").addClass("s2");
+            if (button.toString() == "none")
+                $(".complaint_button a:eq(3)").addClass("s2");
+            else
+                $(button).addClass("s2");
+            
+        }
+
+
+    </script>
+</head>
+<body>
+    <form id="form1" runat="server">
+    <!--  HEAD BEGIN -->
+    <div id="header">
+        <div class="header_1">
+            欢迎您，系统管理员</div>
+        <div class="header_2">
+            <div class="header_2_exit">
+                <%--<asp:ImageButton ID="imgBtnLogout" runat="server" ImageUrl="/images/exit.png" OnClick="imgBtnLogout_Click"
+                    TabIndex="1000" />--%>
+                <img src="images/exit.png" alt="退出" onclick="location.href = 'Default.aspx?type=logout'"
+                    style="cursor: pointer" />
+            </div>
+        </div>
+        <div class="menu">
+            <div class="menu_button">
+                <ul>
+                    <li class="menu_slts"><a href="#" onclick="openWin('',0);">
+                        <img alt="" src="images/slts.png" border="0" id="imgHandle" /></a></li>
+                    <li><a href="Default.html" >
+                        <img alt="" src="images/gzt_off.png" name="Image1" id="Image1" /></a></li>
+                    <li><a href="Report/index.html" >
+                        <img alt="" src="images/tjfx_off.png" name="Image2" id="Image2" /></a></li>
+                    <li><a href="Admin/index.htm" >
+                        <img alt="" src="images/xtgj_off.png" name="Image3" id="Image3" /></a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+    <!--  HEAD END -->
+    <div id="context">
+        <div id="box">
+            <div class="complaint">
+                <div class="complaint_button">
+                    <ul>
+                        <li style="text-indent: 7px;"><a href="#" onclick="indexHtml(this,1);" class="s2">待办投诉
+                            (<span id="rpCount">0</span>)</a></li>
+                        <li style="text-indent: 8px;"><a href="#" onclick="indexHtml(this,4);">待办审批 (<span
+                            id="spApprovalCount">0</span>)</a></li>
+                        <li style="text-indent: 20px;"><a href="#" onclick="indexHtml(this,2);">查询投诉</a></li>
+                        <li style="text-indent: 24px;"><a href="#" onclick="indexHtml(this,3);">查询审批</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div id="subContext">
+                <div class="blank8">
+                </div>
+                <!--  查询列表 BEGIN -->
+                <div class="cxtj">
+                    <div class="cxtj_1">
+                        <div class="cxtj_1_font">
+                            查询列表</div>
+                    </div>
+                    <div class="cxtj_2">
+                        <table class="tablist" id="complaintList">
+                            <thead>
+                                <tr>
+                                    <th width="8%">
+                                        预警信息
+                                    </th>
+                                    <th width="7%">
+                                        级别
+                                    </th>
+                                    <th width="7%">
+                                        客户类型
+                                    </th>
+                                    <th width="7%">
+                                        状态
+                                    </th>
+                                    <th width="7%">
+                                        投诉编号
+                                    </th>
+                                    <th width="17%">
+                                        投诉内容
+                                    </th>
+                                    <th width="9%">
+                                        投诉时间
+                                    </th>
+                                    <th width="8%">
+                                        投诉人
+                                    </th>
+                                    <th width="13%">
+                                        所属项目
+                                    </th>
+                                    <th width="10%">
+                                        电话
+                                    </th>
+                                    <th width="7%">
+                                        责任人
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody id="listHeader">
+                            </tbody>
+                        </table>
+                        <div class="error" style="display: none">
+                            <img src="images/error.png" width="88" height="85" align="absmiddle" alt="" />对不起，没有您要查询的数据！</div>
+                    </div>
+                </div>
+                <!--  查询列表 END -->
+            </div>
+        </div>
+        <div id="Javascript.Div1" class="page">
+            <div class="page_content">
+                <ul>
+                    <li>
+                        <img id="imgPageFirst" src="images/first_off.png" alt="" />
+                        <a href="javascript:void(0)" id="pageFirst" onclick="setPager('First')">首页</a>
+                    </li>
+                    <li>
+                        <img id="imgPageUp" src="images/pageUp_off.png" alt="" /><a href="javascript:void(0)"
+                            id="pageUp" onclick="setPager('Up')">上一页</a> </li>
+                    <li><a href="javascript:void(0)" id="pageDown" onclick="setPager('Down')">下一页</a><img
+                        id="imgPageDown" src="images/pageDown_on.png" alt="" />
+                    </li>
+                    <li><a href="javascript:void(0)" id="pageLast" onclick="setPager('Last')">尾页</a><img
+                        id="imgPageLast" src="images/last_on.png" alt="" />
+                    </li>
+                    <li>当前第&nbsp;<a><span id="pageSee">1</span></a>&nbsp;页</li>
+                    <li>共&nbsp;<span id="spRowCount">0</span>&nbsp;页</li>
+                    <li>跳转至
+                        <asp:TextBox ID="txtPage" Width="40px" runat="server" onkeyup="checkPageIndex(this)"
+                            MaxLength="5"></asp:TextBox>页
+                        <input type="button" id="btnPageGo" style="cursor: pointer;" value="GO" onclick="btnPageIndex()" />
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <input type="hidden" id="hidPageIndex" value="1" />
+        <input type="hidden" id="hidIsSelect" value="0" />
+        <div id="temp">
+        </div>
+    </div>
+    <%--待办 --%>
+    <%--    <div id="floatTools" class="float">
+        <div class="floatL">
+            <img alt="" src="/images/float_s1.png" id="imgJtd1" name="imgJtd" style="cursor: pointer;" />
+        </div>
+        <div id="floatList" style="float: left">
+        </div>
+    </div>--%>
+    <%--待办结束 --%>
+    <%--Loading start --%>
+    <div id="background" class="background" style="display: none;">
+    </div>
+    <div id="progressBar" class="progressBar" style="display: none;">
+        数据加载中，请稍等...</div>
+    <%--Loading end --%>
+    <asp:HiddenField ID="hidIsManager" Value="0" runat="server" />
+    <input type="hidden" id="hidKey" value="0" />
+    <input type="hidden" id="hidSubContextUrl">
+    <input type="hidden" id="hidSubPageId" value="0">
+   
+    <input type="hidden" id="hidIsListPage" value="0">
+    </form>
+    <%--  <script type="text/javascript">
+        $(function () {
+            setTimeout(function () {
+                $("#wd-fm-id-fm-menu-item-logout a").click(function () {
+                    this.href = "Default.aspx?type=logout";
+                });
+            }, 3000);
+        });
+    </script>--%>
+</body>
+<script src="Scripts/selectProject.js" type="text/javascript"></script>
+<script src="Scripts/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+<script src="Scripts/Approval.js" type="text/javascript"></script>
+<script src="Scripts/jquery.dialog.js" type="text/javascript"></script>
+<script src="Scripts/error.js" type="text/javascript"></script>
+</html>

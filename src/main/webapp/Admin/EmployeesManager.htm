@@ -1,0 +1,204 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head id="Head1"><title>
+	人员管理
+</title><link href="Styles/css.css" rel="stylesheet" type="text/css" /><link href="Styles/ts_css.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/jquery.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.hotkeys.js" type="text/javascript"></script>
+    <script src="Scripts/jstree/jquery.jstree.js" type="text/javascript"></script>
+    <script src="Scripts/jquery.cookie.js" type="text/javascript"></script>
+    <script src="Scripts/EmployeesManager.js" type="text/javascript"></script>
+    <!--<script src="Scripts/EmployeesManager.js?0d189a86cc764626a482e60e084441dd" type="text/javascript"></script>-->
+</head>
+<body style="margin-top: 5px; background: #EFF3FF;">
+    <form method="post" action="EmployeesManager.htm" id="form1">
+
+ 
+<script type="text/javascript"> 
+//<![CDATA[
+    var theForm = document.forms['form1'];
+    if (!theForm) {
+        theForm = document.form1;
+    }
+    function __doPostBack(eventTarget, eventArgument) {
+        if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+            theForm.__EVENTTARGET.value = eventTarget;
+            theForm.__EVENTARGUMENT.value = eventArgument;
+            theForm.submit();
+        }
+    }
+//]]>
+    function openWin() {
+        showModalDialog("EmployeesUpdateManager.htm", "example04", "dialogWidth:850px;dialogHeight:300px;dialogLeft:200px;dialogTop:150px;center: yes;help:yes;resizable:yes;status:yes")
+    }
+   
+</script>
+ 
+ 
+
+    <div style="background: #EFF3FF; width: 22%; float: left; overflow-y: auto;">
+        <div id="tree" class="tree" style="background: #EFF3FF;">
+        </div>
+    </div>
+    <div style="width: 75%; float: left; border: 0px solid #82AFE8">
+        <table width="100%">
+            <tr>
+                <td width="6%">
+                    姓名：
+                </td>
+                <td width="13%">
+                    <input name="txtName" type="text" id="txtName" style="width:95%;" />
+                </td>
+                <td width="7%">
+                    登录名：
+                </td>
+                <td width="13%">
+                    <input name="txtLoginName" type="text" id="txtLoginName" style="width:95%;" />
+                </td>
+            
+                <td width="7%">
+                    手机号：
+                </td>
+                <td width="13%">
+                    <input name="txtPhone" type="text" id="txtPhone" style="width:95%;" />
+                </td>
+                <td width="13%">
+                    <input style="border-style: none; border-color: inherit; border-width: 0px; background-image: url('Images/search.gif'); width: 100px; height: 24px;" 
+                        type="button" value="  " />
+                </td>
+                <td width="5%">
+                    <input type="button" id="btnAdd" class="button" style="float: right" value="添加" />
+                </td>
+            </tr>
+        </table>
+        <div class="cxlb_2" style="width: 100%">
+            <table width="120%" class="tablist">
+                <thead id="tablistHer">
+                    <tr>
+                        <th width="10%">
+                            姓名
+                        </th>
+                        <th width="10%">
+                            登录名
+                        </th>
+                        <th width="6%">
+                            性别
+                        </th>
+                        <th width="12%">
+                            手机
+                        </th>
+                        <th width="12%">
+                            固定电话
+                        </th>
+                        <th width="10%">
+                            传真
+                        </th>
+                        <th width="10%">
+                            Email
+                        </th>
+                        <th width="10%">
+                            RTX账号
+                        </th>
+                        <th width="10%">
+                            住址
+                        </th>
+                        <th width="10%">
+                            操作
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="tab">
+                    
+                            <tr>
+                                <td width="10%">
+                                    <a title='系统管理员'>
+                                        系统管理员…</a>
+                                </td>
+                                <td width="10%">
+                                    <a title='service_admin'>
+                                        service_admin</a>
+                                </td>
+                                <td width="6%">
+                                    男
+                                </td>
+                                <td width="12%">
+                                    13900000000
+                                </td>
+                                <td width="12%">
+                                    
+                                </td>
+                                <td width="10%">
+                                    
+                                </td>
+                                <td width="10%">
+                                    <a title='service_admin@wanda.cn'>
+                                        service_admin@wanda.…</a>
+                                </td>
+                                <td width="10%">
+                                    
+                                </td>
+                                <td width="10%">
+                                    <a title=''>
+                                        </a>
+                                </td>
+                                <td width="10%">
+                                    <a href="#" onclick="openWin()">
+                                        修改</a>
+                                    <a >删除</a>
+                                </td>
+                            </tr>
+                        
+                </tbody>
+            </table>
+            <script type="text/javascript">
+<!--
+                var Ptr = document.getElementById("tab").getElementsByTagName("tr");
+                function pageLoad() {
+                    for (i = 1; i < Ptr.length + 1; i++) {
+                        Ptr[i - 1].className = (i % 2 > 0) ? "t1" : "t2";
+                    }
+                }
+                window.onload = pageLoad;
+                for (var i = 0; i < Ptr.length; i++) {
+                    Ptr[i].onmouseover = function () {
+                        this.tmpClass = this.className;
+                        this.className = "t3";
+
+                    };
+                    Ptr[i].onmouseout = function () {
+                        this.className = this.tmpClass;
+                    };
+                }
+//-->
+            </script>
+            
+             <div style="width: 100%;">
+            
+<!-- AspNetPager 7.3.2  Copyright:2003-2010 Webdiyer (www.webdiyer.com) -->
+<div id="AspNetPager1" class="anpager" style="width:100%;text-align:left;">
+<div align="left" class="anpager" style="width:60%;float:left;">
+	<a disabled="disabled" style="margin-right:10px;">首页</a><a disabled="disabled" style="margin-right:10px;">上一页</a><span class="cpb" style="margin-right:10px;">1</span><a disabled="disabled" style="margin-right:10px;">下一页</a><a disabled="disabled" style="margin-right:10px;">尾页</a>
+</div><div class="anpager" style="width:40%;float:left;">
+	记录总数：<font color="blue"><b>1</b></font> 总页数：<font color="blue"><b>1</b></font> 当前页：<font color="red"><b>1</b></font>
+</div>
+</div>
+<!-- AspNetPager 7.3.2  Copyright:2003-2010 Webdiyer (www.webdiyer.com) -->
+ 
+ 
+        </div>
+        </div>
+       
+    </div>
+    <input type="hidden" name="hidParentUuid" id="hidParentUuid" />
+    <input type="hidden" name="hidUuid" id="hidUuid" />
+    <input type="hidden" name="hidCookUuid" id="hidCookUuid" value="100002" />
+    <input type="hidden" id="isShow" value="0" />
+    <input name="hidpanelShow" type="hidden" id="hidpanelShow" />
+    <input type="hidden" id="hidorganizationUuid" />
+    <input type="hidden" id="hidfromSubmit" name="hidfromSubmit" value="1" />
+    <input type="hidden" id="hidfromSubmit1" name="hidfromSubmit1" />
+    <span id="lblScript"><script>                             $.cookie('jstree_open', '')</script></span>
+    </form>
+</body>
+</html>
+

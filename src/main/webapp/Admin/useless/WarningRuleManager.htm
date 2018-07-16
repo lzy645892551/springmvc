@@ -1,0 +1,1495 @@
+﻿ 
+ 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head><title>
+ 
+</title><link href="Styles/css.css" rel="stylesheet" type="text/css" />
+    <script src="Scripts/My97DatePicker/WdatePicker.js" type="text/javascript"></script>
+    <script src="Scripts/jquery-1.4.1.min.js" type="text/javascript"></script>
+    <script src="Scripts/IndexManager.js" type="text/javascript"></script>
+</head>
+<body style="margin-top: 5px; background: #EFF3FF;">
+    <form method="post" action="WarningRuleManager.htm" id="form1">
+
+ 
+<script type="text/javascript"> 
+//<![CDATA[
+    var theForm = document.forms['form1'];
+    if (!theForm) {
+        theForm = document.form1;
+    }
+    function __doPostBack(eventTarget, eventArgument) {
+        if (!theForm.onsubmit || (theForm.onsubmit() != false)) {
+            theForm.__EVENTTARGET.value = eventTarget;
+            theForm.__EVENTARGUMENT.value = eventArgument;
+            theForm.submit();
+        }
+    }
+    function openWin() {
+
+        showModalDialog("WarningRuleUpdateManager.htm", "example04", "dialogWidth:800px;dialogHeight:550px;dialogLeft:200px;dialogTop:150px;center: yes;help:yes;resizable:yes;status:yes")
+    }
+//]]>
+</script>
+ 
+ 
+
+    <div id="divOne">
+        <div>
+            <table width="100%">
+                <tr>
+                    <td width="17%">
+                        预警类型：
+                        <select name="ddlState" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddlState\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddlState">
+	<option selected="selected" value="-1">全部</option>
+	<option value="1">首次反馈</option>
+	<option value="2">二次反馈</option>
+	<option value="3">处理投诉</option>
+	<option value="4">回访客户</option>
+ 
+</select>
+                        &nbsp;&nbsp;
+                         预警等级：<select name="ddlType" onchange="javascript:setTimeout(&#39;__doPostBack(\&#39;ddlType\&#39;,\&#39;\&#39;)&#39;, 0)" id="ddlType">
+	<option selected="selected" value="-1">全部</option>
+	<option value="1">第一级</option>
+	<option value="2">第二级</option>
+	<option value="3">第三级</option>
+ 
+</select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+  
+        
+        <div class="cxlb_2">
+            <table width="100%" class="tablist" id="complaintList">
+                <thead id="tablistHer">
+                    <tr>
+                        <th width="12%">
+                            预警类型
+                        </th>
+                        <th width="12%">
+                            预警等级
+                        </th>
+                        <th width="12%">
+                            投诉等级
+                        </th>
+                        <th width="12%">
+                            责任人角色
+                        </th>
+                        <th width="12%">
+                            开始时限
+                        </th>
+                        <th width="12%">
+                            结束时限
+                        </th>
+                        <th width="12%">
+                            工作日类型
+                        </th>
+                        <th width="9%">
+                            是否直属
+                        </th>
+                        <th width="7%">
+                            操作
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="tab">
+                    
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    较大投诉
+                                </td>
+                                <td width="12%">
+                                    广场专职副经理
+                                </td>
+                                <td width="12%">
+                                    0%
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    较大投诉
+                                </td>
+                                <td width="12%">
+                                    广场专职副经理
+                                </td>
+                                <td width="12%">
+                                    0%
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                     <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    一般投诉
+                                </td>
+                                <td width="12%">
+                                    广场专职副经理
+                                </td>
+                                <td width="12%">
+                                    0%
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                     <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    一般投诉
+                                </td>
+                                <td width="12%">
+                                    广场专职副经理
+                                </td>
+                                <td width="12%">
+                                    0%
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    重大投诉
+                                </td>
+                                <td width="12%">
+                                    广场专职副经理
+                                </td>
+                                <td width="12%">
+                                    0%
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                     <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    重大投诉
+                                </td>
+                                <td width="12%">
+                                    广场专职副经理
+                                </td>
+                                <td width="12%">
+                                    0%
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                     <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第二级
+                                </td>
+                                <td width="12%">
+                                    较大投诉
+                                </td>
+                                <td width="12%">
+                                    广场营运副总
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第二级
+                                </td>
+                                <td width="12%">
+                                    较大投诉
+                                </td>
+                                <td width="12%">
+                                    广场营运副总
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                     <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第二级
+                                </td>
+                                <td width="12%">
+                                    一般投诉
+                                </td>
+                                <td width="12%">
+                                    广场营运副总
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                     <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第二级
+                                </td>
+                                <td width="12%">
+                                    一般投诉
+                                </td>
+                                <td width="12%">
+                                    广场营运副总
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin('WarningRuleUpdateManager.aspx','D036BF92ED474CF1BB89468CCDF64F2C','450','900')">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第二级
+                                </td>
+                                <td width="12%">
+                                    重大投诉
+                                </td>
+                                <td width="12%">
+                                    广场营运副总
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第二级
+                                </td>
+                                <td width="12%">
+                                    重大投诉
+                                </td>
+                                <td width="12%">
+                                    广场营运副总
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第三级
+                                </td>
+                                <td width="12%">
+                                    较大投诉
+                                </td>
+                                <td width="12%">
+                                    广场总经理
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    500%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第三级
+                                </td>
+                                <td width="12%">
+                                    较大投诉
+                                </td>
+                                <td width="12%">
+                                    广场总经理
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    500%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第三级
+                                </td>
+                                <td width="12%">
+                                    一般投诉
+                                </td>
+                                <td width="12%">
+                                    广场总经理
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    500%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                     <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第三级
+                                </td>
+                                <td width="12%">
+                                    一般投诉
+                                </td>
+                                <td width="12%">
+                                    广场总经理
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    500%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第三级
+                                </td>
+                                <td width="12%">
+                                    重大投诉
+                                </td>
+                                <td width="12%">
+                                    广场总经理
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    500%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    首次反馈
+                                </td>
+                                <td width="12%">
+                                    第三级
+                                </td>
+                                <td width="12%">
+                                    重大投诉
+                                </td>
+                                <td width="12%">
+                                    广场总经理
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    500%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    较大投诉
+                                </td>
+                                <td width="12%">
+                                    广场总经理
+                                </td>
+                                <td width="12%">
+                                    0%
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                     <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    较大投诉
+                                </td>
+                                <td width="12%">
+                                    区域总经理
+                                </td>
+                                <td width="12%">
+                                    0%
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    一般投诉
+                                </td>
+                                <td width="12%">
+                                    广场营运副总
+                                </td>
+                                <td width="12%">
+                                    0%
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    一般投诉
+                                </td>
+                                <td width="12%">
+                                    区域营运副总
+                                </td>
+                                <td width="12%">
+                                    0%
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                     <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    重大投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心综管部副总
+                                </td>
+                                <td width="12%">
+                                    0%
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                     <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    重大投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心综管部副总
+                                </td>
+                                <td width="12%">
+                                    0%
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                     <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第二级
+                                </td>
+                                <td width="12%">
+                                    较大投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心综管部副总
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                   <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第二级
+                                </td>
+                                <td width="12%">
+                                    较大投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心综管部副总
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                  <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第二级
+                                </td>
+                                <td width="12%">
+                                    一般投诉
+                                </td>
+                                <td width="12%">
+                                    区域总经理
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第二级
+                                </td>
+                                <td width="12%">
+                                    一般投诉
+                                </td>
+                                <td width="12%">
+                                    广场总经理
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第二级
+                                </td>
+                                <td width="12%">
+                                    重大投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心总经理
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第二级
+                                </td>
+                                <td width="12%">
+                                    重大投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心总经理
+                                </td>
+                                <td width="12%">
+                                    50%
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第三级
+                                </td>
+                                <td width="12%">
+                                    较大投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心总经理
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    500%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第三级
+                                </td>
+                                <td width="12%">
+                                    较大投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心总经理
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    500%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第三级
+                                </td>
+                                <td width="12%">
+                                    一般投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心综管部副总
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    500%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                   <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第三级
+                                </td>
+                                <td width="12%">
+                                    一般投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心综管部副总
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    500%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                   <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第三级
+                                </td>
+                                <td width="12%">
+                                    重大投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心分管副总
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    500%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    二次反馈
+                                </td>
+                                <td width="12%">
+                                    第三级
+                                </td>
+                                <td width="12%">
+                                    重大投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心分管副总
+                                </td>
+                                <td width="12%">
+                                    100%
+                                </td>
+                                <td width="12%">
+                                    500%
+                                </td>
+                                <td width="12%">
+                                    工作日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    处理投诉
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    较大投诉
+                                </td>
+                                <td width="12%">
+                                    区域总经理
+                                </td>
+                                <td width="12%">
+                                    0小时
+                                </td>
+                                <td width="12%">
+                                    48小时
+                                </td>
+                                <td width="12%">
+                                    自然日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    处理投诉
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    较大投诉
+                                </td>
+                                <td width="12%">
+                                    广场总经理
+                                </td>
+                                <td width="12%">
+                                    0小时
+                                </td>
+                                <td width="12%">
+                                    48小时
+                                </td>
+                                <td width="12%">
+                                    自然日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    处理投诉
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    一般投诉
+                                </td>
+                                <td width="12%">
+                                    广场营运副总
+                                </td>
+                                <td width="12%">
+                                    0小时
+                                </td>
+                                <td width="12%">
+                                    24小时
+                                </td>
+                                <td width="12%">
+                                    自然日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    处理投诉
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    一般投诉
+                                </td>
+                                <td width="12%">
+                                    区域营运副总
+                                </td>
+                                <td width="12%">
+                                    0小时
+                                </td>
+                                <td width="12%">
+                                    24小时
+                                </td>
+                                <td width="12%">
+                                    自然日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                   <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    处理投诉
+                                </td>
+                                <td width="12%">
+                                    第一级
+                                </td>
+                                <td width="12%">
+                                    重大投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心综管部副总
+                                </td>
+                                <td width="12%">
+                                    0天
+                                </td>
+                                <td width="12%">
+                                    7天
+                                </td>
+                                <td width="12%">
+                                    自然日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                     <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    处理投诉
+                                </td>
+                                <td width="12%">
+                                    第三级
+                                </td>
+                                <td width="12%">
+                                    一般投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心综管部副总
+                                </td>
+                                <td width="12%">
+                                    48小时
+                                </td>
+                                <td width="12%">
+                                    480小时
+                                </td>
+                                <td width="12%">
+                                    自然日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    处理投诉
+                                </td>
+                                <td width="12%">
+                                    第三级
+                                </td>
+                                <td width="12%">
+                                    重大投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心分管副总
+                                </td>
+                                <td width="12%">
+                                    15天
+                                </td>
+                                <td width="12%">
+                                    30天
+                                </td>
+                                <td width="12%">
+                                    自然日
+                                </td>
+                                <td width="9%">
+                                    否
+                                </td>
+                                <td width="7%">
+                                   <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                            <tr>
+                                <td width="12%">
+                                    处理投诉
+                                </td>
+                                <td width="12%">
+                                    第三级
+                                </td>
+                                <td width="12%">
+                                    重大投诉
+                                </td>
+                                <td width="12%">
+                                    总部营运中心分管副总
+                                </td>
+                                <td width="12%">
+                                    15天
+                                </td>
+                                <td width="12%">
+                                    30天
+                                </td>
+                                <td width="12%">
+                                    自然日
+                                </td>
+                                <td width="9%">
+                                    是
+                                </td>
+                                <td width="7%">
+                                    <a href="javascript:void(0);" onclick="openWin()">
+                                        修改</a>
+                                </td>
+                            </tr>
+                        
+                </tbody>
+            </table>
+        </div>
+ 
+        <script type="text/javascript">
+<!--
+            var Ptr = document.getElementById("tab").getElementsByTagName("tr");
+            function pageLoad() {
+                for (i = 1; i < Ptr.length + 1; i++) {
+                    Ptr[i - 1].className = (i % 2 > 0) ? "t1" : "t2";
+                }
+            }
+            window.onload = pageLoad;
+            for (var i = 0; i < Ptr.length; i++) {
+                Ptr[i].onmouseover = function () {
+                    this.tmpClass = this.className;
+                    this.className = "t3";
+
+                };
+                Ptr[i].onmouseout = function () {
+                    this.className = this.tmpClass;
+                };
+            }
+//-->
+        </script>
+    </div>
+    </form>
+</body>
+</html>
+
+

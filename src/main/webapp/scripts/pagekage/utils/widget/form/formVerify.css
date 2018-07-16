@@ -1,0 +1,77 @@
+﻿@charset "utf-8";
+
+/* textbox start */
+.form_row{ position:relative; display:inline-block; background:url(formVerify/textbox_solid_bg2.gif) repeat-x 0px 0px; height:44px; width:200px; margin:5px; vertical-align:middle; margin-right:10px; }
+.form_row input:focus{ outline:none; }/*禁用GG跟一些自带样式的浏览器边框样式*/
+.form_row input{ position:absolute; left:1px; top:0px; border:0px; height:25px; line-height:25px; width:100%; padding-left:3px; margin-top:10px; }
+.form_row.focus_on{ background-position:0px -44px; }
+.form_row.error_on{ background-position:0px -98px; }
+.form_row.error{ background-position:0px -142px; }
+.txtbox_left_side,.txtbox_right_side{ position:absolute; display:inline-block; background:url(formVerify/textbox_solid_bg.gif) no-repeat; width:10px; height:35px; top:8px; overflow:hidden; }
+.form_row .txtbox_left_side{ left:-8px; background-position:0px 0px; }
+.form_row .txtbox_right_side{ right:-8px; background-position:-10px 0px; }
+.form_row.focus_on .txtbox_left_side{ height:44px; left:-8px; top:2px; background-position:0px -32px; }
+.form_row.focus_on .txtbox_right_side{ height:44px; right:-8px; top:2px; background-position:-10px -32px; }
+.form_row.error_on .txtbox_left_side{ height:42px; left:-8px; top:2px; background-position:0px -76px; }
+.form_row.error_on .txtbox_right_side{ height:42px; right:-8px; top:2px; background-position:-10px -76px; }
+.form_row.error .txtbox_left_side{ background-position:0px -122px; }
+.form_row.error .txtbox_right_side{ background-position:-10px -122px; }
+/* textbox end */
+
+/* tip error msg start */
+.error_tip_dialog{ position:absolute; background:url(formVerify/tip_bg.gif) repeat-x; padding:0 10px; left:232px; top:150px; height:32px; line-height:32px; color:#912323; z-index:9; }
+.error_tip_dialog_left_side{ display:block; position:absolute; left:-2px; top:0px; background:url(formVerify/tip_left_arrow.gif) no-repeat; width:8px; height:39px; }
+.error_tip_dialog_right_side{ display:block; position:absolute; right:-2px; top:0px; background:url(formVerify/tip_right_arrow.gif) no-repeat; width:4px; height:32px;}
+
+.ok_tip_dialog{ position:absolute; background:url(formVerify/tip_bg_2.gif) repeat-x; padding:0 10px; left:232px; top:150px; height:32px; line-height:32px; color:#2B87B7; z-index:9; }
+.ok_tip_dialog_left_side{ display:block; position:absolute; left:-2px; top:0px; background:url(formVerify/tip_left_arrow_2.gif) no-repeat; width:8px; height:39px; }
+.ok_tip_dialog_right_side{ display:block; position:absolute; right:-2px; top:0px; background:url(formVerify/tip_right_arrow_2.gif) no-repeat; width:4px; height:32px;}
+
+/* tip error msg end */
+
+/* buttons start */
+.btn{ display:inline-block; background:url(formVerify/buttons.png) no-repeat; border:none; cursor:pointer; vertical-align:middle; }
+
+.btn.btn_gray_101_30{ width:101px; height:30px; background-position:0px -93px; color:#333; line-height:30px; text-align:center; }
+.btn.btn_gray_101_30:hover{ background-position:-101px -93px; }
+
+.btn.btn_gray_54_30{ width:54px; height:30px; background-position:-202px -93px; color:#333; line-height:30px; text-align:center; }
+.btn.btn_gray_54_30:hover{ background-position:-202px -124px; }
+
+.btn.btn_blue_101_30{ width:101px; height:30px; background-position:0px -124px; color:White; line-height:30px; text-align:center; }
+.btn.btn_blue_101_30:hover{ background-position:-101px -124px; }
+
+.btn.btn_black_101_30{ width:101px; height:30px; background-position:0px -457px; color:White; line-height:30px; text-align:center; }
+.btn.btn_black_101_30:hover{ background-position:-101px -457px; }
+
+.btn.btn_black_121_30{ width:121px; height:30px; background-position:0px -546px; color:White; line-height:30px; text-align:center; }
+.btn.btn_black_121_30:hover{ background-position:-121px -546px; }
+
+.btn.btn_left{ float:left; }
+.btn.btn_center{ display:block; margin:0 auto; }
+.btn.btn_right{ float:right; }
+/* buttons end */
+
+/* form layout vertical start */
+.form_layout_vertical{ }
+.form_layout_vertical dd,.form_layout_vertical dt{ display:block; padding:10px; border-bottom:1px dashed gainsboro; }
+.form_layout_vertical dt{ font-size:14px; text-align:left; font-weight:bold; }
+.form_layout_vertical dd.form_action_item{ border:none; }
+.form_layout_vertical dd label,.form_layout_vertical dd input{ vertical-align:middle; }
+.form_layout_vertical dd label.lab_left{ float:left; }
+/* form layout vertical end */
+
+/* form layout horizontal start */
+.form_layout_horizontal{ width:100%; margin:10px 0; border-collapse:inherit; }
+.form_layout_horizontal caption{ text-align:left; font-weight:bold; font-size:14px; text-indent:10px; border-bottom:1px dashed #ccc; padding-bottom:10px; }
+.form_layout_horizontal tbody th{ text-align:right;border-bottom:1px dashed #ccc; }
+.form_layout_horizontal tbody .w80{ width:80px!important; }
+.form_layout_horizontal tbody .w250{ width:250px!important; }
+.form_layout_horizontal tbody td{ padding:10px 5px; border-bottom:1px dashed #ccc; }
+.form_layout_horizontal tfoot td{ padding:10px 0; }
+.form_layout_horizontal .form_row{ margin:0px; margin-right:10px; }
+/* form layout vertical end */
+
+/* select */
+select{ height:25px; line-height:25px; }
+textarea{ width:70%; height:200px; }

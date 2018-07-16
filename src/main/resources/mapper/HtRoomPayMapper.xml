@@ -1,0 +1,318 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.wanda.dao.HtRoomPayMapper" >
+  <resultMap id="BaseResultMap" type="com.wanda.bean.HtRoomPay" >
+    <id column="room_pay_id" property="roomPayId" jdbcType="VARCHAR" />
+    <result column="contract_id" property="contractId" jdbcType="VARCHAR" />
+    <result column="order_id" property="orderId" jdbcType="VARCHAR" />
+    <result column="room_id" property="roomId" jdbcType="VARCHAR" />
+    <result column="customer_id" property="customerId" jdbcType="VARCHAR" />
+    <result column="customer_name" property="customerName" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="VARCHAR" />
+    <result column="name" property="name" jdbcType="VARCHAR" />
+    <result column="receivable_money" property="receivableMoney" jdbcType="REAL" />
+    <result column="received_money" property="receivedMoney" jdbcType="REAL" />
+    <result column="uncollected_money" property="uncollectedMoney" jdbcType="REAL" />
+    <result column="pay_time" property="payTime" jdbcType="TIMESTAMP" />
+    <result column="pay_type" property="payType" jdbcType="VARCHAR" />
+    <result column="finish_times" property="finishTimes" jdbcType="VARCHAR" />
+    <result column="wait_times" property="waitTimes" jdbcType="VARCHAR" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="TIMESTAMP" />
+    <result column="delete_user" property="deleteUser" jdbcType="VARCHAR" />
+    <result column="delete_time" property="deleteTime" jdbcType="TIMESTAMP" />
+    <result column="delete_state" property="deleteState" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    room_pay_id, contract_id, order_id, room_id, customer_id, customer_name, user_id, 
+    name, receivable_money, received_money, uncollected_money, pay_time, pay_type, finish_times, 
+    wait_times, update_user, update_time, delete_user, delete_time, delete_state
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+    select 
+    <include refid="Base_Column_List" />
+    from wd_ht_room_pay
+    where room_pay_id = #{roomPayId,jdbcType=VARCHAR}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String" >
+    delete from wd_ht_room_pay
+    where room_pay_id = #{roomPayId,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" parameterType="com.wanda.bean.HtRoomPay" >
+    insert into wd_ht_room_pay (room_pay_id, contract_id, order_id, 
+      room_id, customer_id, customer_name, 
+      user_id, name, receivable_money, 
+      received_money, uncollected_money, pay_time, 
+      pay_type, finish_times, wait_times, 
+      update_user, update_time, delete_user, 
+      delete_time, delete_state)
+    values (#{roomPayId,jdbcType=VARCHAR}, #{contractId,jdbcType=VARCHAR}, #{orderId,jdbcType=VARCHAR}, 
+      #{roomId,jdbcType=VARCHAR}, #{customerId,jdbcType=VARCHAR}, #{customerName,jdbcType=VARCHAR}, 
+      #{userId,jdbcType=VARCHAR}, #{name,jdbcType=VARCHAR}, #{receivableMoney,jdbcType=REAL}, 
+      #{receivedMoney,jdbcType=REAL}, #{uncollectedMoney,jdbcType=REAL}, #{payTime,jdbcType=TIMESTAMP}, 
+      #{payType,jdbcType=VARCHAR}, #{finishTimes,jdbcType=VARCHAR}, #{waitTimes,jdbcType=VARCHAR}, 
+      #{updateUser,jdbcType=VARCHAR}, #{updateTime,jdbcType=TIMESTAMP}, #{deleteUser,jdbcType=VARCHAR}, 
+      #{deleteTime,jdbcType=TIMESTAMP}, #{deleteState,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.wanda.bean.HtRoomPay" >
+   <selectKey keyProperty="roomPayId" resultType="string" order="BEFORE">
+ 			select UUID()	
+ 		</selectKey>
+    insert into wd_ht_room_pay
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="roomPayId != null" >
+        room_pay_id,
+      </if>
+      <if test="contractId != null" >
+        contract_id,
+      </if>
+      <if test="orderId != null" >
+        order_id,
+      </if>
+      <if test="roomId != null" >
+        room_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="customerName != null" >
+        customer_name,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="name != null" >
+        name,
+      </if>
+      <if test="receivableMoney != null" >
+        receivable_money,
+      </if>
+      <if test="receivedMoney != null" >
+        received_money,
+      </if>
+      <if test="uncollectedMoney != null" >
+        uncollected_money,
+      </if>
+      <if test="payTime != null" >
+        pay_time,
+      </if>
+      <if test="payType != null" >
+        pay_type,
+      </if>
+      <if test="finishTimes != null" >
+        finish_times,
+      </if>
+      <if test="waitTimes != null" >
+        wait_times,
+      </if>
+      <if test="updateUser != null" >
+        update_user,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteUser != null" >
+        delete_user,
+      </if>
+      <if test="deleteTime != null" >
+        delete_time,
+      </if>
+      <if test="deleteState != null" >
+        delete_state,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="roomPayId != null" >
+        #{roomPayId,jdbcType=VARCHAR},
+      </if>
+      <if test="contractId != null" >
+        #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null" >
+        #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableMoney != null" >
+        #{receivableMoney,jdbcType=REAL},
+      </if>
+      <if test="receivedMoney != null" >
+        #{receivedMoney,jdbcType=REAL},
+      </if>
+      <if test="uncollectedMoney != null" >
+        #{uncollectedMoney,jdbcType=REAL},
+      </if>
+      <if test="payTime != null" >
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payType != null" >
+        #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTimes != null" >
+        #{finishTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="waitTimes != null" >
+        #{waitTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.wanda.bean.HtRoomPay" >
+    update wd_ht_room_pay
+    <set >
+      <if test="contractId != null" >
+        contract_id = #{contractId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderId != null" >
+        order_id = #{orderId,jdbcType=VARCHAR},
+      </if>
+      <if test="roomId != null" >
+        room_id = #{roomId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=VARCHAR},
+      </if>
+      <if test="customerName != null" >
+        customer_name = #{customerName,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=VARCHAR},
+      </if>
+      <if test="name != null" >
+        name = #{name,jdbcType=VARCHAR},
+      </if>
+      <if test="receivableMoney != null" >
+        receivable_money = #{receivableMoney,jdbcType=REAL},
+      </if>
+      <if test="receivedMoney != null" >
+        received_money = #{receivedMoney,jdbcType=REAL},
+      </if>
+      <if test="uncollectedMoney != null" >
+        uncollected_money = #{uncollectedMoney,jdbcType=REAL},
+      </if>
+      <if test="payTime != null" >
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="payType != null" >
+        pay_type = #{payType,jdbcType=VARCHAR},
+      </if>
+      <if test="finishTimes != null" >
+        finish_times = #{finishTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="waitTimes != null" >
+        wait_times = #{waitTimes,jdbcType=VARCHAR},
+      </if>
+      <if test="updateUser != null" >
+        update_user = #{updateUser,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteUser != null" >
+        delete_user = #{deleteUser,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteTime != null" >
+        delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="deleteState != null" >
+        delete_state = #{deleteState,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where room_pay_id = #{roomPayId,jdbcType=VARCHAR}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.wanda.bean.HtRoomPay" >
+    update wd_ht_room_pay
+    set contract_id = #{contractId,jdbcType=VARCHAR},
+      order_id = #{orderId,jdbcType=VARCHAR},
+      room_id = #{roomId,jdbcType=VARCHAR},
+      customer_id = #{customerId,jdbcType=VARCHAR},
+      customer_name = #{customerName,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=VARCHAR},
+      name = #{name,jdbcType=VARCHAR},
+      receivable_money = #{receivableMoney,jdbcType=REAL},
+      received_money = #{receivedMoney,jdbcType=REAL},
+      uncollected_money = #{uncollectedMoney,jdbcType=REAL},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      pay_type = #{payType,jdbcType=VARCHAR},
+      finish_times = #{finishTimes,jdbcType=VARCHAR},
+      wait_times = #{waitTimes,jdbcType=VARCHAR},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=TIMESTAMP},
+      delete_user = #{deleteUser,jdbcType=VARCHAR},
+      delete_time = #{deleteTime,jdbcType=TIMESTAMP},
+      delete_state = #{deleteState,jdbcType=VARCHAR}
+    where room_pay_id = #{roomPayId,jdbcType=VARCHAR}
+  </update>
+  <select id="getList" resultMap="BaseResultMap">
+  	select * from wd_ht_room_pay
+  </select>
+  <select id="getLists" resultMap="BaseResultMap">
+  	select * from wd_ht_room_pay where delete_state = '更名申请中' or delete_state = '换房申请中'
+  </select>
+  <delete id="del" parameterType="map">
+  	delete from wd_ht_room_pay  where room_pay_id in 
+  	<foreach collection="snos" item="sno" open="(" close=")" separator=",">
+			#{sno}
+	</foreach>
+  </delete>
+  <update id="zuofei" parameterType="map">
+  	update wd_ht_room_pay set delete_state = '作废' where room_pay_id in 
+  	<foreach collection="snos" item="sno" open="(" close=")" separator=",">
+			#{sno}
+	</foreach>
+  </update>
+  <update id="tuikuan" parameterType="map">
+  	update wd_ht_room_pay set  receivable_money = 0,
+      received_money = 0,
+      uncollected_money = 0 ,delete_state = '作废' , pay_time = null where room_pay_id in 
+  	<foreach collection="snos" item="sno" open="(" close=")" separator=",">
+			#{sno}
+	</foreach>
+  </update>
+  <update id="gengmingshenqing" parameterType="java.lang.String">
+  	update wd_ht_room_pay set delete_state = '更名申请中' where room_pay_id =  #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="gengming" parameterType="com.wanda.bean.HtRoomPay">
+  	update wd_ht_room_pay set delete_state = '使用',customer_name =  #{customerName,jdbcType=VARCHAR}, customer_id = #{customerId,jdbcType=VARCHAR} where room_pay_id =  #{roomPayId,jdbcType=VARCHAR}
+  </update>
+  <update id="huanfangshenqing" parameterType="java.lang.String">
+  	update wd_ht_room_pay set delete_state = '换房申请中' where room_pay_id =  #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="huanfang" parameterType="com.wanda.bean.HtRoomPay">
+  update wd_ht_room_pay set delete_state = '使用', room_id = #{roomId,jdbcType=VARCHAR} where room_pay_id =  #{roomPayId,jdbcType=VARCHAR}
+  </update>
+  <update id="butongguo" parameterType="java.lang.String">
+  	update wd_ht_room_pay set delete_state = '申请未通过' where room_pay_id =  #{id,jdbcType=VARCHAR}
+  </update>
+  <update id="shenhe" parameterType="java.lang.String">
+  	UPDATE wd_ht_room_pay set delete_state=if(delete_state = '更名申请中','更名申请通过','换房申请通过')
+ where room_pay_id = #{roomPayId,jdbcType=VARCHAR} ;
+  </update>
+</mapper>

@@ -1,0 +1,311 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+    <link href="/Styles/css.css" rel="stylesheet" type="text/css" />
+    <link href="/Styles/ts_css.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <div id="main">
+        <div class="tsnr">
+            <div class="tsnr_1">
+                <div class="tsnr_1_font">
+                    投诉内容</div>
+            </div>
+            <div class="tsnr_2">
+                <table class="table_list2" border="0" cellspacing="2" cellpadding="2">
+                    <tbody>
+                        <tr>
+                            <td style="cursor: pointer" class="table_list2_style1" onclick="showWaringHis()"
+                                width="13%">
+                                预警信息
+                            </td>
+                            <td style="cursor: pointer" class="table_list2_style2" onclick="showWaringHis()"
+                                width="20%">
+                                <span id="complaintInfo_lblWaringType">&nbsp;<img alt="" src="../images/yj_green.png"
+                                    width="12" height="12">&nbsp;&nbsp;</span>
+                            </td>
+                            <td class="table_list2_style1" width="13%">
+                            </td>
+                            <td class="table_list2_style2" width="20%">
+                                <span id="complaintInfo_lblWarningNames"></span>
+                            </td>
+                            <td class="table_list2_style1" width="14%">
+                                <span id="complaintInfo_spTime"></span>
+                            </td>
+                            <td class="table_list2_style2" width="20%">
+                                <span id="complaintInfo_lblTime"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list2_style1" width="13%">
+                                客户类型
+                            </td>
+                            <td class="table_list2_style2" width="20%">
+                                <span id="complaintInfo_lblCustomerType">商户</span>
+                            </td>
+                            <td class="table_list2_style1" width="13%">
+                                所属项目
+                            </td>
+                            <td class="table_list2_style2" width="20%">
+                                <span id="complaintInfo_lblProjectName">无锡滨湖万达广场</span>
+                            </td>
+                            <td class="table_list2_style1" width="14%">
+                                投诉次数
+                            </td>
+                            <td class="table_list2_style2" width="20%">
+                                <span id="complaintInfo_lblComplaintCount">1</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list2_style1">
+                                投诉人姓名
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="complaintInfo_lblComplaintName" title="福红娜">福红娜</span>
+                            </td>
+                            <td class="table_list2_style1">
+                                首选联系方式
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="complaintInfo_lblContactFirst"></span>
+                            </td>
+                            <td class="table_list2_style1">
+                                其他联系方式
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="complaintInfo_lblContactOther"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list2_style1">
+                                邮箱地址
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="complaintInfo_lblEmail"></span>
+                            </td>
+                            <td class="table_list2_style1">
+                                投诉来源
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="complaintInfo_lblComplaintSource">400电话</span>
+                            </td>
+                            <td class="table_list2_style1">
+                                受理人姓名
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="complaintInfo_lblCreateUserName">李梦婕</span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list2_style1">
+                                投诉受理时间
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="complaintInfo_lblCreateTime">2012/8/10 18:25:25</span>
+                            </td>
+                            <td class="table_list2_style1">
+                                <span id="complaintInfo_textType">二次计划反馈时间</span>
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="complaintInfo_lblFeedbackTime">2012/8/10 19:50:00</span>
+                            </td>
+                            <td class="table_list2_style1">
+                                <span id="complaintInfo_textTypeTime">回访客户时间</span>
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="complaintInfo_lblTypeTime">2012/8/10 18:35:38</span>
+                            </td>
+                        </tr>
+                        <tr id="complaintInfo_tr_BusinessType">
+                            <td class="table_list2_style1">
+                                商户类型
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="complaintInfo_lblBusinessType">主力店</span>
+                            </td>
+                            <td class="table_list2_style1">
+                                商户名称及编号
+                            </td>
+                            <td class="table_list2_style2" colspan="3">
+                                <span id="complaintInfo_lblBusinessName"></span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="table_list2_style1">
+                                投诉内容
+                            </td>
+                            <td class="table_list2_style2" colspan="5">
+                                <span id="complaintInfo_lblComplaintContent">一般一般一般</span>
+                            </td>
+                        </tr>
+                        <tr id="complaintInfo_state">
+                            <td class="table_list2_style1">
+                                投诉级别
+                            </td>
+                            <td class="table_list2_style2">
+                                <span id="complaintInfo_lblComplaintLevelId">较大投诉</span> &nbsp;
+                            </td>
+                            <td class="table_list2_style1">
+                                定级原因
+                            </td>
+                            <td class="table_list2_style2" colspan="3">
+                                <span id="complaintInfo_lblGradingReasonsId">一般投诉处理不当导致重复投诉或越级</span> &nbsp;
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div style="display: none" id="waringHIs">
+            <table id="complaintList" class="tablist" width="100%">
+                <thead id="tablistHer">
+                    <tr>
+                        <th>
+                            预警信息
+                        </th>
+                        <th>
+                            预警类型
+                        </th>
+                        <th>
+                            投诉级别
+                        </th>
+                        <th>
+                            投诉单状态
+                        </th>
+                        <th>
+                            责任人
+                        </th>
+                    </tr>
+                </thead>
+                <tbody id="tab">
+                </tbody>
+                <tbody>
+                    <tr id="complaintInfo_content">
+                        <td colspan="5" align="middle">
+                            暂无信息
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <input id="hidComplaintId" value="14863F9D3E2B46678D3FB89B082B6511" type="hidden"
+            name="complaintInfo$hidComplaintId">
+        <input id="hidComplaintState" value="7" type="hidden" name="complaintInfo$hidComplaintState">
+        <div class="blank8">
+        </div>
+        <div class="tsdj">
+            <div class="tsdj_1">
+                <div class="tsdj_1_font">
+                    回访客户</div>
+            </div>
+            <table class="table_list1" border="0" cellspacing="2" cellpadding="2">
+                <tbody>
+                    <tr>
+                        <td class="table_list1_style1" width="13%">
+                            <font class="red">*</font>&nbsp;是否需要回访
+                        </td>
+                        <td style="width: 87%" class="table_list1_style2">
+                            <input id="radVisitsTrue"   onclick="isVisitsChick();" value="0" checked type="radio"
+                                name="isVisits"><label for="radVisitsTrue">是</label>
+                            &nbsp;&nbsp;
+                            <input id="radVisits"   onclick="isVisitsChick();" value="1" type="radio"
+                                name="isVisits"><label for="radVisits">否</label>
+                        </td>
+                    </tr>
+                    <tr style="display: none" id="tr1">
+                        <td style="width: 13%" class="table_list1_style1">
+                            <font class="red">*</font>&nbsp;不便回访原因
+                        </td>
+                        <td style="width: 87%" class="table_list1_style2">
+                            <select style="width: 140px" id="slVisitsReason"   onclick="slVisitsReasonChick();"
+                                name="slVisitsReason">
+                                <option selected value="21AC381626D14DF9BC5EBDE3C3A359F2">无联系方式</option>
+                                <option value="BD44920315CD4078B16FD70D8080E7C8">不便回访</option>
+                            </select>
+                            <input style="border-bottom: 0px; text-align: center; border-left: 0px; width: 69px;
+                                background: url(../images/button_bg.gif) no-repeat; float: inherit; height: 22px;
+                                color: #1a52a1; border-top: 0px; border-right: 0px" id="btnApproval"  
+                                onclick="AddVisits(this,'1','1');" value="审批" type="button" name="btnApproval">
+                        </td>
+                    </tr>
+                    <tr id="tr2">
+                        <td style="width: 13%" class="table_list1_style1">
+                            <font class="red">*</font>&nbsp;客户满意度
+                        </td>
+                        <td style="width: 87%" class="table_list1_style2">
+                            <select style="width: 135px" id="ddlcustomerSatisfied"   onclick="ddlcustomerSatisfiedChick();"
+                                name="ddlcustomerSatisfied">
+                                <option selected value="7671EDCC38F746F8A1AA36E99D9194B3">十分满意</option>
+                                <option value="2F7ED7FE33D6421EAF8A5504BD67DC78">满意</option>
+                                <option value="AAB5CD43427546B9998F6D43F6D47EF6">不满意并升级</option>
+                                <option value="9A22193370654FE6B60DBBB91BB7D461">不满意并关闭</option>
+                            </select>
+                            <label style="display: none; color: red" id="isupgrade">
+                                注意: 如果客户不满意，提交后，自动发起一条新的投诉，并发送短信给客服人员</label>
+                            <input style="border-bottom: 0px; text-align: center; border-left: 0px; width: 69px;
+                                display: none; background: url(../images/button_bg.gif) no-repeat; float: inherit;
+                                height: 22px; color: #1a52a1; border-top: 0px; border-right: 0px" id="btnDissatApproval"
+                                  onclick="AddVisits(this,'1','2');" value="审批" type="button" name="btnDissatApproval">
+                        </td>
+                    </tr>
+                    <tr id="tr3">
+                        <td style="width: 13%" class="table_list1_style1">
+                            <font class="red">*</font>&nbsp; 回访时间
+                        </td>
+                        <td style="width: 80%" class="table_list1_style2">
+                            <input id="txtsoveDate" onfocus="datePicker();"   value="2012/8/10 18:36:00"
+                                type="text" name="txtsoveDate">
+                            <img id="imgProcessingTime"   onclick='$("#txtsoveDate").focus()' align="absMiddle"
+                                src="../images/date.gif" width="17" height="20">
+                        </td>
+                    </tr>
+                    <tr id="tr4">
+                        <td style="width: 13%" class="table_list1_style1">
+                            <font class="red">*</font>&nbsp; 回访内容
+                        </td>
+                        <td style="width: 87%" class="table_list1_style2">
+                            <textarea style="width: 99%" id="VisitsContent"   rows="5" name="VisitsContent">福</textarea>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td style="width: 13%" class="table_list1_style1">
+                            备注
+                        </td>
+                        <td style="width: 87%" class="table_list1_style2">
+                            <textarea style="width: 99%" id="txtremarks"   rows="5" name="txtremarks"></textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <!--  附件列表 END-->
+        <div class="operate">
+            <ul>
+                <li>
+                    <input id="btnVisitsSuspend" class="button"   onclick="AddVisits(this,'1','0');"
+                        value="暂存" type="button" name="btnVisitsSuspend">
+                </li>
+                <li>
+                    <input id="btnVisitsSubmit" class="button"   onclick="AddVisits(this,'0','0');"
+                        value="提交" type="button" name="btnVisitsSubmit">
+                </li>
+                <li>
+                    <input id="btnVisitsUpdate" class="button"   onclick="UpdateWithVisit(this);"
+                        value="修改" type="button" name="btnVisitsUpdate">
+                </li>
+                <li>
+                    <input id="btnClose" class="button" onclick="page_Close()" value="关闭" type="button"
+                        name="btnClose">
+                </li>
+            </ul>
+        </div>
+        <div>
+            <iframe style="border-bottom: 0px; border-left: 0px; border-top: 0px; border-right: 0px"
+                id="fileUpLoadIframe" onload="iFrameHeight()" height="57" marginheight="0" src="FileUpLoadTest.html?complaintId=14863F9D3E2B46678D3FB89B082B6511&amp;processUuid=7&amp;processName=回访客户&amp;Index=7"
+                frameborder="0" width="100%" name="frmContainer" marginwidth="0" scrolling="no">
+            </iframe>
+        </div>
+    </div>
+</body>
+</html>
